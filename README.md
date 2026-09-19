@@ -9,7 +9,7 @@ GremlinDrive — проект безопасного облачного хран
 - [Описание продукта](docs/product.md)
 - [Исследование пользователей](docs/research.md)
 - [План реализации](docs/roadmap.md)
-- [Сайт проекта](https://fpmi-hci-2026.github.io/hci-10-project-group-4/)
+- [Сайт проекта](https://fpmi-hci-2026.github.io/GremlinDrive/)
 
 ## Что планируется
 
