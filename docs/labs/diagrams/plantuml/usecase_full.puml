@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+left to right direction
+title Уточнённая диаграмма вариантов использования (после ИИ-уточнения)
+
+actor "Гость" as Guest
+actor "Пользователь" as User
+actor "Владелец общей папки" as Owner
+actor "Администратор" as Admin
+actor "SMTP-сервер" as SMTP
+actor "FCM / APNs" as Push
+actor "LDAP / AD" as LDAP
+
+rectangle "GremlinDrive" {
+  usecase "Зарегистрироваться" as UC01
+  usecase "Подтвердить e-mail" as UC02
+  usecase "Войти / выйти" as UC03
+  usecase "Включить 2FA" as UC04
+  usecase "Открыть публичную ссылку" as UC05
+  usecase "Скачать файл по ссылке" as UC06
+  usecase "Загрузить файл" as UC07
+  usecase "Управлять файлами и папками" as UC08
+  usecase "Искать и фильтровать" as UC09
+  usecase "Создать ссылку доступа" as UC10
+  usecase "Настроить пароль и срок ссылки" as UC11
+  usecase "Пригласить участника" as UC12
+  usecase "Управлять ролями папки" as UC13
+  usecase "Просмотреть историю версий" as UC14
+  usecase "Восстановить версию" as UC15
+  usecase "Восстановить из корзины" as UC16
+  usecase "Запросить расширение прав" as UC17
+  usecase "Управлять пользователями" as UC18
+  usecase "Управлять квотами и тарифами" as UC19
+  usecase "Обработать запрос прав" as UC20
+  usecase "Просмотреть журнал аудита" as UC21
+  usecase "Экспортировать отчёт" as UC22
+  usecase "Получать уведомления" as UC23
+}
+
+Guest --> UC01
+Guest --> UC05
+Guest --> UC06
+UC06 .> UC05 : <<extend>>
+UC01 .> UC02 : <<include>>
+UC01 .> UC23 : <<include>>
+User --> UC03
+User --> UC04
+User --> UC07
+User --> UC08
+User --> UC09
+User --> UC10
+User --> UC14
+User --> UC15
+User --> UC16
+User --> UC17
+User --> UC23
+Owner --> UC12
+Owner --> UC13
+UC10 .> UC11 : <<extend>>
+UC12 .> UC23 : <<include>>
+UC17 .> UC23 : <<include>>
+Admin --> UC18
+Admin --> UC19
+Admin --> UC20
+Admin --> UC21
+Admin --> UC22
+UC20 .> UC17 : <<extend>>
+UC02 --> SMTP
+UC23 --> Push
+UC18 --> LDAP
+@enduml

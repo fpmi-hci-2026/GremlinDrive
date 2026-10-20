@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+title EventStorming: Big Picture — события предметной области
+
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #5A6B61
+}
+skinparam card {
+  BackgroundColor #FFFFFF
+  BorderColor #5A6B61
+  FontSize 11
+}
+
+package "1. Онбординг" as P1 {
+  card "Зарегистрирован\nпользователь" as E1 #F4A261
+  card "E-mail\nподтверждён" as E2 #F4A261
+  card "Выполнен\nвход" as E3 #F4A261
+  card "Назначена\nквота" as E4 #F4A261
+  E1 -right-> E2
+  E2 -right-> E3
+  E3 -right-> E4
+}
+
+package "2. Файлы" as P2 {
+  card "Файл\nзагружен" as E5 #F4A261
+  card "Вирусная\nпроверка пройдена" as E6 #F4A261
+  card "Создана\nверсия" as E7 #F4A261
+  card "Квота\nобновлена" as E8 #F4A261
+  card "Файл перемещён\nв корзину" as E9 #F4A261
+  card "Файл\nвосстановлен" as E10 #F4A261
+  E5 -right-> E6
+  E6 -right-> E7
+  E7 -right-> E8
+  E8 -right-> E9
+  E9 -right-> E10
+}
+
+package "3. Обмен" as P3 {
+  card "Ссылка\nсоздана" as E11 #F4A261
+  card "Ссылка\nоткрыта" as E12 #F4A261
+  card "Пароль\nпроверен" as E13 #F4A261
+  card "Файл\nскачан" as E14 #F4A261
+  card "Срок ссылки\nистёк" as E15 #F4A261
+  E11 -right-> E12
+  E12 -right-> E13
+  E13 -right-> E14
+  E14 -right-> E15
+}
+
+package "4. Совместная работа" as P4 {
+  card "Папка\nопубликована" as E16 #F4A261
+  card "Приглашение\nотправлено" as E17 #F4A261
+  card "Участник\nприсоединился" as E18 #F4A261
+  card "Права\nвыданы" as E19 #F4A261
+  card "Новая версия\nзагружена" as E20 #F4A261
+  card "Комментарий\nдобавлен" as E21 #F4A261
+  card "Уведомление\nотправлено" as E22 #F4A261
+  E16 -right-> E17
+  E17 -right-> E18
+  E18 -right-> E19
+  E19 -right-> E20
+  E20 -right-> E21
+  E21 -right-> E22
+}
+
+package "5. Администрирование" as P5 {
+  card "Запрос прав\nсоздан" as E23 #F4A261
+  card "Запрос\nодобрен" as E24 #F4A261
+  card "Квота\nрасширена" as E25 #F4A261
+  card "Запись аудита\nсохранена" as E26 #F4A261
+  E23 -right-> E24
+  E24 -right-> E25
+  E25 -right-> E26
+}
+
+E4 -down-> E5
+E10 -down-> E11
+E15 -down-> E16
+E22 -down-> E23
+P1 -down-> P2
+P2 -down-> P3
+P3 -down-> P4
+P4 -down-> P5
+@enduml

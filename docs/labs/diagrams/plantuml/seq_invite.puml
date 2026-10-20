@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: приглашение участника в общую папку
+
+actor "Владелец папки" as O
+participant "Веб-приложение" as W
+participant "Collaboration\nService" as API
+database "PostgreSQL" as DB
+participant "SMTP" as MAIL
+actor "Приглашённый" as I
+
+O -> W : Открыть «Общие папки» → «Участники»
+O -> W : Нажать «Пригласить»
+O -> W : Ввести e-mail и роль «редактор»
+W -> API : POST /folders/{id}/invitations
+API -> DB : Проверить роль владельца
+DB --> API : Права подтверждены
+API -> DB : Создать Invitation (token, expiresAt)
+API -> MAIL : Отправить письмо-приглашение
+MAIL --> I : Письмо со ссылкой
+API --> W : Приглашение создано
+W --> O : Статус «Отправлено»
+I -> API : GET /invitations/{token}
+API -> DB : Проверить срок и статус
+DB --> API : Приглашение активно
+API --> I : Страница принятия приглашения
+I -> API : POST /invitations/{token}/accept
+API -> DB : Создать FolderMember (роль editor)
+API -> DB : Записать AuditRecord
+API -> DB : Обновить Invitation.status = ACCEPTED
+API --> I : Доступ к папке открыт
+API --> O : Уведомление «Участник присоединился»
+@enduml

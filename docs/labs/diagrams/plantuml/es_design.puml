@@ -1,0 +1,120 @@
+@startuml
+!include style.puml
+title EventStorming: Software Design — агрегаты и ограниченные контексты
+
+skinparam card {
+  FontSize 9
+  BorderColor #5A6B61
+}
+
+package "Identity & Access" as D1 {
+  card "User" as AGG1 #FFE082
+  card "RegisterUser" as C1 #64B5F6
+  card "UserRegistered" as E1 #F4A261
+  card "Login" as C2 #64B5F6
+  card "LoggedIn" as E2 #F4A261
+  card "Enable2FA" as C3 #64B5F6
+  card "TwoFactorEnabled" as E3 #F4A261
+  C1 -right-> AGG1
+  C2 -right-> AGG1
+  C3 -right-> AGG1
+  AGG1 -right-> E1
+  AGG1 -right-> E2
+  AGG1 -right-> E3
+}
+
+package "File Storage" as D2 {
+  card "File" as AGG2 #FFE082
+  card "InitiateUpload" as C4 #64B5F6
+  card "UploadStarted" as E4 #F4A261
+  card "CompleteUpload" as C5 #64B5F6
+  card "FileUploaded" as E5 #F4A261
+  card "VersionCreated" as E6 #F4A261
+  card "DeleteFile" as C6 #64B5F6
+  card "FileTrashed" as E7 #F4A261
+  card "RestoreFile" as C7 #64B5F6
+  card "FileRestored" as E8 #F4A261
+  C4 -right-> AGG2
+  C5 -right-> AGG2
+  C6 -right-> AGG2
+  C7 -right-> AGG2
+  AGG2 -right-> E4
+  AGG2 -right-> E5
+  AGG2 -right-> E6
+  AGG2 -right-> E7
+  AGG2 -right-> E8
+}
+
+package "Sharing" as D3 {
+  card "ShareLink" as AGG3 #FFE082
+  card "CreateShareLink" as C8 #64B5F6
+  card "ShareLinkCreated" as E9 #F4A261
+  card "OpenShareLink" as C9 #64B5F6
+  card "LinkOpened" as E10 #F4A261
+  card "ExpireShareLink" as C10 #64B5F6
+  card "ShareLinkExpired" as E11 #F4A261
+  C8 -right-> AGG3
+  C9 -right-> AGG3
+  C10 -right-> AGG3
+  AGG3 -right-> E9
+  AGG3 -right-> E10
+  AGG3 -right-> E11
+}
+
+package "Collaboration" as D4 {
+  card "Folder" as AGG4 #FFE082
+  card "InviteMember" as C11 #64B5F6
+  card "InvitationSent" as E12 #F4A261
+  card "AcceptInvitation" as C12 #64B5F6
+  card "MemberJoined" as E13 #F4A261
+  card "AddComment" as C13 #64B5F6
+  card "CommentAdded" as E14 #F4A261
+  C11 -right-> AGG4
+  C12 -right-> AGG4
+  C13 -right-> AGG4
+  AGG4 -right-> E12
+  AGG4 -right-> E13
+  AGG4 -right-> E14
+}
+
+package "Administration" as D5 {
+  card "AccessRequest" as AGG5 #FFE082
+  card "CreateRequest" as C14 #64B5F6
+  card "AccessRequestCreated" as E15 #F4A261
+  card "ApproveRequest" as C15 #64B5F6
+  card "AccessRequestApproved" as E16 #F4A261
+  card "ExpandQuota" as C16 #64B5F6
+  card "QuotaExpanded" as E17 #F4A261
+  card "WriteAudit" as C17 #64B5F6
+  card "AuditRecordWritten" as E18 #F4A261
+  C14 -right-> AGG5
+  C15 -right-> AGG5
+  C16 -right-> AGG5
+  C17 -right-> AGG5
+  AGG5 -right-> E15
+  AGG5 -right-> E16
+  AGG5 -right-> E17
+  AGG5 -right-> E18
+}
+
+package "Notifications" as D6 {
+  card "Notification" as AGG6 #FFE082
+  card "SendNotification" as C18 #64B5F6
+  card "NotificationSent" as E19 #F4A261
+  C18 -right-> AGG6
+  AGG6 -right-> E19
+}
+
+D1 -down-> D2
+D2 -down-> D3
+D3 -down-> D4
+D4 -down-> D5
+D5 -down-> D6
+legend right
+  Политики (связи между контекстами):
+  UserRegistered → Login; FileUploaded → CompleteUpload;
+  ShareLinkCreated → OpenShareLink; AccessRequestCreated → ApproveRequest;
+  AccessRequestApproved → ExpandQuota; QuotaExpanded → WriteAudit;
+  FileTrashed → SendNotification; MemberJoined → SendNotification
+endlegend
+@enduml

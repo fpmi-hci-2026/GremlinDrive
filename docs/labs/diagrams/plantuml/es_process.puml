@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+title EventStorming: Process Modeling — публикация файла и доступ по ссылке
+
+skinparam card {
+  FontSize 11
+  BorderColor #5A6B61
+}
+
+actor "Пользователь" as U #FFE082
+actor "Гость" as G #FFE082
+
+package "1. Создание ссылки" as P1 {
+  card "Поделиться\nфайлом" as C1 #64B5F6
+  card "Ссылка\nсоздана" as E1 #F4A261
+  card "Задать пароль\nи срок" as C2 #64B5F6
+  card "Параметры\nсохранены" as E2 #F4A261
+  card "Проверить\nправа" as POL1 #B39DDB
+  card "Диалог\n«Поделиться»" as R1 #A5D6A7
+  card "Отправить\nписьмо" as POL2 #B39DDB
+  card "Уведомить\nполучателя" as C3 #64B5F6
+  card "Уведомление\nотправлено" as E3 #F4A261
+  C1 -right-> E1
+  C1 -right-> C2
+  C2 -right-> E2
+  E1 -right-> POL2
+  POL2 -right-> C3
+  C3 -right-> E3
+  E2 -right-> R1
+  R1 -right-> POL1
+}
+
+package "2. Открытие ссылки гостем" as P2 {
+  card "Открыть\nссылку" as C4 #64B5F6
+  card "Проверить\nсрок" as POL3 #B39DDB
+  card "Ссылка\nоткрыта" as E4 #F4A261
+  card "Ввести\nпароль" as C5 #64B5F6
+  card "Проверить лимит\nскачиваний" as POL4 #B39DDB
+  card "Пароль\nпроверен" as E5 #F4A261
+  card "Страница\nпредпросмотра" as R2 #A5D6A7
+  card "Ссылка без\nпароля — риск" as H1 #E57373
+  card "Лимит не учтён" as H2 #E57373
+  C4 -right-> POL3
+  POL3 -right-> E4
+  E4 -right-> C5
+  C5 -right-> POL4
+  POL4 -right-> E5
+  E5 -right-> R2
+  R2 -right-> H1
+  POL4 -right-> H2
+}
+
+package "3. Скачивание и завершение" as P3 {
+  card "Скачать\nфайл" as C6 #64B5F6
+  card "Файл\nскачан" as E6 #F4A261
+  card "Статистика\nскачиваний" as R3 #A5D6A7
+  card "Срок истёк" as POL5 #B39DDB
+  card "Закрыть\nссылку" as C7 #64B5F6
+  card "Ссылка\nзакрыта" as E7 #F4A261
+  C6 -right-> E6
+  E6 -right-> R3
+  POL5 -right-> C7
+  C7 -right-> E7
+}
+
+U -down-> C1
+G -down-> C4
+E3 -down-> C4
+E7 -down-> POL5
+P1 -down-> P2
+P2 -down-> P3
+@enduml

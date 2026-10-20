@@ -1,0 +1,80 @@
+classDiagram
+  direction LR
+  class User {
+    +UUID id
+    +String email
+    +String name
+    +UserStatus status
+    +register()
+    +authenticate()
+  }
+  class Role {
+    +RoleCode code
+    +String title
+  }
+  class File {
+    +UUID id
+    +String name
+    +String mimeType
+    +long size
+    +FileStatus status
+    +upload()
+    +download()
+    +delete()
+  }
+  class Folder {
+    +UUID id
+    +String name
+    +UUID parentId
+    +create()
+    +move()
+  }
+  class FileVersion {
+    +int number
+    +long size
+    +DateTime createdAt
+    +restore()
+  }
+  class ShareLink {
+    +String token
+    +AccessLevel accessLevel
+    +String passwordHash
+    +DateTime expiresAt
+    +validate()
+  }
+  class AccessPermission {
+    +AccessLevel level
+    +grant()
+    +revoke()
+  }
+  class AccessRequest {
+    +RequestType type
+    +String reason
+    +RequestStatus status
+    +approve()
+    +reject()
+  }
+  class AuditRecord {
+    +String action
+    +String ipAddress
+    +DateTime createdAt
+  }
+  class Quota {
+    +long usedBytes
+    +long totalBytes
+    +String tariff
+    +recalculate()
+  }
+
+  User "1" --> "0..*" Role
+  User "1" --> "1" Quota
+  User "1" --> "0..*" File : владеет
+  User "1" --> "0..*" Folder : владеет
+  Folder "1" o-- "0..*" File : содержит
+  Folder "1" o-- "0..*" Folder : вложена
+  File "1" *-- "1..*" FileVersion
+  File "1" *-- "0..*" ShareLink
+  File "1" --> "0..*" AccessPermission
+  User "1" --> "0..*" AccessPermission : получает
+  User "1" --> "0..*" AccessRequest : создаёт
+  User "1" --> "0..*" AuditRecord : совершает

@@ -1,0 +1,32 @@
+flowchart TB
+  subgraph ROOT["ru.bsu.gremlindrive"]
+    subgraph P1["presentation"]
+      W[web]
+      M[mobile]
+      API[api]
+    end
+    subgraph P2["application"]
+      A1[auth]
+      A2[files]
+      A3[sharing]
+      A4[admin]
+    end
+    subgraph P3["domain"]
+      D1[identity]
+      D2[storage]
+      D3[access]
+      D4[billing]
+    end
+    subgraph P4["infrastructure"]
+      I1[PostgresRepositories]
+      I2[MinioStorage]
+      I3[RedisCache]
+      I4[SmtpClient]
+      I5[PushClient]
+      I6[LdapClient]
+    end
+  end
+  P1 --> P2
+  P2 --> P3
+  P2 --> P4
+  P4 --> P3

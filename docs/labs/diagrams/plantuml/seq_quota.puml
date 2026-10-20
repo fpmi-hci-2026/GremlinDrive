@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: запрос и обработка расширения квоты
+
+actor "Пользователь" as U
+participant "Веб-приложение" as W
+participant "Billing /\nQuota Service" as API
+database "PostgreSQL" as DB
+actor "Администратор" as A
+participant "Notification\nService" as NS
+
+U -> W : Профиль → «Квота и тариф» → «Запросить»
+U -> W : Указать объём и обоснование
+W -> API : POST /access-requests (type=QUOTA)
+API -> DB : Создать AccessRequest (PENDING)
+API -> NS : AccessRequestCreated
+NS --> A : Уведомление о новом запросе
+A -> W : Открыть «Запросы прав»
+W -> API : GET /admin/access-requests?status=PENDING
+API --> W : Очередь запросов
+A -> W : Одобрить, указать 100 ГБ
+W -> API : POST /admin/access-requests/{id}/approve
+API -> DB : AccessRequest.status = APPROVED
+API -> DB : Quota.totalBytes = 100 ГБ
+API -> DB : Записать AuditRecord
+API -> NS : AccessRequestApproved
+NS --> U : Push «Квота расширена»
+API --> W : Обновлённая квота
+@enduml

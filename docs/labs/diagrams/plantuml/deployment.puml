@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+title Диаграмма развёртывания
+
+node "Устройство пользователя" {
+  artifact "Браузер\n(SPA)" as BROWSER
+  artifact "Мобильное приложение\nAndroid / iOS" as MOBILE
+}
+node "Клиентская сеть" as NET {
+}
+node "Сервер приложений\nLinux, Docker" {
+  artifact "Nginx\nreverse proxy" as NGINX
+  artifact "API Node.js/NestJS" as API
+  artifact "Worker\n(очереди, сканирование)" as WORKER
+}
+node "Хранилище данных" {
+  database "PostgreSQL" as DB
+  database "Redis" as REDIS
+  artifact "MinIO\nS3" as MINIO
+}
+cloud "Внешние сервисы" {
+  artifact "SMTP" as SMTP
+  artifact "FCM / APNs" as PUSH
+  artifact "LDAP / AD" as LDAP
+}
+BROWSER --> NET : HTTPS
+MOBILE --> NET : HTTPS
+NET --> NGINX
+NGINX --> API : HTTP
+API --> DB : TCP 5432
+API --> REDIS : TCP 6379
+API --> MINIO : S3 API
+WORKER --> MINIO
+WORKER --> DB
+API --> SMTP : SMTP/TLS
+API --> PUSH : HTTPS
+API --> LDAP : LDAPS
+@enduml

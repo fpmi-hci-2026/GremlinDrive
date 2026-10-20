@@ -1,0 +1,187 @@
+@startuml
+!include style.puml
+hide circle
+skinparam classAttributeIconSize 0
+title Диаграмма классов: расширенная доменная модель
+
+class User {
+  - id : UUID
+  - email : String
+  - passwordHash : String
+  - name : String
+  - status : UserStatus
+  - locale : String
+  + register()
+  + login()
+  + changePassword()
+}
+
+class Session {
+  - token : UUID
+  - ipAddress : String
+  - expiresAt : DateTime
+}
+
+class TwoFactorAuth {
+  - secret : String
+  - enabled : Boolean
+  - backupCodes : String[]
+}
+
+class Role {
+  - code : RoleCode
+  - title : String
+}
+
+class Folder {
+  - id : UUID
+  - name : String
+  - parentId : UUID
+  - isShared : Boolean
+}
+
+class FolderMember {
+  - role : MemberRole
+  - invitedAt : DateTime
+}
+
+class File {
+  - id : UUID
+  - name : String
+  - mimeType : String
+  - size : Long
+  - checksum : String
+  - status : FileStatus
+}
+
+class FileVersion {
+  - number : Integer
+  - storageKey : String
+  - size : Long
+  - createdAt : DateTime
+  - comment : String
+}
+
+class ShareLink {
+  - token : String
+  - accessLevel : AccessLevel
+  - passwordHash : String
+  - expiresAt : DateTime
+  - downloadLimit : Integer
+  - downloads : Integer
+}
+
+class LinkVisit {
+  - visitedAt : DateTime
+  - ipAddress : String
+  - userAgent : String
+}
+
+class AccessPermission {
+  - level : AccessLevel
+  - grantedAt : DateTime
+}
+
+class AccessRequest {
+  - type : RequestType
+  - reason : String
+  - status : RequestStatus
+  - decisionComment : String
+}
+
+class Comment {
+  - text : String
+  - createdAt : DateTime
+}
+
+class Notification {
+  - type : NotificationType
+  - text : String
+  - isRead : Boolean
+}
+
+class TrashItem {
+  - deletedAt : DateTime
+  - originalFolderId : UUID
+  - expiresAt : DateTime
+}
+
+class Quota {
+  - usedBytes : Long
+  - totalBytes : Long
+  - tariff : String
+  - renewalDate : Date
+}
+
+class AuditRecord {
+  - action : String
+  - entityType : String
+  - entityId : UUID
+  - ipAddress : String
+  - createdAt : DateTime
+}
+
+class Invitation {
+  - email : String
+  - token : String
+  - status : InvitationStatus
+  - expiresAt : DateTime
+}
+
+enum RoleCode {
+  USER
+  ADMIN
+}
+enum AccessLevel {
+  VIEW
+  EDIT
+  OWNER
+}
+enum MemberRole {
+  VIEWER
+  EDITOR
+  OWNER
+}
+enum RequestType {
+  QUOTA
+  ROLE
+  API_ACCESS
+}
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+enum FileStatus {
+  UPLOADING
+  READY
+  QUARANTINED
+  DELETED
+}
+enum InvitationStatus {
+  SENT
+  ACCEPTED
+  EXPIRED
+}
+
+User "1" -- "1" Quota
+User "1" -- "0..*" Session
+User "1" -- "0..1" TwoFactorAuth
+User "1" -- "0..*" Role
+User "1" -- "0..*" Folder : владеет
+User "1" -- "0..*" File : владеет
+User "1" -- "0..*" AccessRequest : создаёт
+User "1" -- "0..*" Notification : получает
+User "1" -- "0..*" AuditRecord : совершает
+Folder "0..1" o-- "0..*" Folder : содержит
+Folder "1" o-- "0..*" File : содержит
+Folder "1" *-- "0..*" FolderMember
+FolderMember "0..*" -- "1" User
+File "1" *-- "1..*" FileVersion
+File "1" *-- "0..*" ShareLink
+File "1" *-- "0..*" Comment
+File "1" *-- "0..*" AccessPermission
+File "1" *-- "0..1" TrashItem
+ShareLink "1" *-- "0..*" LinkVisit
+Invitation "0..*" -- "1" Folder
+@enduml

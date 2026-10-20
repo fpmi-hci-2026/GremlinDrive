@@ -1,0 +1,188 @@
+@startuml
+!include style.puml
+hide circle
+title ERD: схема базы данных GremlinDrive
+
+entity "users" as users {
+  * id : uuid <<PK>>
+  --
+  email : varchar(255) <<UQ>>
+  password_hash : varchar(255)
+  name : varchar(120)
+  status : varchar(20)
+  locale : varchar(10)
+  created_at : timestamptz
+}
+
+entity "roles" as roles {
+  * id : smallint <<PK>>
+  --
+  code : varchar(20) <<UQ>>
+  title : varchar(60)
+}
+
+entity "user_roles" as user_roles {
+  * user_id : uuid <<FK>>
+  * role_id : smallint <<FK>>
+}
+
+entity "sessions" as sessions {
+  * id : uuid <<PK>>
+  --
+  user_id : uuid <<FK>>
+  token : uuid <<UQ>>
+  ip_address : inet
+  expires_at : timestamptz
+}
+
+entity "folders" as folders {
+  * id : uuid <<PK>>
+  --
+  owner_id : uuid <<FK>>
+  parent_id : uuid <<FK>>
+  name : varchar(255)
+  is_shared : boolean
+  created_at : timestamptz
+}
+
+entity "files" as files {
+  * id : uuid <<PK>>
+  --
+  owner_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  name : varchar(255)
+  mime_type : varchar(127)
+  size_bytes : bigint
+  checksum : varchar(64)
+  status : varchar(20)
+  created_at : timestamptz
+}
+
+entity "file_versions" as file_versions {
+  * id : uuid <<PK>>
+  --
+  file_id : uuid <<FK>>
+  version_no : integer
+  storage_key : varchar(512)
+  size_bytes : bigint
+  checksum : varchar(64)
+  created_by : uuid <<FK>>
+  created_at : timestamptz
+  comment : text
+}
+
+entity "share_links" as share_links {
+  * id : uuid <<PK>>
+  --
+  file_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  token : varchar(64) <<UQ>>
+  access_level : varchar(10)
+  password_hash : varchar(255)
+  expires_at : timestamptz
+  download_limit : integer
+  downloads : integer
+  created_by : uuid <<FK>>
+}
+
+entity "access_permissions" as access_permissions {
+  * id : uuid <<PK>>
+  --
+  file_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  user_id : uuid <<FK>>
+  level : varchar(10)
+  granted_at : timestamptz
+}
+
+entity "folder_members" as folder_members {
+  * folder_id : uuid <<FK>>
+  * user_id : uuid <<FK>>
+  --
+  role : varchar(10)
+  invited_at : timestamptz
+}
+
+entity "invitations" as invitations {
+  * id : uuid <<PK>>
+  --
+  folder_id : uuid <<FK>>
+  email : varchar(255)
+  token : varchar(64) <<UQ>>
+  status : varchar(20)
+  expires_at : timestamptz
+}
+
+entity "access_requests" as access_requests {
+  * id : uuid <<PK>>
+  --
+  user_id : uuid <<FK>>
+  type : varchar(20)
+  reason : text
+  status : varchar(20)
+  decided_by : uuid <<FK>>
+  decided_at : timestamptz
+}
+
+entity "quotas" as quotas {
+  * user_id : uuid <<PK,FK>>
+  --
+  used_bytes : bigint
+  total_bytes : bigint
+  tariff : varchar(40)
+  renewal_date : date
+}
+
+entity "audit_records" as audit_records {
+  * id : bigint <<PK>>
+  --
+  user_id : uuid <<FK>>
+  action : varchar(80)
+  entity_type : varchar(40)
+  entity_id : uuid
+  ip_address : inet
+  created_at : timestamptz
+}
+
+entity "notifications" as notifications {
+  * id : uuid <<PK>>
+  --
+  user_id : uuid <<FK>>
+  type : varchar(40)
+  text : text
+  is_read : boolean
+  created_at : timestamptz
+}
+
+entity "comments" as comments {
+  * id : uuid <<PK>>
+  --
+  file_id : uuid <<FK>>
+  author_id : uuid <<FK>>
+  text : text
+  created_at : timestamptz
+}
+
+users ||--o{ user_roles
+roles ||--o{ user_roles
+users ||--o{ sessions
+users ||--o{ folders
+users ||--o{ files
+folders ||--o{ folders
+folders ||--o{ files
+files ||--o{ file_versions
+files ||--o{ share_links
+folders ||--o{ share_links
+files ||--o{ access_permissions
+folders ||--o{ access_permissions
+users ||--o{ access_permissions
+folders ||--o{ folder_members
+users ||--o{ folder_members
+folders ||--o{ invitations
+users ||--o{ access_requests
+users ||--o{ quotas
+users ||--o{ audit_records
+users ||--o{ notifications
+files ||--o{ comments
+users ||--o{ comments
+@enduml

@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+hide circle
+title Диаграмма классов: хранение файлов и версии
+
+class File {
+  - id : UUID
+  - name : String
+  - mimeType : String
+  - size : Long
+  - checksum : String
+  - status : FileStatus
+  + upload()
+  + download()
+  + move()
+  + delete()
+}
+
+class Folder {
+  - id : UUID
+  - name : String
+  - parentId : UUID
+  + create()
+  + rename()
+  + move()
+}
+
+class FileVersion {
+  - number : Integer
+  - storageKey : String
+  - checksum : String
+  - size : Long
+  - createdAt : DateTime
+  + restore()
+}
+
+class UploadSession {
+  - id : UUID
+  - receivedBytes : Long
+  - totalBytes : Long
+  - expiresAt : DateTime
+  + resume()
+  + complete()
+}
+
+class StorageObject {
+  - bucket : String
+  - key : String
+  - etag : String
+  - contentType : String
+}
+
+class TrashItem {
+  - deletedAt : DateTime
+  - originalFolderId : UUID
+  - expiresAt : DateTime
+}
+
+class Quota {
+  - usedBytes : Long
+  - totalBytes : Long
+  + reserve()
+  + release()
+}
+
+enum FileStatus {
+  UPLOADING
+  READY
+  QUARANTINED
+  DELETED
+}
+
+File "1" *-- "1..*" FileVersion
+File "1" -- "0..1" UploadSession
+FileVersion "1" -- "1" StorageObject
+Folder "1" o-- "0..*" File
+Folder "0..1" o-- "0..*" Folder
+File "1" *-- "0..1" TrashItem
+Quota "1" -- "0..*" File : учитывает
+@enduml

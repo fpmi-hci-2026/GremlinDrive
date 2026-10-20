@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+title Объектная диаграмма: общая папка проекта
+
+object "folder : Folder" as D {
+  id = "d-21"
+  name = "Проект Альфа"
+  isShared = true
+}
+object "owner : User" as O {
+  id = "u-03"
+  name = "Ольга"
+  role = USER
+}
+object "member : FolderMember" as M1 {
+  role = EDITOR
+}
+object "member : FolderMember" as M2 {
+  role = VIEWER
+}
+object "user : User" as U1 {
+  id = "u-11"
+  name = "Артём"
+}
+object "user : User" as U2 {
+  id = "u-27"
+  name = "Дмитрий"
+}
+object "invite : Invitation" as I {
+  email = "client@example.by"
+  status = SENT
+}
+D -- O : владелец
+D -- M1
+D -- M2
+M1 -- U1
+M2 -- U2
+D -- I : приглашение
+@enduml

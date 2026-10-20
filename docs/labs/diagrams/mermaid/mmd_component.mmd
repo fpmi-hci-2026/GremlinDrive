@@ -1,0 +1,51 @@
+flowchart LR
+  subgraph C["Клиенты"]
+    WEB[Веб-приложение React]
+    MOB[Мобильное приложение React Native]
+  end
+  subgraph A["API-слой"]
+    GW[API Gateway]
+    AUTH[Auth Service]
+    FILE[File Service]
+    VER[Version Service]
+    SHARE[Sharing Service]
+    PERM[Permission Service]
+    SEARCH[Search Service]
+    QUOTA[Quota Service]
+    NOTIF[Notification Service]
+    AUDIT[Audit Service]
+  end
+  subgraph I["Инфраструктура"]
+    DB[(PostgreSQL)]
+    REDIS[(Redis)]
+    S3[(MinIO S3)]
+    SMTP[SMTP]
+    PUSH[FCM/APNs]
+    LDAP[LDAP/AD]
+  end
+  WEB --> GW
+  MOB --> GW
+  GW --> AUTH
+  GW --> FILE
+  GW --> VER
+  GW --> SHARE
+  GW --> PERM
+  GW --> SEARCH
+  GW --> QUOTA
+  GW --> NOTIF
+  GW --> AUDIT
+  AUTH --> DB
+  AUTH --> LDAP
+  FILE --> S3
+  FILE --> DB
+  VER --> S3
+  VER --> DB
+  SHARE --> DB
+  SHARE --> SMTP
+  PERM --> DB
+  SEARCH --> DB
+  SEARCH --> REDIS
+  QUOTA --> DB
+  NOTIF --> PUSH
+  NOTIF --> SMTP
+  AUDIT --> DB

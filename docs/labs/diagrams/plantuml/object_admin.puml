@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+title Объектная диаграмма: обработка запроса на квоту
+
+object "request : AccessRequest" as R {
+  type = QUOTA
+  reason = "Нужно 100 ГБ для проекта"
+  status = APPROVED
+}
+object "user : User" as U {
+  id = "u-15"
+  email = "artem@example.by"
+}
+object "admin : Admin" as A {
+  id = "u-01"
+  role = ADMIN
+}
+object "quotaBefore : Quota" as Q1 {
+  usedBytes = 14900000000
+  totalBytes = 16106127360
+}
+object "quotaAfter : Quota" as Q2 {
+  usedBytes = 14900000000
+  totalBytes = 107374182400
+}
+object "audit : AuditRecord" as AU {
+  action = "ACCESS_REQUEST_APPROVED"
+  entityId = "r-88"
+  createdAt = "2026-10-20T17:10"
+}
+R -- U : создан
+R -- A : обработан
+R -- Q2 : применён
+U -- Q1 : было
+U -- Q2 : стало
+A -- AU : записал
+@enduml

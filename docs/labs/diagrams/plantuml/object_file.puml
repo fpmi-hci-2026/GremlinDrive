@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+title Объектная диаграмма: состояние файла после загрузки
+
+object "file : File" as F {
+  id = "f-1042"
+  name = "ПЧМИ_ЛР3.pdf"
+  mimeType = "application/pdf"
+  size = 2457600
+  status = READY
+}
+object "version : FileVersion" as V {
+  number = 1
+  size = 2457600
+  createdAt = "2026-10-20T17:00"
+}
+object "link : ShareLink" as L {
+  token = "a8f3kZ2"
+  accessLevel = VIEW
+  expiresAt = "2026-11-03T23:59"
+  downloads = 4
+}
+object "folder : Folder" as D {
+  id = "d-07"
+  name = "Университет / ПЧМИ"
+}
+object "owner : User" as U {
+  id = "u-15"
+  email = "artem@example.by"
+}
+object "quota : Quota" as Q {
+  usedBytes = 187654321
+  totalBytes = 16106127360
+}
+F -- V : имеет
+F -- L : опубликован
+D -- F : содержит
+U -- F : владеет
+U -- Q : расходует
+@enduml

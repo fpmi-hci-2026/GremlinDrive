@@ -1,0 +1,92 @@
+@startuml
+!include style.puml
+hide circle
+title Диаграмма классов: администрирование и аудит
+
+class Admin {
+  - id : UUID
+  - role : RoleCode
+  + manageUsers()
+  + manageQuotas()
+  + exportAudit()
+}
+
+class User {
+  - id : UUID
+  - email : String
+  - status : UserStatus
+}
+
+class Quota {
+  - usedBytes : Long
+  - totalBytes : Long
+  - tariff : String
+  + expand()
+}
+
+class Tariff {
+  - code : String
+  - storageLimit : Long
+  - price : Decimal
+  - features : String[]
+}
+
+class AccessRequest {
+  - type : RequestType
+  - reason : String
+  - status : RequestStatus
+  + approve()
+  + reject()
+}
+
+class AuditRecord {
+  - action : String
+  - entityType : String
+  - entityId : UUID
+  - ipAddress : String
+  - createdAt : DateTime
+}
+
+class Report {
+  - period : DateRange
+  - format : ReportFormat
+  + build()
+  + export()
+}
+
+class SystemStat {
+  - usersCount : Integer
+  - filesCount : Integer
+  - usedStorage : Long
+  - activeLinks : Integer
+}
+
+enum RoleCode {
+  USER
+  ADMIN
+}
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+enum ReportFormat {
+  CSV
+  PDF
+  XLSX
+}
+
+Admin "1" -- "0..*" AuditRecord : просматривает
+Admin "1" -- "0..*" AccessRequest : обрабатывает
+Admin "1" -- "0..*" Report : формирует
+Admin "1" -- "1" SystemStat : видит
+User "1" -- "1" Quota
+Quota "0..*" -- "1" Tariff
+User "1" -- "0..*" AccessRequest : создаёт
+AuditRecord "0..*" -- "0..1" User : относится
+@enduml

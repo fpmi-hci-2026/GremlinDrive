@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+title Event Modeling: срезы «загрузка», «общий доступ», «запрос прав»
+
+skinparam rectangle {
+  FontSize 9
+  BorderColor #5A6B61
+}
+
+package "Срез 1. Загрузка файла" {
+  rectangle "Триггер:\nэкран «Мои файлы»\n(ЛР2: wf_web_files)" as T1 #FFFFFF
+  rectangle "Команда:\nUploadFile" as C1 #64B5F6
+  rectangle "Событие:\nFileUploaded" as E1 #F4A261
+  rectangle "Событие:\nVersionCreated" as E2 #F4A261
+  rectangle "Событие:\nQuotaUpdated" as E3 #F4A261
+  rectangle "Представление:\n«Мои файлы»" as V1 #A5D6A7
+  rectangle "Автотриггер:\nScanCompleted" as AT1 #B39DDB
+  rectangle "Команда:\nSendNotification" as C2 #64B5F6
+  rectangle "Событие:\nNotificationSent" as E4 #F4A261
+  T1 --> C1
+  C1 --> E1
+  E1 --> E2
+  E2 --> E3
+  E1 --> V1
+  V1 --> AT1
+  AT1 --> C2
+  C2 --> E4
+}
+
+package "Срез 2. Общий доступ по ссылке" {
+  rectangle "Триггер:\nкарточка файла\n«Поделиться»" as T2 #FFFFFF
+  rectangle "Команда:\nCreateShareLink" as C3 #64B5F6
+  rectangle "Событие:\nShareLinkCreated" as E5 #F4A261
+  rectangle "Представление:\nпараметры ссылки" as V2 #A5D6A7
+  rectangle "Триггер:\nпубличная ссылка" as T3 #FFFFFF
+  rectangle "Команда:\nOpenShareLink" as C4 #64B5F6
+  rectangle "Событие:\nLinkOpened" as E6 #F4A261
+  rectangle "Представление:\nпредпросмотр" as V3 #A5D6A7
+  rectangle "Команда:\nDownloadFile" as C5 #64B5F6
+  rectangle "Событие:\nFileDownloaded" as E7 #F4A261
+  rectangle "Автотриггер:\nExpiryReached" as AT2 #B39DDB
+  rectangle "Команда:\nExpireShareLink" as C6 #64B5F6
+  rectangle "Событие:\nShareLinkExpired" as E8 #F4A261
+  T2 --> C3
+  C3 --> E5
+  E5 --> V2
+  T3 --> C4
+  C4 --> E6
+  E6 --> V3
+  V3 --> C5
+  C5 --> E7
+  E5 --> AT2
+  AT2 --> C6
+  C6 --> E8
+}
+
+package "Срез 3. Запрос на расширение прав" {
+  rectangle "Триггер:\nпрофиль → «Квота»\n(ЛР2: d_web_admin)" as T4 #FFFFFF
+  rectangle "Команда:\nCreateAccessRequest" as C7 #64B5F6
+  rectangle "Событие:\nAccessRequestCreated" as E9 #F4A261
+  rectangle "Представление:\nочередь запросов" as V4 #A5D6A7
+  rectangle "Команда:\nApproveRequest" as C8 #64B5F6
+  rectangle "Событие:\nAccessRequestApproved" as E10 #F4A261
+  rectangle "Автотриггер:\nRequestApproved" as AT3 #B39DDB
+  rectangle "Команда:\nExpandQuota" as C9 #64B5F6
+  rectangle "Событие:\nQuotaExpanded" as E11 #F4A261
+  T4 --> C7
+  C7 --> E9
+  E9 --> V4
+  V4 --> C8
+  C8 --> E10
+  E10 --> AT3
+  AT3 --> C9
+  C9 --> E11
+}
+@enduml

@@ -1,0 +1,19 @@
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 12
+skinparam dpi 180
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam ArrowColor #5A6B61
+skinparam ArrowThickness 1.2
+skinparam packageBorderColor #5A6B61
+skinparam rectangleBorderColor #5A6B61
+skinparam usecaseBorderColor #2E9E62
+skinparam usecaseBackgroundColor #EAF4EE
+skinparam actorBorderColor #1F7A4B
+skinparam actorBackgroundColor #EAF4EE
+skinparam classBorderColor #5A6B61
+skinparam classBackgroundColor #FFFFFF
+skinparam classHeaderBackgroundColor #EAF4EE
+skinparam sequenceLifeLineBorderColor #8A9A90
+skinparam sequenceParticipantBackgroundColor #EAF4EE
+skinparam sequenceParticipantBorderColor #2E9E62

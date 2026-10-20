@@ -1,0 +1,37 @@
+@startuml
+!include <C4/C4_Container>
+title C4: контейнеры GremlinDrive
+
+Person(user, "Пользователь", "Работает с файлами")
+Person(guest, "Гость", "Открывает ссылку")
+Person(admin, "Администратор", "Управляет системой")
+
+System_Boundary(drive, "GremlinDrive") {
+  Container(web, "Веб-приложение", "React, TypeScript", "Файловый менеджер, поиск, общий доступ, админ-панель.")
+  Container(mobile, "Мобильное приложение", "React Native", "Файлы, загрузка фото, офлайн-доступ, push.")
+  Container(api, "API-приложение", "Node.js, NestJS", "REST API, аутентификация, бизнес-логика.")
+  Container(worker, "Worker", "Node.js, BullMQ", "Очереди: антивирус, уведомления, срок ссылок.")
+  ContainerDb(db, "База данных", "PostgreSQL", "Пользователи, файлы, версии, права, аудит.")
+  ContainerDb(cache, "Кэш и очереди", "Redis", "Сессии, кэш поиска, очереди задач.")
+  ContainerDb(s3, "Объектное хранилище", "MinIO S3", "Содержимое файлов и версий.")
+}
+
+System_Ext(smtp, "SMTP-сервер", "Почта")
+System_Ext(push, "FCM / APNs", "Push")
+System_Ext(ldap, "LDAP / AD", "Каталог")
+
+Rel(user, web, "Использует", "HTTPS")
+Rel(user, mobile, "Использует", "HTTPS")
+Rel(admin, web, "Использует", "HTTPS")
+Rel(guest, api, "Открывает публичную ссылку", "HTTPS")
+Rel(web, api, "Вызывает", "HTTPS/JSON")
+Rel(mobile, api, "Вызывает", "HTTPS/JSON")
+Rel(api, db, "Читает и пишет", "TCP")
+Rel(api, cache, "Кэширует и ставит задачи", "TCP")
+Rel(api, s3, "Хранит и читает объекты", "S3 API")
+Rel(worker, db, "Обновляет статусы", "TCP")
+Rel(worker, s3, "Сканирует и копирует", "S3 API")
+Rel(api, smtp, "Отправляет письма", "SMTP")
+Rel(api, push, "Отправляет push", "HTTPS")
+Rel(api, ldap, "Синхронизирует", "LDAPS")
+@enduml

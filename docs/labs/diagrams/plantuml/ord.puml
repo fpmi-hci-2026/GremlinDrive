@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+hide circle
+title ORD: отображение доменных объектов на таблицы БД
+
+package "Доменная модель" {
+  class User {
+    id : UUID
+    email : String
+    passwordHash : String
+  }
+  class File {
+    id : UUID
+    name : String
+    size : Long
+  }
+  class ShareLink {
+    token : String
+    expiresAt : DateTime
+  }
+  class FileVersion {
+    number : Integer
+    storageKey : String
+  }
+}
+
+package "Таблицы PostgreSQL" {
+  class users <<table>> {
+    id : uuid <<PK>>
+    email : varchar <<UQ>>
+    password_hash : varchar
+  }
+  class files <<table>> {
+    id : uuid <<PK>>
+    owner_id : uuid <<FK>>
+    name : varchar
+    size_bytes : bigint
+  }
+  class share_links <<table>> {
+    id : uuid <<PK>>
+    file_id : uuid <<FK>>
+    token : varchar <<UQ>>
+    expires_at : timestamptz
+  }
+  class file_versions <<table>> {
+    id : uuid <<PK>>
+    file_id : uuid <<FK>>
+    version_no : integer
+    storage_key : varchar
+  }
+}
+
+User ..> users : @Table(name="users")
+File ..> files : @Table(name="files")
+ShareLink ..> share_links : @Table(name="share_links")
+FileVersion ..> file_versions : @Table(name="file_versions")
+@enduml

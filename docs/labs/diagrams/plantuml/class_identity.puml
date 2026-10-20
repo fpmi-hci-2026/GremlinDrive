@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+hide circle
+title Диаграмма классов: идентификация и доступ
+
+class User {
+  - id : UUID
+  - email : String
+  - passwordHash : String
+  - status : UserStatus
+  + register()
+  + authenticate()
+  + block()
+}
+
+class Credentials {
+  - login : String
+  - passwordHash : String
+  - salt : String
+  + verify()
+}
+
+class Session {
+  - id : UUID
+  - token : UUID
+  - ipAddress : String
+  - userAgent : String
+  - expiresAt : DateTime
+  + revoke()
+}
+
+class TwoFactorAuth {
+  - secret : String
+  - enabled : Boolean
+  - method : TwoFactorMethod
+  + verifyCode()
+}
+
+class Role {
+  - code : RoleCode
+  - title : String
+}
+
+class AccessRequest {
+  - id : UUID
+  - type : RequestType
+  - reason : String
+  - status : RequestStatus
+  + approve()
+  + reject()
+}
+
+class AuditRecord {
+  - id : UUID
+  - action : String
+  - createdAt : DateTime
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  PENDING
+  DELETED
+}
+enum RoleCode {
+  USER
+  ADMIN
+}
+enum TwoFactorMethod {
+  TOTP
+  SMS
+  EMAIL
+}
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+User "1" *-- "1" Credentials
+User "1" -- "0..*" Session
+User "1" -- "0..1" TwoFactorAuth
+User "1" -- "0..*" Role
+User "1" -- "0..*" AccessRequest
+User "1" -- "0..*" AuditRecord
+@enduml

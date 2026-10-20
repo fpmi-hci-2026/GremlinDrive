@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+left to right direction
+title Уточнённая диаграмма вариантов использования: пользовательские сценарии
+
+actor "Гость" as Guest
+actor "Пользователь" as User
+actor "Владелец общей папки" as Owner
+
+rectangle "GremlinDrive" {
+  usecase "Зарегистрироваться" as UC01
+  usecase "Подтвердить e-mail" as UC02
+  usecase "Войти / выйти" as UC03
+  usecase "Включить 2FA" as UC04
+  usecase "Открыть публичную ссылку" as UC05
+  usecase "Скачать файл по ссылке" as UC06
+  usecase "Загрузить файл" as UC07
+  usecase "Управлять файлами и папками" as UC08
+  usecase "Поделиться ссылкой" as UC09
+  usecase "Настроить пароль и срок" as UC10
+  usecase "Пригласить участника" as UC11
+  usecase "Управлять ролями папки" as UC12
+  usecase "Просмотреть и восстановить версию" as UC13
+  usecase "Восстановить из корзины" as UC14
+  usecase "Запросить расширение прав" as UC15
+  usecase "Получать уведомления" as UC16
+}
+
+Guest --> UC01
+Guest --> UC05
+Guest --> UC06
+UC06 .> UC05 : <<extend>>
+UC01 .> UC02 : <<include>>
+UC01 .> UC16 : <<include>>
+User --> UC03
+User --> UC04
+User --> UC07
+User --> UC08
+User --> UC09
+User --> UC13
+User --> UC14
+User --> UC15
+User --> UC16
+Owner --> UC11
+Owner --> UC12
+UC09 .> UC10 : <<extend>>
+UC11 .> UC16 : <<include>>
+UC15 .> UC16 : <<include>>
+@enduml

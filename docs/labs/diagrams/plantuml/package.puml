@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+left to right direction
+title Диаграмма пакетов (логическая архитектура)
+skinparam packageStyle rectangle
+
+package "presentation" as P1 {
+  [web]
+  [mobile]
+  [api]
+}
+package "application" as P2 {
+  [AuthService]
+  [FileService]
+  [VersionService]
+  [ShareService]
+  [PermissionService]
+  [QuotaService]
+  [AuditService]
+  [NotificationService]
+}
+package "domain" as P3 {
+  [User]
+  [Role]
+  [File]
+  [Folder]
+  [FileVersion]
+  [ShareLink]
+  [AccessPermission]
+  [Quota]
+  [AccessRequest]
+}
+package "infrastructure" as P4 {
+  [PostgresRepositories]
+  [MinioStorage]
+  [RedisCache]
+  [SmtpClient]
+  [PushClient]
+  [LdapClient]
+}
+
+P1 ..> P2 : HTTP/JSON
+P2 ..> P3 : бизнес-правила
+P2 ..> P4 : порты
+P4 ..> P3 : маппинг
+@enduml

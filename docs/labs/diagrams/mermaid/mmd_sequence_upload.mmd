@@ -1,0 +1,40 @@
+sequenceDiagram
+  autonumber
+  actor U as Пользователь
+  participant C as Веб/Мобильный клиент
+  participant API as File Service
+  participant S3 as MinIO S3
+  participant DB as PostgreSQL
+  participant AV as Антивирус
+  participant NS as Notification Service
+
+  U->>C: Выбрать файл → «Загрузить»
+  C->>API: POST /uploads
+  API->>DB: Проверить квоту
+  DB-->>API: Квота доступна
+  API-->>C: uploadId
+  loop Передача частями
+    C->>API: PUT /uploads/{id}/parts
+    API->>S3: Сохранить часть
+    S3-->>API: ETag
+    API-->>C: Подтверждение
+  end
+  alt Обрыв связи
+    C->>API: GET /uploads/{id}
+    API-->>C: Полученные части
+    C->>API: Продолжить
+  end
+  C->>API: POST /uploads/{id}/complete
+  API->>S3: Собрать объект
+  API->>AV: Проверить файл
+  AV-->>API: Результат
+  alt Файл безопасен
+    API->>DB: Создать File и FileVersion 1
+    API->>DB: Обновить Quota
+    API->>NS: FileUploaded
+    NS-->>U: Push «Файл загружен»
+  else Обнаружен вирус
+    API->>DB: File.status = QUARANTINED
+    API->>NS: FileQuarantined
+    NS-->>U: Уведомление
+  end

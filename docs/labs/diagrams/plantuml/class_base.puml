@@ -1,0 +1,127 @@
+@startuml
+!include style.puml
+hide circle
+skinparam classAttributeIconSize 0
+title Диаграмма классов: ядро предметной области GremlinDrive
+
+class User {
+  - id : UUID
+  - email : String
+  - name : String
+  - status : UserStatus
+  - createdAt : DateTime
+  + register() : void
+  + authenticate() : Session
+}
+
+class Role {
+  - code : RoleCode
+  - title : String
+}
+
+class Folder {
+  - id : UUID
+  - name : String
+  - parentId : UUID
+  - createdAt : DateTime
+}
+
+class File {
+  - id : UUID
+  - name : String
+  - mimeType : String
+  - size : Long
+  - checksum : String
+  - status : FileStatus
+}
+
+class FileVersion {
+  - number : Integer
+  - size : Long
+  - createdAt : DateTime
+  - comment : String
+}
+
+class ShareLink {
+  - token : String
+  - accessLevel : AccessLevel
+  - passwordHash : String
+  - expiresAt : DateTime
+  - downloads : Integer
+}
+
+class AccessPermission {
+  - level : AccessLevel
+  - grantedAt : DateTime
+}
+
+class Comment {
+  - text : String
+  - createdAt : DateTime
+}
+
+class Notification {
+  - type : NotificationType
+  - text : String
+  - isRead : Boolean
+}
+
+class Quota {
+  - usedBytes : Long
+  - totalBytes : Long
+  - tariff : String
+}
+
+class AuditRecord {
+  - action : String
+  - ipAddress : String
+  - createdAt : DateTime
+}
+
+class AccessRequest {
+  - type : RequestType
+  - reason : String
+  - status : RequestStatus
+}
+
+enum RoleCode {
+  USER
+  ADMIN
+}
+
+enum AccessLevel {
+  VIEW
+  EDIT
+  OWNER
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum FileStatus {
+  UPLOADING
+  READY
+  QUARANTINED
+  DELETED
+}
+
+User "1" -- "0..*" Role
+User "1" -- "1" Quota
+User "1" -- "0..*" Folder : владеет
+User "1" -- "0..*" File : владеет
+Folder "0..1" o-- "0..*" Folder : содержит
+Folder "1" o-- "0..*" File : содержит
+File "1" *-- "1..*" FileVersion
+File "1" *-- "0..*" ShareLink
+File "1" *-- "0..*" Comment
+File "1" -- "0..*" AccessPermission
+Folder "1" -- "0..*" AccessPermission
+User "1" -- "0..*" AccessPermission : получает
+User "1" -- "0..*" Notification : получает
+User "1" -- "0..*" AuditRecord : совершает
+User "1" -- "0..*" AccessRequest : создаёт
+ShareLink "1" -- "0..*" AccessPermission : предоставляет
+@enduml

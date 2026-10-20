@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: восстановление предыдущей версии файла
+
+actor "Пользователь" as U
+participant "Веб-приложение" as W
+participant "Version\nService" as API
+database "PostgreSQL" as DB
+participant "MinIO" as S3
+participant "Audit\nService" as AUD
+
+U -> W : Открыть файл → «История версий»
+W -> API : GET /files/{id}/versions
+API -> DB : Выбрать версии файла
+DB --> API : Список версий
+API --> W : Версии (номер, дата, автор)
+U -> W : Выбрать версию 3 → «Восстановить»
+W -> API : POST /files/{id}/versions/3/restore
+API -> DB : Проверить права на редактирование
+DB --> API : Права подтверждены
+API -> S3 : Скопировать объект версии 3
+S3 --> API : Новый storageKey
+API -> DB : Создать FileVersion N+1
+API -> DB : Обновить File.currentVersion
+API -> DB : Записать AuditRecord
+API --> W : Версия восстановлена
+W --> U : Показать файл и уведомление
+@enduml

@@ -1,0 +1,29 @@
+sequenceDiagram
+  autonumber
+  actor U as Пользователь
+  participant W as Веб-приложение
+  participant API as API GremlinDrive
+  participant DB as PostgreSQL
+  participant S3 as MinIO S3
+  actor G as Гость
+
+  U->>W: Выбирает файл и нажимает «Поделиться»
+  W->>API: POST /files/{id}/share-links
+  API->>DB: Проверить владельца и права
+  DB-->>API: Права подтверждены
+  API->>API: Сгенерировать токен, пароль и срок
+  API->>DB: Сохранить ShareLink
+  DB-->>API: ShareLink создан
+  API-->>W: URL, пароль, срок действия
+  W-->>U: Показать ссылку и кнопку «Копировать»
+  U->>G: Передать ссылку и пароль отдельно
+  G->>API: GET /s/{token}
+  API->>DB: Проверить срок и пароль
+  DB-->>API: Ссылка действительна
+  API->>S3: Получить метаданные объекта
+  S3-->>API: Метаданные
+  API-->>G: Страница предпросмотра
+  G->>API: GET /s/{token}/download
+  API->>S3: Создать поток скачивания
+  S3-->>G: Файл
+  API->>DB: Зафиксировать LinkAccessed

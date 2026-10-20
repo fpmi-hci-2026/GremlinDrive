@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: удаление и восстановление файла
+
+actor "Пользователь" as U
+participant "Веб / Мобильное\nприложение" as C
+participant "File Service" as API
+database "PostgreSQL" as DB
+participant "MinIO" as S3
+participant "Audit\nService" as AUD
+
+U -> C : Выбрать файл → «Удалить»
+C --> U : Запрос подтверждения
+U -> C : Подтвердить удаление
+C -> API : DELETE /files/{id}
+API -> DB : Проверить права
+DB --> API : Права подтверждены
+API -> DB : File.status = DELETED
+API -> DB : Создать TrashItem (срок 30 дней)
+API -> DB : Записать AuditRecord
+API --> C : Файл в корзине
+C --> U : Уведомление с кнопкой «Отменить»
+U -> C : Открыть «Корзину» → «Восстановить»
+C -> API : POST /trash/{id}/restore
+API -> DB : Проверить срок хранения
+DB --> API : Срок не истёк
+API -> DB : File.status = READY
+API -> DB : Удалить TrashItem
+API -> DB : Записать AuditRecord
+API --> C : Файл восстановлен в исходную папку
+@enduml

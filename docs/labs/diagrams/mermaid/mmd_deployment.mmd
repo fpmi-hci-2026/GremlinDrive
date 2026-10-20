@@ -1,0 +1,33 @@
+flowchart TB
+  subgraph U["Устройства пользователей"]
+    B[Браузер SPA]
+    MB[Мобильное приложение]
+  end
+  subgraph E["Пограничный узел"]
+    NG[Nginx reverse proxy]
+  end
+  subgraph APP["Сервер приложений"]
+    API[API Node.js/NestJS]
+    WK[Worker]
+  end
+  subgraph DATA["Узел данных"]
+    DB[(PostgreSQL)]
+    RD[(Redis)]
+    S3[(MinIO)]
+  end
+  subgraph EXT["Внешние сервисы"]
+    SMTP[SMTP]
+    PUSH[FCM/APNs]
+    LDAP[LDAP/AD]
+  end
+  B --> NG
+  MB --> NG
+  NG --> API
+  API --> DB
+  API --> RD
+  API --> S3
+  API --> SMTP
+  API --> PUSH
+  API --> LDAP
+  WK --> DB
+  WK --> S3

@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+left to right direction
+title Диаграмма вариантов использования GremlinDrive (базовая)
+
+actor "Гость" as Guest
+actor "Пользователь" as User
+actor "Администратор" as Admin
+
+rectangle "GremlinDrive" {
+  usecase "Зарегистрироваться" as UC01
+  usecase "Войти в систему" as UC02
+  usecase "Просмотреть файл по ссылке" as UC03
+  usecase "Скачать файл по ссылке" as UC04
+  usecase "Загрузить файл" as UC05
+  usecase "Управлять файлами и папками" as UC06
+  usecase "Найти файл" as UC07
+  usecase "Поделиться ссылкой" as UC08
+  usecase "Настроить права доступа" as UC09
+  usecase "Просмотреть историю версий" as UC10
+  usecase "Восстановить файл из корзины" as UC11
+  usecase "Запросить расширение прав" as UC12
+  usecase "Выйти из системы" as UC13
+}
+
+Guest --> UC01
+Guest --> UC03
+Guest --> UC04
+UC04 .> UC03 : <<extend>>
+
+User --> UC02
+User --> UC05
+User --> UC06
+User --> UC07
+User --> UC08
+User --> UC09
+User --> UC10
+User --> UC11
+User --> UC12
+User --> UC13
+
+UC05 .> UC02 : <<include>>
+UC06 .> UC02 : <<include>>
+UC08 .> UC06 : <<include>>
+UC09 .> UC08 : <<extend>>
+UC11 .> UC06 : <<extend>>
+UC12 .> UC02 : <<include>>
+@enduml

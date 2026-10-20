@@ -1,0 +1,47 @@
+@startuml
+!include <C4/C4_Component>
+title C4: компоненты API-приложения
+
+Container(web, "Веб-приложение", "React", "Клиент")
+Container(mobile, "Мобильное приложение", "React Native", "Клиент")
+ContainerDb(db, "PostgreSQL", "СУБД", "Данные")
+ContainerDb(s3, "MinIO", "S3", "Файлы")
+ContainerDb(cache, "Redis", "Кэш", "Очереди")
+
+Container_Boundary(api, "API-приложение GremlinDrive") {
+  Component(gw, "API Gateway", "NestJS", "Маршрутизация, валидация, rate limit.")
+  Component(auth, "Auth Component", "NestJS", "Регистрация, вход, 2FA, сессии.")
+  Component(files, "File Component", "NestJS", "Загрузка, скачивание, папки, корзина.")
+  Component(versions, "Version Component", "NestJS", "История версий и восстановление.")
+  Component(sharing, "Sharing Component", "NestJS", "Публичные ссылки и приглашения.")
+  Component(perms, "Permission Component", "NestJS", "Роли и проверка доступа.")
+  Component(search, "Search Component", "NestJS", "Поиск и фильтры.")
+  Component(quota, "Quota Component", "NestJS", "Квоты, тарифы, запросы прав.")
+  Component(notify, "Notification Component", "NestJS", "Письма и push.")
+  Component(audit, "Audit Component", "NestJS", "Журнал и отчёты.")
+}
+
+Rel(web, gw, "HTTPS")
+Rel(mobile, gw, "HTTPS")
+Rel(gw, auth, "Маршрутизирует")
+Rel(gw, files, "Маршрутизирует")
+Rel(gw, versions, "Маршрутизирует")
+Rel(gw, sharing, "Маршрутизирует")
+Rel(gw, perms, "Маршрутизирует")
+Rel(gw, search, "Маршрутизирует")
+Rel(gw, quota, "Маршрутизирует")
+Rel(gw, audit, "Маршрутизирует")
+Rel(auth, db, "Пользователи и сессии")
+Rel(files, db, "Метаданные")
+Rel(files, s3, "Объекты")
+Rel(versions, db, "Версии")
+Rel(versions, s3, "Копии")
+Rel(sharing, db, "Ссылки")
+Rel(sharing, notify, "События")
+Rel(perms, db, "Права")
+Rel(search, db, "Индексы")
+Rel(search, cache, "Кэш")
+Rel(quota, db, "Квоты")
+Rel(notify, cache, "Очередь")
+Rel(audit, db, "Аудит")
+@enduml

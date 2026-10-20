@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ЛР №3. Требования и архитектура — GremlinDrive</title>
+  <meta name="description" content="Лабораторная работа №3: пользовательские истории, UML, EventStorming, Event Modeling, C4 и SRS для GremlinDrive." />
+  <link rel="stylesheet" href="labs.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span>GremlinDrive</span>
+    </a>
+    <nav aria-label="Навигация">
+      <a href="../index.html">На главную</a>
+      <a href="index.html">Лабораторные</a>
+      <a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3">Исходники</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Лабораторная работа №3</p>
+      <h1>Разработка требований к программной системе</h1>
+      <p class="lead">
+        GremlinDrive — облачное файловое хранилище с веб- и мобильным
+        приложением. Работа продолжает исследование ЛР1 и проектирование
+        интерфейса ЛР2: сформулированы требования, построены UML-модели,
+        EventStorming, Event Modeling, C4-модель и техническое задание.
+      </p>
+      <div class="meta">
+        <span class="chip">User Stories</span>
+        <span class="chip">PlantUML</span>
+        <span class="chip">Mermaid</span>
+        <span class="chip">EventStorming</span>
+        <span class="chip">Event Modeling</span>
+        <span class="chip">C4</span>
+        <span class="chip">SRS</span>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="lab3-report.pdf">Скачать отчёт (PDF)</a>
+        <a class="button" href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/blob/main/docs/labs/lab3/README.md">Документация</a>
+        <a class="button" href="diagrams/plantuml/usecase_base.puml">Исходники PlantUML</a>
+      </div>
+      <nav class="toc" aria-label="Содержание">
+        <a href="#scope">Паспорт</a>
+        <a href="#stories">User Stories</a>
+        <a href="#uml">UML</a>
+        <a href="#eventstorming">EventStorming</a>
+        <a href="#eventmodeling">Event Modeling</a>
+        <a href="#c4">C4</a>
+        <a href="#srs">SRS</a>
+        <a href="#artifacts">Артефакты</a>
+      </nav>
+    </section>
+
+    <section class="section" id="scope">
+      <h2>1. Паспорт работы</h2>
+      <p class="section-intro">
+        Цель — разработать функциональные и нефункциональные требования,
+        представить их в виде пользовательских историй, сценариев и UML-моделей,
+        а также спроектировать архитектуру средствами PlantUML, Mermaid,
+        EventStorming, Event Modeling и C4.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Роли</h3>
+          <table>
+            <tr><th>Роль</th><th>Возможности</th></tr>
+            <tr><td>Гость</td><td>Открывает ссылку, вводит пароль, скачивает файл</td></tr>
+            <tr><td>Пользователь</td><td>Файлы, папки, поиск, ссылки, версии, запросы прав</td></tr>
+            <tr><td>Владелец папки</td><td>Участники, роли, доступ к общей папке</td></tr>
+            <tr><td>Администратор</td><td>Пользователи, квоты, аудит, отчёты</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>Платформы</h3>
+          <ul>
+            <li><strong>Веб:</strong> React SPA, 360–1440 px, клавиатура, drag-and-drop.</li>
+            <li><strong>Мобильное:</strong> React Native, Android 9+/iOS 14+, камера, офлайн, push.</li>
+            <li><strong>Гостевая страница:</strong> адаптивная, без регистрации.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <h2>2. Пользовательские истории</h2>
+      <p class="section-intro">
+        Пять ключевых сценариев охватывают гостя, пользователя, владельца общей
+        папки и администратора на веб- и мобильной платформах.
+      </p>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>История</th><th>Приоритет</th><th>Зависимости</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>US-01</td><td>Регистрация по e-mail с подтверждением</td><td>High</td><td>—</td></tr>
+          <tr><td>US-02</td><td>Вход в мобильное приложение с биометрией</td><td>High</td><td>US-01</td></tr>
+          <tr><td>US-03</td><td>Публичная ссылка с паролем и сроком</td><td>High</td><td>US-01, US-07</td></tr>
+          <tr><td>US-04</td><td>Открытие ссылки и скачивание гостем</td><td>High</td><td>US-03</td></tr>
+          <tr><td>US-05</td><td>Приглашение участников с ролями</td><td>High</td><td>US-01</td></tr>
+          <tr><td>US-06</td><td>История версий и восстановление</td><td>Medium</td><td>US-05, US-07</td></tr>
+          <tr><td>US-07</td><td>Загрузка файлов и фото с мобильного</td><td>High</td><td>US-01, US-02</td></tr>
+          <tr><td>US-08</td><td>Офлайн-доступ к избранным файлам</td><td>Medium</td><td>US-07</td></tr>
+          <tr><td>US-09</td><td>Управление пользователями и квотами</td><td>High</td><td>US-01</td></tr>
+          <tr><td>US-10</td><td>Обработка запросов на расширение прав</td><td>Medium</td><td>US-09</td></tr>
+        </tbody>
+      </table>
+
+      <details>
+        <summary>Критерии приёмки US-03: ссылка с паролем и сроком</summary>
+        <ol>
+          <li>Уровень доступа, пароль от 8 символов, срок 1/7/14/30 дней или бессрочно.</li>
+          <li>Ссылка создаётся только при наличии прав владельца или редактирования.</li>
+          <li>URL и пароль копируются отдельными кнопками.</li>
+          <li>Неверный пароль — ошибка; после 5 попыток блокировка на 15 минут.</li>
+          <li>Истёкшая ссылка не раскрывает имя и содержимое файла.</li>
+          <li>Создание, отзыв и скачивания фиксируются в аудите.</li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>Критерии приёмки US-07: мобильная загрузка</summary>
+        <ol>
+          <li>Кнопка «+»: камера, галерея, файлы; системные разрешения.</li>
+          <li>Фоновая загрузка с возобновлением после обрыва.</li>
+          <li>В офлайне статус «ожидает сети», после сети — автозапуск.</li>
+          <li>Файлы больше 100 МБ передаются частями; квота проверяется заранее.</li>
+          <li>Push по завершении открывает карточку файла.</li>
+          <li>Тёмная тема и увеличение шрифта.</li>
+        </ol>
+      </details>
+    </section>
+
+    <section class="section" id="uml">
+      <h2>3. UML-модели</h2>
+      <p class="section-intro">
+        Базовые модели выполнены на PlantUML, три обязательные диаграммы
+        продублированы на Mermaid для публикации в GitHub wiki.
+      </p>
+
+      <figure>
+        <img src="assets/usecase_base.png" alt="Диаграмма вариантов использования GremlinDrive" />
+        <figcaption>Варианты использования: гость, пользователь, администратор. PlantUML.</figcaption>
+      </figure>
+
+      <figure class="tall">
+        <img src="assets/activity_upload.png" alt="Диаграмма деятельности: загрузка файла" />
+        <figcaption>Загрузка файла: квота, докачка, антивирус, версия. PlantUML.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/class_base.png" alt="Диаграмма классов GremlinDrive" />
+        <figcaption>Ядро домена: пользователь, файл, папка, версия, ссылка, права, квота. PlantUML.</figcaption>
+      </figure>
+
+      <div class="grid-2">
+        <figure>
+          <img src="assets/mmd_usecase.png" alt="Варианты использования Mermaid" />
+          <figcaption>Варианты использования на Mermaid.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/mmd_class.png" alt="Классы Mermaid" />
+          <figcaption>Классы на Mermaid.</figcaption>
+        </figure>
+      </div>
+
+      <figure>
+        <img src="assets/mmd_sequence_share.png" alt="Последовательность создания ссылки Mermaid" />
+        <figcaption>Создание ссылки и доступ гостя. Mermaid.</figcaption>
+      </figure>
+
+      <div class="note">
+        Дополнительно: activity_register, activity_share, activity_admin_request,
+        class_identity, class_storage, class_sharing, class_admin, object_file,
+        object_share, object_admin, seq_upload, seq_share, seq_invite,
+        seq_version, seq_quota, component, package, deployment, ERD, ORD.
+        Исходники — в <a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3/diagrams">diagrams/</a>.
+      </div>
+    </section>
+
+    <section class="section" id="eventstorming">
+      <h2>4. EventStorming</h2>
+      <p class="section-intro">
+        Три уровня: Big Picture, Process Modeling и Software Design. Цвета
+        соответствуют нотации plantuml-libs: события — оранжевые, команды —
+        голубые, политики — фиолетовые, read-модели — зелёные, hotspots — красные.
+      </p>
+      <figure>
+        <img src="assets/es_big.png" alt="EventStorming Big Picture" />
+        <figcaption>Big Picture: онбординг, файлы, обмен, совместная работа, администрирование.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/es_process.png" alt="EventStorming Process Modeling" />
+        <figcaption>Process Modeling: публикация файла и доступ по ссылке.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/es_design.png" alt="EventStorming Software Design" />
+        <figcaption>Software Design: агрегаты и ограниченные контексты.</figcaption>
+      </figure>
+      <table>
+        <tr><th>Контекст</th><th>Агрегат</th><th>Ключевые события</th></tr>
+        <tr><td>Identity &amp; Access</td><td>User</td><td>UserRegistered, LoggedIn, TwoFactorEnabled</td></tr>
+        <tr><td>File Storage</td><td>File</td><td>FileUploaded, VersionCreated, FileTrashed, FileRestored</td></tr>
+        <tr><td>Sharing</td><td>ShareLink</td><td>ShareLinkCreated, LinkOpened, ShareLinkExpired</td></tr>
+        <tr><td>Collaboration</td><td>Folder</td><td>InvitationSent, MemberJoined, CommentAdded</td></tr>
+        <tr><td>Administration</td><td>AccessRequest</td><td>AccessRequestCreated, AccessRequestApproved, QuotaExpanded</td></tr>
+        <tr><td>Notifications</td><td>Notification</td><td>NotificationSent</td></tr>
+      </table>
+    </section>
+
+    <section class="section" id="eventmodeling">
+      <h2>5. Event Modeling</h2>
+      <p class="section-intro">
+        Срезы описывают путь Trigger → Command → Event → View → Automation.
+        Триггеры — экраны и макеты ЛР2.
+      </p>
+      <figure>
+        <img src="assets/event_modeling.png" alt="Event Modeling" />
+        <figcaption>Срезы: загрузка файла, общий доступ по ссылке, запрос на расширение прав.</figcaption>
+      </figure>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Загрузка</h3>
+          <p><code>UploadFile</code> → FileUploaded, VersionCreated, QuotaUpdated → View «Мои файлы».</p>
+        </div>
+        <div class="card">
+          <h3>Ссылка</h3>
+          <p><code>CreateShareLink</code> → ShareLinkCreated → View параметров; гость: LinkOpened, FileDownloaded.</p>
+        </div>
+        <div class="card">
+          <h3>Запрос прав</h3>
+          <p><code>CreateAccessRequest</code> → AccessRequestCreated → View очереди → ApproveRequest → QuotaExpanded.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="c4">
+      <h2>6. C4-модель</h2>
+      <div class="grid-2">
+        <figure>
+          <img src="assets/c4_context.png" alt="C4 Context" />
+          <figcaption>Контекст: пользователи, GremlinDrive, внешние системы.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/c4_container.png" alt="C4 Container" />
+          <figcaption>Контейнеры: React, React Native, NestJS, worker, PostgreSQL, Redis, MinIO.</figcaption>
+        </figure>
+      </div>
+      <figure>
+        <img src="assets/c4_component.png" alt="C4 Component" />
+        <figcaption>Компоненты API: auth, files, versions, sharing, permissions, search, quota, notifications, audit.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/c4_deployment.png" alt="C4 Deployment" />
+        <figcaption>Развёртывание: клиенты, Nginx, API, worker, данные, внешние сервисы.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="srs">
+      <h2>7. Техническое задание</h2>
+      <p class="section-intro">
+        SRS структурировано по ISO/IEC/IEEE 29148: введение, общее описание,
+        функциональные и нефункциональные требования, внешние интерфейсы,
+        база данных, верификация и открытые вопросы.
+      </p>
+      <table>
+        <tr><th>Группа</th><th>Требования</th></tr>
+        <tr><td>Аккаунт и доступ</td><td>FR-01–FR-04, FR-30</td></tr>
+        <tr><td>Файлы и версии</td><td>FR-05–FR-11</td></tr>
+        <tr><td>Ссылки и гости</td><td>FR-12–FR-14</td></tr>
+        <tr><td>Совместная работа</td><td>FR-15–FR-19</td></tr>
+        <tr><td>Администрирование</td><td>FR-20–FR-24</td></tr>
+        <tr><td>Уведомления, офлайн, качество</td><td>FR-25–FR-29</td></tr>
+      </table>
+      <table>
+        <tr><th>Атрибут</th><th>Требование</th></tr>
+        <tr><td>Безопасность</td><td>TLS 1.2+, хеширование паролей, 2FA, аудит, OWASP Top 10</td></tr>
+        <tr><td>Надёжность</td><td>Доступность 99,5 %, RPO ≤ 24 ч, RTO ≤ 4 ч</td></tr>
+        <tr><td>Удобство</td><td>Ключевой сценарий ≤ 1 мин, SUS ≥ 70</td></tr>
+        <tr><td>Доступность</td><td>WCAG 2.1 AA, клавиатура, скринридеры</td></tr>
+        <tr><td>Совместимость</td><td>Chrome, Firefox, Edge, Safari; Android 9+, iOS 14+</td></tr>
+      </table>
+      <p><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/blob/main/docs/labs/lab3/srs.md">Полная SRS в документации</a></p>
+    </section>
+
+    <section class="section" id="artifacts">
+      <h2>8. Артефакты</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Отчёт и документация</h3>
+          <ul>
+            <li><a href="lab3-report.pdf">lab3-report.pdf</a> — полный отчёт (82 стр.).</li>
+            <li><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3">docs/labs/lab3</a> — Markdown-страницы.</li>
+            <li><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3/diagrams">Исходники диаграмм</a>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Исходники на сайте</h3>
+          <ul>
+            <li><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3/diagrams/plantuml">PlantUML</a> — UML, EventStorming, Event Modeling, C4, ERD, ORD.</li>
+            <li><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3/diagrams/mermaid">Mermaid</a> — use case, sequence, class, activity, component, package, deployment, ERD.</li>
+            <li><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab3/assets">assets</a> — изображения диаграмм.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Команда GremlinDrive · ФПМИ БГУ · 2026 · <a href="../index.html">На главную</a></p>
+  </footer>
+</body>
+</html>

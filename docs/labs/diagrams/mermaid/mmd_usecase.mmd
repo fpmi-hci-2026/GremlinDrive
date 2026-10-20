@@ -1,0 +1,33 @@
+flowchart LR
+  classDef actor fill:#EAF4EE,stroke:#1F7A4B,stroke-width:2px,color:#1B2B23
+  classDef uc fill:#FFFFFF,stroke:#2E9E62,stroke-width:1.5px,color:#1B2B23
+  classDef sys fill:#F6F8F7,stroke:#5A6B61,stroke-width:1.5px
+
+  G([Гость]):::actor
+  U([Пользователь]):::actor
+  A([Администратор]):::actor
+
+  subgraph SYS["GremlinDrive"]
+    UC1([Зарегистрироваться]):::uc
+    UC2([Войти в систему]):::uc
+    UC3([Открыть файл по ссылке]):::uc
+    UC4([Загрузить файл]):::uc
+    UC5([Поделиться ссылкой]):::uc
+    UC6([Настроить права]):::uc
+    UC7([Восстановить из корзины]):::uc
+    UC8([Управлять пользователями]):::uc
+    UC9([Просмотреть аудит]):::uc
+  end
+
+  G --> UC1
+  G --> UC3
+  U --> UC2
+  U --> UC4
+  U --> UC5
+  U --> UC6
+  U --> UC7
+  A --> UC8
+  A --> UC9
+  UC4 -. include .-> UC2
+  UC5 -. include .-> UC4
+  UC6 -. extend .-> UC5

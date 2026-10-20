@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+hide circle
+title Диаграмма классов: общий доступ и права
+
+class File {
+  - id : UUID
+  - name : String
+  - ownerId : UUID
+}
+
+class Folder {
+  - id : UUID
+  - name : String
+  - ownerId : UUID
+}
+
+class ShareLink {
+  - token : String
+  - accessLevel : AccessLevel
+  - passwordHash : String
+  - expiresAt : DateTime
+  - downloadLimit : Integer
+  + validate()
+  + revoke()
+}
+
+class LinkVisit {
+  - visitedAt : DateTime
+  - ipAddress : String
+  - action : String
+}
+
+class AccessPermission {
+  - level : AccessLevel
+  - grantedAt : DateTime
+  + grant()
+  + revoke()
+}
+
+class FolderMember {
+  - role : MemberRole
+  - invitedAt : DateTime
+}
+
+class Invitation {
+  - email : String
+  - token : String
+  - status : InvitationStatus
+  - expiresAt : DateTime
+}
+
+class User {
+  - id : UUID
+  - email : String
+}
+
+enum AccessLevel {
+  VIEW
+  EDIT
+  OWNER
+}
+enum MemberRole {
+  VIEWER
+  EDITOR
+  OWNER
+}
+enum InvitationStatus {
+  SENT
+  ACCEPTED
+  EXPIRED
+}
+
+File "1" *-- "0..*" ShareLink
+Folder "1" *-- "0..*" ShareLink
+ShareLink "1" *-- "0..*" LinkVisit
+File "1" *-- "0..*" AccessPermission
+Folder "1" *-- "0..*" AccessPermission
+AccessPermission "0..*" -- "1" User
+Folder "1" *-- "0..*" FolderMember
+FolderMember "0..*" -- "1" User
+Folder "1" *-- "0..*" Invitation
+@enduml

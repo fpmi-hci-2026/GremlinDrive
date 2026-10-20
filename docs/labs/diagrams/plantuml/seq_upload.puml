@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: загрузка файла с возобновлением
+
+actor "Пользователь" as U
+participant "Веб / Мобильное\nприложение" as C
+participant "File Service\n(API)" as API
+participant "MinIO\n(S3)" as S3
+database "PostgreSQL" as DB
+participant "Антивирусный\nсканер" as AV
+queue "Redis\n(очередь)" as Q
+participant "Notification\nService" as NS
+
+U -> C : Выбрать файл и нажать «Загрузить»
+C -> API : POST /uploads (имя, размер, checksum)
+API -> DB : Проверить квоту и права
+DB --> API : Квота доступна
+API -> DB : Создать UploadSession
+API --> C : uploadId, размер части
+loop Пока файл не передан
+  C -> API : PUT /uploads/{id}/parts (chunk)
+  API -> S3 : Сохранить часть объекта
+  S3 --> API : ETag части
+  API -> DB : Обновить receivedBytes
+  API --> C : Подтверждение части
+end
+alt Соединение прервано
+  C -> API : GET /uploads/{id}
+  API --> C : Полученные части
+  C -> API : Продолжить с последней части
+end
+C -> API : POST /uploads/{id}/complete
+API -> S3 : Собрать объект из частей
+S3 --> API : storageKey, checksum
+API -> Q : Поставить задачу scan
+Q -> AV : Проверить файл
+AV --> Q : Результат проверки
+alt Файл безопасен
+  Q -> API : scanPassed
+  API -> DB : Создать File и FileVersion 1
+  API -> DB : Обновить Quota.usedBytes
+  API -> DB : Записать AuditRecord
+  API -> NS : FileUploaded
+  NS --> U : Push «Файл загружен»
+  API --> C : 201 Created (файл)
+else Обнаружен вирус
+  Q -> API : scanFailed
+  API -> DB : File.status = QUARANTINED
+  API -> NS : FileQuarantined
+  NS --> U : Уведомление о блокировке
+  API --> C : 422 VirusDetected
+end
+@enduml

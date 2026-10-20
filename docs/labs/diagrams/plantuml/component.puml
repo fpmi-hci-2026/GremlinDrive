@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+title Диаграмма компонентов GremlinDrive
+
+package "Клиенты" {
+  [Веб-приложение\nReact SPA] as WEB
+  [Мобильное приложение\nReact Native] as MOB
+}
+
+package "API-слой" {
+  [API Gateway\nREST / HTTPS] as GW
+  [Auth Service] as AUTH
+  [File Service] as FILE
+  [Version Service] as VER
+  [Sharing Service] as SHARE
+  [Permission Service] as PERM
+  [Search Service] as SEARCH
+  [Quota Service] as QUOTA
+  [Notification Service] as NOTIF
+  [Audit Service] as AUDIT
+}
+
+package "Инфраструктура" {
+  database "PostgreSQL" as DB
+  queue "Redis" as REDIS
+  [MinIO S3] as S3
+  [SMTP] as SMTP
+  [FCM / APNs] as PUSH
+  [LDAP / AD] as LDAP
+}
+
+WEB --> GW : HTTPS/JSON
+MOB --> GW : HTTPS/JSON
+GW --> AUTH
+GW --> FILE
+GW --> VER
+GW --> SHARE
+GW --> PERM
+GW --> SEARCH
+GW --> QUOTA
+GW --> NOTIF
+GW --> AUDIT
+AUTH --> DB
+AUTH --> LDAP
+FILE --> S3
+FILE --> DB
+FILE --> REDIS
+VER --> S3
+VER --> DB
+SHARE --> DB
+SHARE --> SMTP
+PERM --> DB
+SEARCH --> DB
+SEARCH --> REDIS
+QUOTA --> DB
+NOTIF --> PUSH
+NOTIF --> SMTP
+AUDIT --> DB
+@enduml

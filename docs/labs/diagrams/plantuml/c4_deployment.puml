@@ -1,0 +1,38 @@
+@startuml
+!include <C4/C4_Deployment>
+title C4: развёртывание GremlinDrive
+
+Deployment_Node(dev, "Устройства пользователей", "Браузер / Android / iOS") {
+  Container(web, "Веб-клиент", "React", "SPA")
+  Container(mobile, "Мобильный клиент", "React Native", "Android/iOS")
+}
+Deployment_Node(edge, "Пограничный узел", "Nginx") {
+  Container(proxy, "Reverse proxy", "Nginx", "TLS, статика, маршрутизация")
+}
+Deployment_Node(app, "Сервер приложений", "Linux, Docker") {
+  Container(api, "API", "NestJS", "REST")
+  Container(worker, "Worker", "Node.js", "Очереди")
+}
+Deployment_Node(data, "Узел данных", "Linux") {
+  ContainerDb(db, "PostgreSQL", "СУБД", "Данные")
+  ContainerDb(redis, "Redis", "Кэш", "Очереди")
+  ContainerDb(minio, "MinIO", "S3", "Файлы")
+}
+Deployment_Node(ext, "Внешние сервисы", "SaaS") {
+  Container(smtp, "SMTP", "Почта", "Письма")
+  Container(push, "FCM/APNs", "Push", "Уведомления")
+  Container(ldap, "LDAP/AD", "Каталог", "Пользователи")
+}
+
+Rel(web, proxy, "HTTPS")
+Rel(mobile, proxy, "HTTPS")
+Rel(proxy, api, "HTTP")
+Rel(api, db, "TCP")
+Rel(api, redis, "TCP")
+Rel(api, minio, "S3")
+Rel(api, smtp, "SMTP")
+Rel(api, push, "HTTPS")
+Rel(api, ldap, "LDAPS")
+Rel(worker, db, "TCP")
+Rel(worker, minio, "S3")
+@enduml

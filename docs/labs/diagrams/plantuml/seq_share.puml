@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+autonumber
+title Последовательность: создание ссылки и доступ гостя
+
+actor "Пользователь" as U
+participant "Веб-приложение" as W
+participant "Sharing\nService" as API
+database "PostgreSQL" as DB
+participant "MinIO" as S3
+participant "SMTP" as MAIL
+actor "Гость" as G
+
+U -> W : Открыть файл → «Поделиться»
+W -> API : POST /files/{id}/share-links
+API -> DB : Проверить владельца файла
+DB --> API : Владелец подтверждён
+API -> API : Сгенерировать token, пароль, срок
+API -> DB : Сохранить ShareLink
+API -> DB : Записать AuditRecord
+API --> W : URL, пароль, expiresAt
+W --> U : Показать ссылку и параметры
+opt Приглашение по e-mail
+  U -> W : Указать e-mail получателя
+  W -> API : POST /share-links/{id}/invite
+  API -> MAIL : Отправить письмо со ссылкой
+  MAIL --> U : Письмо доставлено
+end
+U -> G : Передать ссылку (и пароль отдельно)
+G -> API : GET /s/{token}
+API -> DB : Найти ShareLink, проверить срок
+DB --> API : Ссылка действительна
+API -> G : Запрос пароля
+G -> API : POST /s/{token}/verify (пароль)
+API -> DB : Проверить passwordHash
+DB --> API : Пароль верен
+API -> DB : Создать LinkVisit
+API -> S3 : Получить метаданные
+S3 --> API : Метаданные
+API --> G : Страница предпросмотра
+G -> API : GET /s/{token}/download
+API -> S3 : Поток скачивания
+S3 --> G : Файл
+API -> DB : Увеличить downloads, записать LinkAccessed
+@enduml

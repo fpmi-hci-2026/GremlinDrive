@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+left to right direction
+title Уточнённая диаграмма вариантов использования: администрирование
+
+actor "Администратор" as Admin
+actor "SMTP-сервер" as SMTP
+actor "FCM / APNs" as Push
+actor "LDAP / AD" as LDAP
+
+rectangle "GremlinDrive" {
+  usecase "Управлять пользователями" as UC01
+  usecase "Блокировать пользователя" as UC02
+  usecase "Управлять квотами и тарифами" as UC03
+  usecase "Обработать запрос прав" as UC04
+  usecase "Просмотреть журнал аудита" as UC05
+  usecase "Экспортировать отчёт" as UC06
+  usecase "Просмотреть статистику" as UC07
+  usecase "Отправить уведомление" as UC08
+}
+
+Admin --> UC01
+Admin --> UC03
+Admin --> UC04
+Admin --> UC05
+Admin --> UC06
+Admin --> UC07
+UC01 .> UC02 : <<extend>>
+UC04 .> UC03 : <<include>>
+UC01 .> UC08 : <<extend>>
+UC08 --> Push
+UC01 --> LDAP
+UC08 --> SMTP
+@enduml
