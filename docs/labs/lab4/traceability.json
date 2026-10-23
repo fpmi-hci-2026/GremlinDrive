@@ -1,0 +1,470 @@
+[
+  {
+    "method": "GET",
+    "path": "/health",
+    "operation": "health",
+    "uc": "UC-19",
+    "fr": "FR-30",
+    "us": "US-09",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me",
+    "operation": "getMe",
+    "uc": "UC-02",
+    "fr": "FR-02,FR-30",
+    "us": "US-02",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/quota",
+    "operation": "getQuota",
+    "uc": "UC-14",
+    "fr": "FR-18",
+    "us": "US-15",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files",
+    "operation": "listFiles",
+    "uc": "UC-06",
+    "fr": "FR-09",
+    "us": "US-07",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files/{file_id}",
+    "operation": "getFile",
+    "uc": "UC-06",
+    "fr": "FR-08",
+    "us": "US-06",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/files/{file_id}",
+    "operation": "renameFile",
+    "uc": "UC-04",
+    "fr": "FR-05",
+    "us": "US-07",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/files/{file_id}",
+    "operation": "trashFile",
+    "uc": "UC-07",
+    "fr": "FR-10",
+    "us": "US-11",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/files/{file_id}/restorations",
+    "operation": "restoreFile",
+    "uc": "UC-07",
+    "fr": "FR-10",
+    "us": "US-11",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files/{file_id}/versions",
+    "operation": "listVersions",
+    "uc": "UC-08",
+    "fr": "FR-11",
+    "us": "US-06",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/folders",
+    "operation": "listFolders",
+    "uc": "UC-04",
+    "fr": "FR-05",
+    "us": "US-07",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/folders",
+    "operation": "createFolder",
+    "uc": "UC-04",
+    "fr": "FR-05",
+    "us": "US-07",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/share-links",
+    "operation": "listShares",
+    "uc": "UC-09",
+    "fr": "FR-14",
+    "us": "US-16",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/share-links",
+    "operation": "createShare",
+    "uc": "UC-09",
+    "fr": "FR-12",
+    "us": "US-03",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/share-links/{share_id}",
+    "operation": "revokeShare",
+    "uc": "UC-09",
+    "fr": "FR-14",
+    "us": "US-16",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/public/shares/{token}/access",
+    "operation": "unlockShare",
+    "uc": "UC-10",
+    "fr": "FR-13",
+    "us": "US-04",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/public/shares/{token}/content",
+    "operation": "downloadShare",
+    "uc": "UC-10",
+    "fr": "FR-13",
+    "us": "US-04",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/access-requests",
+    "operation": "createAccessRequest",
+    "uc": "UC-14",
+    "fr": "FR-18",
+    "us": "US-15",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/access-requests",
+    "operation": "listAccessRequests",
+    "uc": "UC-14",
+    "fr": "FR-19",
+    "us": "US-10",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/access-requests/{request_id}/decisions",
+    "operation": "decideAccessRequest",
+    "uc": "UC-14",
+    "fr": "FR-19",
+    "us": "US-10",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/users/{user_id}/quota",
+    "operation": "setQuota",
+    "uc": "UC-15",
+    "fr": "FR-21",
+    "us": "US-09",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/audit-records",
+    "operation": "listAuditRecords",
+    "uc": "UC-16",
+    "fr": "FR-23",
+    "us": "US-14",
+    "implementation": "stateful-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/registrations",
+    "operation": "register",
+    "uc": "UC-01",
+    "fr": "FR-01",
+    "us": "US-01",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/email-confirmations",
+    "operation": "confirmEmail",
+    "uc": "UC-01",
+    "fr": "FR-01",
+    "us": "US-01",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/sessions",
+    "operation": "login",
+    "uc": "UC-02",
+    "fr": "FR-02,FR-04",
+    "us": "US-02",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/auth/sessions/current",
+    "operation": "logout",
+    "uc": "UC-02",
+    "fr": "FR-02",
+    "us": "US-02",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/password-resets",
+    "operation": "requestPasswordReset",
+    "uc": "UC-02",
+    "fr": "FR-02",
+    "us": "US-02",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/totp/enrollments",
+    "operation": "enrollTotp",
+    "uc": "UC-03",
+    "fr": "FR-03",
+    "us": "US-12",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/auth/totp/verifications",
+    "operation": "verifyTotp",
+    "uc": "UC-03",
+    "fr": "FR-03",
+    "us": "US-12",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/uploads",
+    "operation": "startUpload",
+    "uc": "UC-05",
+    "fr": "FR-06,FR-27",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/uploads/{upload_id}",
+    "operation": "getUpload",
+    "uc": "UC-05",
+    "fr": "FR-06",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/uploads/{upload_id}",
+    "operation": "cancelUpload",
+    "uc": "UC-05",
+    "fr": "FR-06",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/uploads/{upload_id}/parts/{part_no}",
+    "operation": "uploadPart",
+    "uc": "UC-05",
+    "fr": "FR-06",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/uploads/{upload_id}/completions",
+    "operation": "completeUpload",
+    "uc": "UC-05",
+    "fr": "FR-06,FR-07",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files/{file_id}/content",
+    "operation": "downloadFile",
+    "uc": "UC-06",
+    "fr": "FR-08,FR-26",
+    "us": "US-06,US-08",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files/{file_id}/previews",
+    "operation": "previewFile",
+    "uc": "UC-06",
+    "fr": "FR-08",
+    "us": "US-06",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/files/{file_id}/version-restorations",
+    "operation": "restoreVersion",
+    "uc": "UC-08",
+    "fr": "FR-11",
+    "us": "US-06",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/folders/{folder_id}/invitations",
+    "operation": "inviteMember",
+    "uc": "UC-11",
+    "fr": "FR-15",
+    "us": "US-05",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/invitations/{invitation_id}/acceptances",
+    "operation": "acceptInvitation",
+    "uc": "UC-11",
+    "fr": "FR-15",
+    "us": "US-05",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/folders/{folder_id}/members",
+    "operation": "listMembers",
+    "uc": "UC-12",
+    "fr": "FR-16",
+    "us": "US-05",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/folders/{folder_id}/members/{user_id}",
+    "operation": "setMemberRole",
+    "uc": "UC-12",
+    "fr": "FR-16",
+    "us": "US-05",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/folders/{folder_id}/members/{user_id}",
+    "operation": "removeMember",
+    "uc": "UC-12",
+    "fr": "FR-16",
+    "us": "US-05",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/files/{file_id}/comments",
+    "operation": "listComments",
+    "uc": "UC-13",
+    "fr": "FR-17",
+    "us": "US-13",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/files/{file_id}/comments",
+    "operation": "addComment",
+    "uc": "UC-13",
+    "fr": "FR-17",
+    "us": "US-13",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/notifications",
+    "operation": "listNotifications",
+    "uc": "UC-13",
+    "fr": "FR-25",
+    "us": "US-13",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/notifications/{notification_id}",
+    "operation": "readNotification",
+    "uc": "UC-13",
+    "fr": "FR-25",
+    "us": "US-13",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/devices",
+    "operation": "registerDevice",
+    "uc": "UC-17",
+    "fr": "FR-25,FR-27",
+    "us": "US-07",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/sync/changes",
+    "operation": "syncChanges",
+    "uc": "UC-17",
+    "fr": "FR-26",
+    "us": "US-08",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/admin/users",
+    "operation": "listUsers",
+    "uc": "UC-15",
+    "fr": "FR-20",
+    "us": "US-09",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/admin/users/{user_id}",
+    "operation": "setUserStatus",
+    "uc": "UC-15",
+    "fr": "FR-20",
+    "us": "US-09",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/users/{user_id}/roles",
+    "operation": "setUserRoles",
+    "uc": "UC-15",
+    "fr": "FR-21",
+    "us": "US-09",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/ldap-synchronizations",
+    "operation": "syncDirectory",
+    "uc": "UC-18",
+    "fr": "FR-22",
+    "us": "US-09",
+    "implementation": "contract-mock"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/admin/reports",
+    "operation": "createReport",
+    "uc": "UC-16",
+    "fr": "FR-23,FR-24,FR-29",
+    "us": "US-09,US-14",
+    "implementation": "contract-mock"
+  }
+]

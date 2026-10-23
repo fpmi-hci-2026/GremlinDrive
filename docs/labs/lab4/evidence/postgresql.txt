@@ -1,0 +1,23 @@
+BEGIN
+INSERT 0 1
+INSERT 0 1
+INSERT 0 1
+NOTICE:  PASS quota invariant
+NOTICE:  PASS share target XOR
+NOTICE:  PASS sibling uniqueness
+NOTICE:  PASS foreign key
+NOTICE:  PASS trash timestamp
+NOTICE:  PASS rejection requires comment
+DO
+INSERT 0 1
+NOTICE:  PASS folder cycle
+DO
+INSERT 0 1
+NOTICE:  PASS audit append only
+DO
+ physical_tables 
+-----------------
+              17
+(1 row)
+
+ROLLBACK

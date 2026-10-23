@@ -1,0 +1,35 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+title Lab 4 local Docker environment
+node "Developer computer / 127.0.0.1" {
+  rectangle "Browser / Bruno\nPostman / Inspector" as clients
+  node "Docker Compose network" {
+    rectangle "nginx :8045\nHTML documentation" as web
+    rectangle "Prism :4010\n52 contract operations" as prism
+    rectangle "FastAPI :8044\nstateful subset" as api
+    database "SQLite volume\nMCP fixture" as sqlite
+    database "PostgreSQL 16\nDDL validation" as postgres
+    rectangle "SonarQube\noptional quality profile" as sonar
+  }
+  rectangle "MCP stdio server" as mcp
+}
+clients --> web
+clients --> prism
+clients --> api
+clients --> mcp
+api --> sqlite
+mcp --> sqlite : shared store in local mode
+note bottom of postgres
+  Целевая физическая схема.
+  SQLite mock не выдаётся за PostgreSQL backend.
+end note
+@enduml

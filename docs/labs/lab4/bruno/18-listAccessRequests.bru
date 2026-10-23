@@ -1,0 +1,19 @@
+meta {
+  name: listAccessRequests
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{baseUrl}}/api/v1/admin/access-requests
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

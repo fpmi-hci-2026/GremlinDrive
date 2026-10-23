@@ -1,0 +1,26 @@
+meta {
+  name: createFolder
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/api/v1/folders
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Отчёты",
+    "parent_id": "10000000-0000-4000-8000-000000000001"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

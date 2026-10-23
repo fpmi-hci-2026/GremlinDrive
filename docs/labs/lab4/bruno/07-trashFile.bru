@@ -1,0 +1,19 @@
+meta {
+  name: trashFile
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/files/20000000-0000-4000-8000-000000000001
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

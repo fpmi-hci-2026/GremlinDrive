@@ -1,0 +1,25 @@
+meta {
+  name: verifyTotp
+  type: http
+  seq: 28
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/totp/verifications
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "code": "123456"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

@@ -1,0 +1,19 @@
+meta {
+  name: listUsers
+  type: http
+  seq: 48
+}
+
+get {
+  url: {{baseUrl}}/api/v1/admin/users
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

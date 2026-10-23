@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "gremlindrive": {
+      "command": "/ABSOLUTE/PATH/runtime/.venv/bin/python",
+      "args": [
+        "/ABSOLUTE/PATH/runtime/mcp_server.py"
+      ],
+      "env": {
+        "GREMLIN_DB": "/ABSOLUTE/PATH/runtime/demo.db",
+        "GREMLIN_USER_ID": "00000000-0000-4000-8000-000000000001"
+      }
+    }
+  }
+}

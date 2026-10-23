@@ -1,0 +1,96 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+title Sharing and collaboration
+entity "files" as files {
+  * id : uuid <<PK>>
+  owner_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  name : varchar(255)
+  mime_type : varchar(127)
+  size_bytes : bigint
+  checksum : char(64)
+  status : varchar(20)
+  trashed_at : timestamptz
+  created_at : timestamptz
+}
+entity "folders" as folders {
+  * id : uuid <<PK>>
+  owner_id : uuid <<FK>>
+  parent_id : uuid <<FK>>
+  name : varchar(255)
+  is_shared : boolean
+  created_at : timestamptz
+}
+entity "share_links" as share_links {
+  * id : uuid <<PK>>
+  file_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  token_hash : char(64)
+  access_level : varchar(10)
+  password_hash : text
+  expires_at : timestamptz
+  revoked_at : timestamptz
+  download_limit : integer
+  downloads : integer
+  created_by : uuid <<FK>>
+  created_at : timestamptz
+}
+entity "access_permissions" as access_permissions {
+  * id : uuid <<PK>>
+  file_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  user_id : uuid <<FK>>
+  level : varchar(10)
+  granted_at : timestamptz
+}
+entity "folder_members" as folder_members {
+  * folder_id : uuid <<PK,FK>>
+  * user_id : uuid <<PK,FK>>
+  role : varchar(10)
+  invited_at : timestamptz
+}
+entity "invitations" as invitations {
+  * id : uuid <<PK>>
+  folder_id : uuid <<FK>>
+  email : varchar(255)
+  token_hash : char(64)
+  level : varchar(10)
+  status : varchar(20)
+  expires_at : timestamptz
+  invited_by : uuid <<FK>>
+  created_at : timestamptz
+}
+entity "comments" as comments {
+  * id : uuid <<PK>>
+  file_id : uuid <<FK>>
+  author_id : uuid <<FK>>
+  text : text
+  created_at : timestamptz
+}
+entity "notifications" as notifications {
+  * id : uuid <<PK>>
+  user_id : uuid <<FK>>
+  type : varchar(40)
+  text : text
+  is_read : boolean
+  created_at : timestamptz
+}
+files ||--o{ comments : file_id
+files ||--o{ share_links : file_id
+folders ||--o{ share_links : folder_id
+folders ||--o{ invitations : folder_id
+folders ||--o{ folders : parent_id
+files ||--o{ access_permissions : file_id
+folders ||--o{ access_permissions : folder_id
+folders ||--o{ files : folder_id
+folders ||--o{ folder_members : folder_id
+@enduml

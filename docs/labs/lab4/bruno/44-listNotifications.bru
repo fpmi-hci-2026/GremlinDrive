@@ -1,0 +1,19 @@
+meta {
+  name: listNotifications
+  type: http
+  seq: 44
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notifications
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

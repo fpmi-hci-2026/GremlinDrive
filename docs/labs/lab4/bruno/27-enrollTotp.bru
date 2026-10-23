@@ -1,0 +1,25 @@
+meta {
+  name: enrollTotp
+  type: http
+  seq: 27
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/totp/enrollments
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password": "laboratory123"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

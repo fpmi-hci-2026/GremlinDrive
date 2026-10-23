@@ -1,0 +1,192 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+title GremlinDrive logical data model
+entity "users" as users {
+  id <<PK>>
+  email
+  password_hash
+  name
+  status
+  locale
+  created_at
+}
+entity "roles" as roles {
+  id <<PK>>
+  code
+  title
+}
+entity "user_roles" as user_roles {
+  user_id <<PK,FK>>
+  role_id <<PK,FK>>
+}
+entity "sessions" as sessions {
+  id <<PK>>
+  user_id <<FK>>
+  token_hash
+  ip_address
+  expires_at
+  created_at
+}
+entity "folders" as folders {
+  id <<PK>>
+  owner_id <<FK>>
+  parent_id <<FK>>
+  name
+  is_shared
+  created_at
+}
+entity "files" as files {
+  id <<PK>>
+  owner_id <<FK>>
+  folder_id <<FK>>
+  name
+  mime_type
+  size_bytes
+  checksum
+  status
+  trashed_at
+  created_at
+}
+entity "file_versions" as file_versions {
+  id <<PK>>
+  file_id <<FK>>
+  version_no
+  storage_key
+  size_bytes
+  checksum
+  created_by <<FK>>
+  created_at
+  comment
+}
+entity "share_links" as share_links {
+  id <<PK>>
+  file_id <<FK>>
+  folder_id <<FK>>
+  token_hash
+  access_level
+  password_hash
+  expires_at
+  revoked_at
+  download_limit
+  downloads
+  created_by <<FK>>
+  created_at
+}
+entity "access_permissions" as access_permissions {
+  id <<PK>>
+  file_id <<FK>>
+  folder_id <<FK>>
+  user_id <<FK>>
+  level
+  granted_at
+}
+entity "folder_members" as folder_members {
+  folder_id <<PK,FK>>
+  user_id <<PK,FK>>
+  role
+  invited_at
+}
+entity "invitations" as invitations {
+  id <<PK>>
+  folder_id <<FK>>
+  email
+  token_hash
+  level
+  status
+  expires_at
+  invited_by <<FK>>
+  created_at
+}
+entity "access_requests" as access_requests {
+  id <<PK>>
+  user_id <<FK>>
+  type
+  reason
+  requested_bytes
+  requested_role
+  status
+  decided_by <<FK>>
+  decided_at
+  decision_comment
+  created_at
+}
+entity "quotas" as quotas {
+  user_id <<PK,FK>>
+  used_bytes
+  total_bytes
+  reserved_bytes
+  tariff
+  renewal_date
+}
+entity "audit_records" as audit_records {
+  id <<PK>>
+  user_id <<FK>>
+  action
+  entity_type
+  entity_id
+  ip_address
+  created_at
+}
+entity "notifications" as notifications {
+  id <<PK>>
+  user_id <<FK>>
+  type
+  text
+  is_read
+  created_at
+}
+entity "comments" as comments {
+  id <<PK>>
+  file_id <<FK>>
+  author_id <<FK>>
+  text
+  created_at
+}
+entity "upload_sessions" as upload_sessions {
+  id <<PK>>
+  user_id <<FK>>
+  file_id <<FK>>
+  expected_bytes
+  received_bytes
+  idempotency_key
+  status
+  expires_at
+}
+files ||--o{ comments : file_id
+files ||--o{ share_links : file_id
+users ||--o{ audit_records : user_id
+folders ||--o{ share_links : folder_id
+folders ||--o{ invitations : folder_id
+roles ||--o{ user_roles : role_id
+users ||--o{ folder_members : user_id
+users ||--o{ upload_sessions : user_id
+folders ||--o{ folders : parent_id
+users ||--o{ notifications : user_id
+users ||--o{ files : owner_id
+users ||--o{ comments : author_id
+users ||--o{ invitations : invited_by
+files ||--o{ access_permissions : file_id
+users ||--o{ sessions : user_id
+folders ||--o{ access_permissions : folder_id
+folders ||--o{ files : folder_id
+files ||--o{ file_versions : file_id
+users ||--o{ file_versions : created_by
+users ||--o{ access_requests : user_id
+files ||--o{ upload_sessions : file_id
+users ||--o| quotas : user_id
+users ||--o{ access_requests : decided_by
+folders ||--o{ folder_members : folder_id
+users ||--o{ folders : owner_id
+users ||--o{ access_permissions : user_id
+users ||--o{ user_roles : user_id
+users ||--o{ share_links : created_by
+@enduml

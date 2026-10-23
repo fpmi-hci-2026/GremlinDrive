@@ -1,0 +1,217 @@
+{
+  "runner": "Bruno CLI",
+  "requests": 52,
+  "passed": 52,
+  "statuses": [
+    {
+      "request": "01-health.bru",
+      "status": 200
+    },
+    {
+      "request": "02-getMe.bru",
+      "status": 200
+    },
+    {
+      "request": "03-getQuota.bru",
+      "status": 200
+    },
+    {
+      "request": "04-listFiles.bru",
+      "status": 200
+    },
+    {
+      "request": "05-getFile.bru",
+      "status": 200
+    },
+    {
+      "request": "06-renameFile.bru",
+      "status": 200
+    },
+    {
+      "request": "07-trashFile.bru",
+      "status": 200
+    },
+    {
+      "request": "08-restoreFile.bru",
+      "status": 201
+    },
+    {
+      "request": "09-listVersions.bru",
+      "status": 200
+    },
+    {
+      "request": "10-listFolders.bru",
+      "status": 200
+    },
+    {
+      "request": "11-createFolder.bru",
+      "status": 201
+    },
+    {
+      "request": "12-listShares.bru",
+      "status": 200
+    },
+    {
+      "request": "13-createShare.bru",
+      "status": 201
+    },
+    {
+      "request": "14-revokeShare.bru",
+      "status": 200
+    },
+    {
+      "request": "15-unlockShare.bru",
+      "status": 200
+    },
+    {
+      "request": "16-downloadShare.bru",
+      "status": 200
+    },
+    {
+      "request": "17-createAccessRequest.bru",
+      "status": 201
+    },
+    {
+      "request": "18-listAccessRequests.bru",
+      "status": 200
+    },
+    {
+      "request": "19-decideAccessRequest.bru",
+      "status": 201
+    },
+    {
+      "request": "20-setQuota.bru",
+      "status": 200
+    },
+    {
+      "request": "21-listAuditRecords.bru",
+      "status": 200
+    },
+    {
+      "request": "22-register.bru",
+      "status": 201
+    },
+    {
+      "request": "23-confirmEmail.bru",
+      "status": 201
+    },
+    {
+      "request": "24-login.bru",
+      "status": 201
+    },
+    {
+      "request": "25-logout.bru",
+      "status": 200
+    },
+    {
+      "request": "26-requestPasswordReset.bru",
+      "status": 201
+    },
+    {
+      "request": "27-enrollTotp.bru",
+      "status": 201
+    },
+    {
+      "request": "28-verifyTotp.bru",
+      "status": 201
+    },
+    {
+      "request": "29-startUpload.bru",
+      "status": 201
+    },
+    {
+      "request": "30-getUpload.bru",
+      "status": 200
+    },
+    {
+      "request": "31-cancelUpload.bru",
+      "status": 200
+    },
+    {
+      "request": "32-uploadPart.bru",
+      "status": 200
+    },
+    {
+      "request": "33-completeUpload.bru",
+      "status": 201
+    },
+    {
+      "request": "34-downloadFile.bru",
+      "status": 200
+    },
+    {
+      "request": "35-previewFile.bru",
+      "status": 200
+    },
+    {
+      "request": "36-restoreVersion.bru",
+      "status": 201
+    },
+    {
+      "request": "37-inviteMember.bru",
+      "status": 201
+    },
+    {
+      "request": "38-acceptInvitation.bru",
+      "status": 201
+    },
+    {
+      "request": "39-listMembers.bru",
+      "status": 200
+    },
+    {
+      "request": "40-setMemberRole.bru",
+      "status": 200
+    },
+    {
+      "request": "41-removeMember.bru",
+      "status": 200
+    },
+    {
+      "request": "42-listComments.bru",
+      "status": 200
+    },
+    {
+      "request": "43-addComment.bru",
+      "status": 201
+    },
+    {
+      "request": "44-listNotifications.bru",
+      "status": 200
+    },
+    {
+      "request": "45-readNotification.bru",
+      "status": 200
+    },
+    {
+      "request": "46-registerDevice.bru",
+      "status": 201
+    },
+    {
+      "request": "47-syncChanges.bru",
+      "status": 200
+    },
+    {
+      "request": "48-listUsers.bru",
+      "status": 200
+    },
+    {
+      "request": "49-setUserStatus.bru",
+      "status": 200
+    },
+    {
+      "request": "50-setUserRoles.bru",
+      "status": 200
+    },
+    {
+      "request": "51-syncDirectory.bru",
+      "status": 201
+    },
+    {
+      "request": "52-createReport.bru",
+      "status": 201
+    }
+  ],
+  "tests": 52,
+  "tests_passed": 52
+}

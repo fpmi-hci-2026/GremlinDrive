@@ -1,0 +1,19 @@
+meta {
+  name: syncChanges
+  type: http
+  seq: 47
+}
+
+get {
+  url: {{baseUrl}}/api/v1/sync/changes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

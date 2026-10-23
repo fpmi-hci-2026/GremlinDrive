@@ -1,0 +1,71 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+title Files and uploads
+entity "users" as users {
+  * id : uuid <<PK>>
+  email : varchar(255)
+  password_hash : text
+  name : varchar(120)
+  status : varchar(20)
+  locale : varchar(10)
+  created_at : timestamptz
+}
+entity "folders" as folders {
+  * id : uuid <<PK>>
+  owner_id : uuid <<FK>>
+  parent_id : uuid <<FK>>
+  name : varchar(255)
+  is_shared : boolean
+  created_at : timestamptz
+}
+entity "files" as files {
+  * id : uuid <<PK>>
+  owner_id : uuid <<FK>>
+  folder_id : uuid <<FK>>
+  name : varchar(255)
+  mime_type : varchar(127)
+  size_bytes : bigint
+  checksum : char(64)
+  status : varchar(20)
+  trashed_at : timestamptz
+  created_at : timestamptz
+}
+entity "file_versions" as file_versions {
+  * id : uuid <<PK>>
+  file_id : uuid <<FK>>
+  version_no : integer
+  storage_key : varchar(512)
+  size_bytes : bigint
+  checksum : char(64)
+  created_by : uuid <<FK>>
+  created_at : timestamptz
+  comment : text
+}
+entity "upload_sessions" as upload_sessions {
+  * id : uuid <<PK>>
+  user_id : uuid <<FK>>
+  file_id : uuid <<FK>>
+  expected_bytes : bigint
+  received_bytes : bigint
+  idempotency_key : uuid
+  status : varchar(20)
+  expires_at : timestamptz
+}
+users ||--o{ upload_sessions : user_id
+folders ||--o{ folders : parent_id
+users ||--o{ files : owner_id
+folders ||--o{ files : folder_id
+files ||--o{ file_versions : file_id
+users ||--o{ file_versions : created_by
+files ||--o{ upload_sessions : file_id
+users ||--o{ folders : owner_id
+@enduml

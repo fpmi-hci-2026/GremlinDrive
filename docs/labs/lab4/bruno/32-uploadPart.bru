@@ -1,0 +1,27 @@
+meta {
+  name: uploadPart
+  type: http
+  seq: 32
+}
+
+put {
+  url: {{baseUrl}}/api/v1/uploads/20000000-0000-4000-8000-000000000001/parts/1
+  body: text
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/octet-stream
+}
+
+body:text {
+  lab data
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

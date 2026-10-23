@@ -1,0 +1,37 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+left to right direction
+title GremlinDrive MCP MVP
+actor "Пользователь" as user
+rectangle "LLM host / MCP Inspector" as host
+rectangle "MCP Python SDK\nstdio / JSON-RPC" as mcp
+rectangle "Tools\n7 типизированных действий" as tools
+rectangle "Resources\npolicy, quota, files" as resources
+rectangle "Prompts\nshare_file_safely\nreview_storage" as prompts
+rectangle "store.py\nACL + валидация + транзакции" as domain
+rectangle "FastAPI\nStateful REST mock" as api
+database "SQLite demo.db\nучебные данные" as db
+user --> host
+host --> mcp
+mcp --> tools
+mcp --> resources
+mcp --> prompts
+tools --> domain
+resources --> domain
+api --> domain
+domain --> db
+note bottom of domain
+  Личность задаёт сервер.
+  user_id не принимается от LLM.
+  Пароли и токены не пишутся в аудит.
+end note
+@enduml

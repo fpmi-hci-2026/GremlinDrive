@@ -1,0 +1,38 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+left to right direction
+title Actor to User Story to Use Case
+actor "Пользователь" as user
+actor "Гость" as guest
+actor "Владелец папки" as owner
+actor "Администратор" as admin
+rectangle "US-07 Загрузить материалы" as us7
+rectangle "US-03 Передать защищённой ссылкой" as us3
+rectangle "US-04 Скачать без регистрации" as us4
+rectangle "US-05 Пригласить команду" as us5
+rectangle "US-09 Управлять квотами" as us9
+usecase "UC-05 Загрузка частями" as uc5
+usecase "UC-09 Создание и отзыв ссылки" as uc9
+usecase "UC-10 Гостевой доступ" as uc10
+usecase "UC-11 Приглашение участника" as uc11
+usecase "UC-15 Управление пользователями" as uc15
+user --> us7
+user --> us3
+guest --> us4
+owner --> us5
+admin --> us9
+us7 --> uc5
+us3 --> uc9
+us4 --> uc10
+us5 --> uc11
+us9 --> uc15
+@enduml

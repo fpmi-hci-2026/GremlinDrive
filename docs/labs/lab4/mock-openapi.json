@@ -1,0 +1,1311 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GremlinDrive stateful mock",
+    "description": "Учебная SQLite-модель. Только демонстрационные данные и токены.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Infrastructure"
+        ],
+        "summary": "Health",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "tags": [
+          "Identity"
+        ],
+        "summary": "Get Me",
+        "operationId": "getMe",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/me/quota": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Get Quota",
+        "operationId": "getQuota",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/files": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Files",
+        "operationId": "listFiles",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "default": "",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "active",
+                "trashed",
+                "quarantine"
+              ],
+              "type": "string",
+              "default": "active",
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/files/{file_id}": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get File",
+        "operationId": "getFile",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Rename File",
+        "operationId": "renameFile",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "File Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileRename"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Trash File",
+        "operationId": "trashFile",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/files/{file_id}/restorations": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Restore File",
+        "operationId": "restoreFile",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/files/{file_id}/versions": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Versions",
+        "operationId": "listVersions",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "File Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/folders": {
+      "get": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Folders",
+        "operationId": "listFolders",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Create Folder",
+        "operationId": "createFolder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolderCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/share-links": {
+      "get": {
+        "tags": [
+          "Sharing"
+        ],
+        "summary": "List Shares",
+        "operationId": "listShares",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Sharing"
+        ],
+        "summary": "Create Share",
+        "operationId": "createShare",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/share-links/{share_id}": {
+      "delete": {
+        "tags": [
+          "Sharing"
+        ],
+        "summary": "Revoke Share",
+        "operationId": "revokeShare",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "share_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Share Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/public/shares/{token}/access": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Unlock",
+        "operationId": "unlockShare",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareAccess"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/public/shares/{token}/content": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Download",
+        "operationId": "downloadShare",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Token"
+            }
+          },
+          {
+            "name": "x-share-access",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Share-Access"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/access-requests": {
+      "post": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Request Quota",
+        "operationId": "createAccessRequest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/access-requests": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Requests",
+        "operationId": "listAccessRequests",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/access-requests/{request_id}/decisions": {
+      "post": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Decide",
+        "operationId": "decideAccessRequest",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Request Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestDecision"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/quota": {
+      "put": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Set Quota",
+        "operationId": "setQuota",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuotaUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/audit-records": {
+      "get": {
+        "tags": [
+          "Administration"
+        ],
+        "summary": "Audit Records",
+        "operationId": "listAuditRecords",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Нет действующей сессии или неверный пароль"
+          },
+          "403": {
+            "description": "Недостаточно прав"
+          },
+          "404": {
+            "description": "Объект не найден либо ссылка недействительна"
+          },
+          "409": {
+            "description": "Конфликт состояния"
+          },
+          "422": {
+            "description": "Ошибка валидации"
+          },
+          "429": {
+            "description": "Превышен лимит попыток"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FileRename": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[^/\\\\]+$",
+            "title": "Name"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "FileRename"
+      },
+      "FolderCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1,
+            "pattern": "^[^/\\\\]+$",
+            "title": "Name"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "FolderCreate"
+      },
+      "QuotaUpdate": {
+        "properties": {
+          "total_bytes": {
+            "type": "integer",
+            "maximum": 1125899906842624.0,
+            "minimum": 0.0,
+            "title": "Total Bytes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "total_bytes"
+        ],
+        "title": "QuotaUpdate"
+      },
+      "RequestCreate": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 5,
+            "title": "Reason"
+          },
+          "requested_bytes": {
+            "type": "integer",
+            "maximum": 1125899906842624.0,
+            "exclusiveMinimum": 0.0,
+            "title": "Requested Bytes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason",
+          "requested_bytes"
+        ],
+        "title": "RequestCreate"
+      },
+      "RequestDecision": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Status"
+          },
+          "comment": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Comment"
+          },
+          "total_bytes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 1125899906842624.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Bytes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "status",
+          "comment"
+        ],
+        "title": "RequestDecision"
+      },
+      "ShareAccess": {
+        "properties": {
+          "password": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ShareAccess"
+      },
+      "ShareCreate": {
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "File Id"
+          },
+          "password": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 8
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Password"
+          },
+          "expires_in_days": {
+            "type": "integer",
+            "maximum": 30.0,
+            "minimum": 1.0,
+            "title": "Expires In Days",
+            "default": 7
+          },
+          "access_level": {
+            "type": "string",
+            "enum": [
+              "view",
+              "download"
+            ],
+            "title": "Access Level",
+            "default": "download"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "file_id"
+        ],
+        "title": "ShareCreate"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

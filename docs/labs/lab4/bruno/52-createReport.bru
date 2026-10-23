@@ -1,0 +1,26 @@
+meta {
+  name: createReport
+  type: http
+  seq: 52
+}
+
+post {
+  url: {{baseUrl}}/api/v1/admin/reports
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "format": "csv",
+    "type": "users"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

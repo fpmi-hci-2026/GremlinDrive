@@ -1,0 +1,25 @@
+meta {
+  name: unlockShare
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{baseUrl}}/api/v1/public/shares/demo-public-link-token/access
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password": "laboratory123"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

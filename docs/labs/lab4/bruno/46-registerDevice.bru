@@ -1,0 +1,26 @@
+meta {
+  name: registerDevice
+  type: http
+  seq: 46
+}
+
+post {
+  url: {{baseUrl}}/api/v1/devices
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "platform": "android",
+    "push_token": "demo-push-token"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

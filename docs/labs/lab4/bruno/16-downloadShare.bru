@@ -1,0 +1,19 @@
+meta {
+  name: downloadShare
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{baseUrl}}/api/v1/public/shares/demo-public-link-token/content
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

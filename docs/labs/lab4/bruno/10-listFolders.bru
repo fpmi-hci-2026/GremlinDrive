@@ -1,0 +1,19 @@
+meta {
+  name: listFolders
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/v1/folders
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

@@ -1,0 +1,76 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 5
+skinparam linetype ortho
+skinparam classBackgroundColor #F4F7FA
+skinparam classBorderColor #49647A
+hide circle
+title Identity and administration
+entity "users" as users {
+  * id : uuid <<PK>>
+  email : varchar(255)
+  password_hash : text
+  name : varchar(120)
+  status : varchar(20)
+  locale : varchar(10)
+  created_at : timestamptz
+}
+entity "roles" as roles {
+  * id : smallint <<PK>>
+  code : varchar(20)
+  title : varchar(60)
+}
+entity "user_roles" as user_roles {
+  * user_id : uuid <<PK,FK>>
+  * role_id : smallint <<PK,FK>>
+}
+entity "sessions" as sessions {
+  * id : uuid <<PK>>
+  user_id : uuid <<FK>>
+  token_hash : char(64)
+  ip_address : inet
+  expires_at : timestamptz
+  created_at : timestamptz
+}
+entity "quotas" as quotas {
+  * user_id : uuid <<PK,FK>>
+  used_bytes : bigint
+  total_bytes : bigint
+  reserved_bytes : bigint
+  tariff : varchar(40)
+  renewal_date : date
+}
+entity "audit_records" as audit_records {
+  * id : bigint <<PK>>
+  user_id : uuid <<FK>>
+  action : varchar(80)
+  entity_type : varchar(40)
+  entity_id : uuid
+  ip_address : inet
+  created_at : timestamptz
+}
+entity "access_requests" as access_requests {
+  * id : uuid <<PK>>
+  user_id : uuid <<FK>>
+  type : varchar(20)
+  reason : text
+  requested_bytes : bigint
+  requested_role : varchar(20)
+  status : varchar(20)
+  decided_by : uuid <<FK>>
+  decided_at : timestamptz
+  decision_comment : text
+  created_at : timestamptz
+}
+users ||--o{ audit_records : user_id
+roles ||--o{ user_roles : role_id
+users ||--o{ sessions : user_id
+users ||--o{ access_requests : user_id
+users ||--o| quotas : user_id
+users ||--o{ access_requests : decided_by
+users ||--o{ user_roles : user_id
+@enduml

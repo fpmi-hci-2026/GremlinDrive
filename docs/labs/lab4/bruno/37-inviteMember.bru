@@ -1,0 +1,26 @@
+meta {
+  name: inviteMember
+  type: http
+  seq: 37
+}
+
+post {
+  url: {{baseUrl}}/api/v1/folders/10000000-0000-4000-8000-000000000001/invitations
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "email": "team@example.test",
+    "level": "view"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

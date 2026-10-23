@@ -1,0 +1,25 @@
+meta {
+  name: addComment
+  type: http
+  seq: 43
+}
+
+post {
+  url: {{baseUrl}}/api/v1/files/20000000-0000-4000-8000-000000000001/comments
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "text": "Готово к проверке"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}

@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ЛР4 API и MCP · GremlinDrive</title><link rel="stylesheet" href="lab4.css"></head><body>
+<header><a href="https://fpmi-hci-2026.github.io/GremlinDrive/" class="brand">GremlinDrive</a><nav aria-label="Навигация"><a href="https://fpmi-hci-2026.github.io/GremlinDrive/labs/">Лабораторные</a><a href="api.html">Документация API</a><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab4">Исходники</a></nav></header>
+<main><div class="hero"><p class="eyebrow">Лабораторная работа 4 · группа 10а</p><h1>API и интеграция<br>с AI-ассистентом</h1>
+<p class="lead">GremlinDrive: от требований и схемы данных к проверяемому API и работающему MCP-серверу.</p>
+<div class="actions"><a class="button" href="lab4-report.pdf">Отчёт PDF</a><a class="button secondary" href="api.html">Открыть Swagger UI</a><a class="button secondary" href="lab4-source.zip">Скачать комплект</a></div>
+<div class="metrics"><span><strong>52</strong> операции API</span><span><strong>17</strong> таблиц PostgreSQL</span><span><strong>7</strong> MCP-инструментов</span><span><strong>20</strong> тестов pytest</span></div></div>
+<nav class="toc" aria-label="Разделы"><a href="#requirements">Требования</a><a href="#database">Данные</a><a href="#models">Диаграммы</a><a href="#api">API</a><a href="#verification">Проверки</a><a href="#mcp">MCP</a><a href="#infrastructure">Инфраструктура</a></nav>
+<section id="verification"><h2>Проверки</h2><p>В Bruno прошли 52 запроса и 52 теста. Контракт отдельно проверен по схемам ответов. Pytest выполнил 20 тестов, покрытие REST mock и доменной логики составляет 87,25%. PostgreSQL прошёл восемь проверок ограничений. MCP проверен по stdio и через официальный Inspector.</p>
+<p>Prism симулирует весь контракт. Stateful mock реализует 21 операцию с SQLite. Поле <code>x-implementation</code> в OpenAPI показывает границу между ними.</p>
+<p><a href="evidence/contract-tests.json">Протокол API</a> · <a href="evidence/bruno-summary.json">Bruno</a> · <a href="evidence/mcp-protocol.json">MCP и JSON-схемы</a> · <a href="evidence/postgresql.txt">PostgreSQL</a></p></section>
+<section id="requirements"><h2>Модель требований и реестр вариантов использования</h2>
+<p>Входной материал - SRS и User Stories лабораторной работы 3. Идентификаторы US-01–US-16 и FR-01–FR-30 сохранены. Для ЛР4 добавлены варианты использования UC-01–UC-19 и связь с HTTP-операциями.</p>
+<p>Действующее лицо задаёт цель через пользовательскую историю, вариант использования описывает действия и результат, а конечная точка предоставляет серверный контракт. Полная трассировка хранится в traceability.json.</p>
+<figure><a href="diagrams/requirements.png"><img loading="lazy" src="diagrams/requirements.png" alt="Модель требований"></a><figcaption>Открыть схему в полном размере</figcaption></figure>
+<div class="table-scroll"><table><thead><tr><th>ID</th><th>Действующее лицо</th><th>User Story</th><th>Вариант использования</th><th>Результат</th></tr></thead><tbody>
+<tr><td>UC-01</td><td>Гость</td><td>US-01</td><td>Регистрация и подтверждение e-mail</td><td>Аккаунт активирован после проверки адреса</td></tr>
+<tr><td>UC-02</td><td>Пользователь</td><td>US-02</td><td>Вход, выход и восстановление доступа</td><td>Сессия выдана или отозвана</td></tr>
+<tr><td>UC-03</td><td>Пользователь</td><td>US-12</td><td>Настройка и проверка TOTP</td><td>Вход требует второй фактор</td></tr>
+<tr><td>UC-04</td><td>Пользователь</td><td>US-07</td><td>Работа с файлами и папками</td><td>Создана папка или изменено имя файла</td></tr>
+<tr><td>UC-05</td><td>Пользователь</td><td>US-07</td><td>Загрузка файла частями</td><td>После завершения создана версия и начата проверка</td></tr>
+<tr><td>UC-06</td><td>Пользователь</td><td>US-06, US-07</td><td>Поиск, метаданные и скачивание</td><td>Возвращены только доступные объекты</td></tr>
+<tr><td>UC-07</td><td>Пользователь</td><td>US-11</td><td>Корзина и восстановление</td><td>Файл восстановлен без активации старых ссылок</td></tr>
+<tr><td>UC-08</td><td>Участник папки</td><td>US-06</td><td>Просмотр и восстановление версий</td><td>Восстановление создаёт следующую версию</td></tr>
+<tr><td>UC-09</td><td>Пользователь</td><td>US-03, US-16</td><td>Создание, просмотр и отзыв ссылок</td><td>Управляемый доступ к активному файлу</td></tr>
+<tr><td>UC-10</td><td>Гость</td><td>US-04</td><td>Открытие ссылки и скачивание</td><td>Пароль, срок и уровень доступа проверены</td></tr>
+<tr><td>UC-11</td><td>Владелец папки</td><td>US-05</td><td>Приглашение и принятие приглашения</td><td>Участник добавлен с выбранной ролью</td></tr>
+<tr><td>UC-12</td><td>Владелец папки</td><td>US-05</td><td>Изменение роли и удаление участника</td><td>Новые права применены при следующем запросе</td></tr>
+<tr><td>UC-13</td><td>Участник папки</td><td>US-13</td><td>Комментарии и уведомления</td><td>Комментарий сохранён, уведомление доступно адресату</td></tr>
+<tr><td>UC-14</td><td>Пользователь и администратор</td><td>US-10, US-15</td><td>Запрос и решение по квоте</td><td>Решение применяется однократно в транзакции</td></tr>
+<tr><td>UC-15</td><td>Администратор</td><td>US-09</td><td>Пользователи, роли и квоты</td><td>Изменение проверено и записано в аудит</td></tr>
+<tr><td>UC-16</td><td>Администратор</td><td>US-14</td><td>Аудит и экспорт отчётов</td><td>Получен журнал или задача формирования отчёта</td></tr>
+<tr><td>UC-17</td><td>Мобильный пользователь</td><td>US-07, US-08</td><td>Push, фоновая загрузка и синхронизация</td><td>Клиент получил изменения после восстановления сети</td></tr>
+<tr><td>UC-18</td><td>Администратор</td><td>US-09</td><td>Запуск синхронизации LDAP</td><td>Сформирован результат синхронизации каталога</td></tr>
+<tr><td>UC-19</td><td>Разработчик</td><td>US-09</td><td>Проверка окружения</td><td>Получен статус работоспособности mock-сервиса</td></tr>
+</tbody></table></div>
+<h3>Уточнения требований для API</h3>
+<p>API-01. Каждый защищённый запрос устанавливает пользователя по сессии. Идентификатор пользователя из тела запроса не меняет действующее лицо. Право администратора не даёт права читать содержимое личных файлов.</p>
+<p>API-02. Ссылка не раскрывает метаданные до проверки пароля. После пяти неверных попыток доступ к этой ссылке блокируется на 15 минут, как предусмотрено US-03. При истечении срока или отзыве возвращается нейтральная ошибка.</p>
+<p>API-03. Перенос в корзину отзывает ссылки. Восстановление файла не публикует его повторно. Карантин запрещает публикацию.</p>
+<p>API-04. Завершение загрузки идемпотентно по ключу операции. Квота резервируется до передачи данных, а занятый объём меняется в транзакции. Эти операции описаны контрактом; передачу бинарных частей в stateful mock заменяют ответы Prism.</p>
+<p>API-05. Выбор версии при восстановлении создаёт новую версию, не переписывая старую. Параллельная запись контролируется версией объекта или If-Match.</p>
+<p>API-06. Клиент получает коды 401, 403, 404, 409, 422 и 429 с понятной причиной. Пароли, хеши и токены не попадают в обычные ответы списка и журнал аудита.</p>
+<p>API-07. Тёмная тема, биометрия и офлайн-кэш относятся к клиенту. Сервер предоставляет сессию, метаданные, контент и синхронизацию; биометрические данные на сервер не отправляются. FR-28 проверяется при реализации интерфейса, а не отдельным endpoint.</p>
+<h3>Подробные сценарии</h3>
+<h4>UC-09 Передача файла по ссылке</h4>
+<p>Предусловие: пользователь вошёл, файл активен, у пользователя есть право редактирования. Клиент отправляет file_id, access_level, пароль и срок. Сервер проверяет права и состояние файла, создаёт случайный токен, сохраняет его хеш и хеш пароля, затем возвращает 201 с URL и датой окончания. Повторно секретный токен в списке ссылок не показывается. При недостаточных правах возвращается 403, при корзине или карантине - 409, при коротком пароле - 422. Отзыв ссылки изменяет её состояние и записывается в аудит.</p>
+<h4>UC-10 Открытие гостевой ссылки</h4>
+<p>Предусловие: гость получил URL. Клиент отправляет пароль в POST access. После проверки сервер выдаёт краткоживущий токен доступа и метаданные. Скачивание требует этот токен и уровень download. При view скачивание отклоняется с 403. При неверном пароле возвращается 401, после пяти ошибок - 429. Истёкшая или отозванная ссылка возвращает 404 без имени файла.</p>
+<h4>UC-05 Загрузка файла частями</h4>
+<p>Пользователь выбирает файл и папку. Клиент создаёт upload session с размером и ключом идемпотентности, получает id и передаёт части по номеру. После обрыва запрашивается принятый объём. Завершение сверяет размер и checksum, фиксирует версию и отправляет задачу на проверку. Недостаток квоты даёт 507, неверная контрольная сумма - 409. Состояние остаётся pending до успешной проверки.</p>
+<h4>UC-14 Решение по запросу квоты</h4>
+<p>Пользователь отправляет обоснование и требуемый объём. Администратор открывает очередь, выбирает запрос и указывает новую квоту либо причину отказа. Сервер блокирует запись запроса, проверяет pending, меняет квоту и сохраняет решение одной транзакцией. Повторное решение даёт 409. Уменьшение ниже занятого объёма запрещено.</p>
+<h4>UC-07 Восстановление из корзины</h4>
+<p>Пользователь выбирает собственный файл в корзине и вызывает POST restorations. Сервер проверяет право записи и состояние, переводит файл в active и записывает событие. Ранее отозванные ссылки остаются недействительными. Попытка восстановить активный файл даёт 409.</p></section><section id="database"><h2>Логическая схема базы данных</h2>
+<p>Модель продолжает 16 сущностей ЛР3. Добавлена upload_sessions для загрузки частями и идемпотентного завершения. Содержимое файлов хранится в S3, в таблицах остаются метаданные.</p>
+<h3>users</h3>
+<p><code>id</code> (PK), <code>email</code>, <code>password_hash</code>, <code>name</code>, <code>status</code>, <code>locale</code>, <code>created_at</code>.</p>
+<h3>roles</h3>
+<p><code>id</code> (PK), <code>code</code>, <code>title</code>.</p>
+<h3>user_roles</h3>
+<p><code>user_id</code> (PK,FK), <code>role_id</code> (PK,FK).</p>
+<h3>sessions</h3>
+<p><code>id</code> (PK), <code>user_id</code> (FK), <code>token_hash</code>, <code>ip_address</code>, <code>expires_at</code>, <code>created_at</code>.</p>
+<h3>folders</h3>
+<p><code>id</code> (PK), <code>owner_id</code> (FK), <code>parent_id</code> (FK), <code>name</code>, <code>is_shared</code>, <code>created_at</code>.</p>
+<h3>files</h3>
+<p><code>id</code> (PK), <code>owner_id</code> (FK), <code>folder_id</code> (FK), <code>name</code>, <code>mime_type</code>, <code>size_bytes</code>, <code>checksum</code>, <code>status</code>, <code>trashed_at</code>, <code>created_at</code>.</p>
+<h3>file_versions</h3>
+<p><code>id</code> (PK), <code>file_id</code> (FK), <code>version_no</code>, <code>storage_key</code>, <code>size_bytes</code>, <code>checksum</code>, <code>created_by</code> (FK), <code>created_at</code>, <code>comment</code>.</p>
+<h3>share_links</h3>
+<p><code>id</code> (PK), <code>file_id</code> (FK), <code>folder_id</code> (FK), <code>token_hash</code>, <code>access_level</code>, <code>password_hash</code>, <code>expires_at</code>, <code>revoked_at</code>, <code>download_limit</code>, <code>downloads</code>, <code>created_by</code> (FK), <code>created_at</code>.</p>
+<h3>access_permissions</h3>
+<p><code>id</code> (PK), <code>file_id</code> (FK), <code>folder_id</code> (FK), <code>user_id</code> (FK), <code>level</code>, <code>granted_at</code>.</p>
+<h3>folder_members</h3>
+<p><code>folder_id</code> (PK,FK), <code>user_id</code> (PK,FK), <code>role</code>, <code>invited_at</code>.</p>
+<h3>invitations</h3>
+<p><code>id</code> (PK), <code>folder_id</code> (FK), <code>email</code>, <code>token_hash</code>, <code>level</code>, <code>status</code>, <code>expires_at</code>, <code>invited_by</code> (FK), <code>created_at</code>.</p>
+<h3>access_requests</h3>
+<p><code>id</code> (PK), <code>user_id</code> (FK), <code>type</code>, <code>reason</code>, <code>requested_bytes</code>, <code>requested_role</code>, <code>status</code>, <code>decided_by</code> (FK), <code>decided_at</code>, <code>decision_comment</code>, <code>created_at</code>.</p>
+<h3>quotas</h3>
+<p><code>user_id</code> (PK,FK), <code>used_bytes</code>, <code>total_bytes</code>, <code>reserved_bytes</code>, <code>tariff</code>, <code>renewal_date</code>.</p>
+<h3>audit_records</h3>
+<p><code>id</code> (PK), <code>user_id</code> (FK), <code>action</code>, <code>entity_type</code>, <code>entity_id</code>, <code>ip_address</code>, <code>created_at</code>.</p>
+<h3>notifications</h3>
+<p><code>id</code> (PK), <code>user_id</code> (FK), <code>type</code>, <code>text</code>, <code>is_read</code>, <code>created_at</code>.</p>
+<h3>comments</h3>
+<p><code>id</code> (PK), <code>file_id</code> (FK), <code>author_id</code> (FK), <code>text</code>, <code>created_at</code>.</p>
+<h3>upload_sessions</h3>
+<p><code>id</code> (PK), <code>user_id</code> (FK), <code>file_id</code> (FK), <code>expected_bytes</code>, <code>received_bytes</code>, <code>idempotency_key</code>, <code>status</code>, <code>expires_at</code>.</p>
+<h3>Связи</h3>
+<p>files.id → access_permissions.file_id (1:N).</p>
+<p>files.id → comments.file_id (1:N).</p>
+<p>files.id → file_versions.file_id (1:N).</p>
+<p>files.id → share_links.file_id (1:N).</p>
+<p>files.id → upload_sessions.file_id (1:N).</p>
+<p>folders.id → access_permissions.folder_id (1:N).</p>
+<p>folders.id → files.folder_id (1:N).</p>
+<p>folders.id → folder_members.folder_id (1:N).</p>
+<p>folders.id → folders.parent_id (1:N).</p>
+<p>folders.id → invitations.folder_id (1:N).</p>
+<p>folders.id → share_links.folder_id (1:N).</p>
+<p>roles.id → user_roles.role_id (1:N).</p>
+<p>users.id → access_permissions.user_id (1:N).</p>
+<p>users.id → access_requests.decided_by (1:N).</p>
+<p>users.id → access_requests.user_id (1:N).</p>
+<p>users.id → audit_records.user_id (1:N).</p>
+<p>users.id → comments.author_id (1:N).</p>
+<p>users.id → file_versions.created_by (1:N).</p>
+<p>users.id → files.owner_id (1:N).</p>
+<p>users.id → folder_members.user_id (1:N).</p>
+<p>users.id → folders.owner_id (1:N).</p>
+<p>users.id → invitations.invited_by (1:N).</p>
+<p>users.id → notifications.user_id (1:N).</p>
+<p>users.id → quotas.user_id (1:0..1).</p>
+<p>users.id → sessions.user_id (1:N).</p>
+<p>users.id → share_links.created_by (1:N).</p>
+<p>users.id → upload_sessions.user_id (1:N).</p>
+<p>users.id → user_roles.user_id (1:N).</p></section><section id="api"><h2>Маршруты и конечные точки API</h2>
+<p>Базовый путь - /api/v1. Спецификация OpenAPI 3.1 хранится в openapi.json. HTTP-методы отражают работу с ресурсом: GET читает, POST создаёт ресурс или объект операции, PUT заменяет настройки, PATCH меняет отдельные поля, DELETE отзывает доступ или перемещает файл в корзину.</p>
+<p>Для взаимодействия веб- и мобильного клиента выбран REST/JSON через HTTPS. Прямой доступ клиентов к общей БД связывал бы их со схемой и обходил бы проверки прав. Обмен файлами остаётся пользовательской функцией, а не способом синхронизации серверных таблиц. Длительные задачи загрузки, проверки и уведомлений в целевой архитектуре передаются worker через очередь Redis; для LLM предусмотрен MCP-адаптер.</p>
+<p>Коллекции файлов поддерживают q, status, limit от 1 до 100 и offset. UUID передаются строками. Размер хранится в байтах. Временные метки в mock представлены Unix seconds; целевой контракт должен сохранять согласованное представление времени во всех клиентах.</p>
+<p>Для лабораторной есть два разных сервиса. Prism на порту 4010 симулирует весь контракт из 52 операций. FastAPI на порту 8044 реализует 21 операцию с состоянием SQLite. Поле x-implementation в спецификации показывает границу. Промышленная регистрация, TOTP, передача частей файла, LDAP и push в этот прототип не входят.</p>
+<div class="table-scroll"><table><thead><tr><th>Метод</th><th>Маршрут</th><th>UC</th><th>Источник</th><th>Проверка</th></tr></thead><tbody>
+<tr><td>GET</td><td><code>/health</code></td><td>UC-19</td><td>FR-30</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/me</code></td><td>UC-02</td><td>FR-02,FR-30</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/me/quota</code></td><td>UC-14</td><td>FR-18</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files</code></td><td>UC-06</td><td>FR-09</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-06</td><td>FR-08</td><td>stateful-mock</td></tr>
+<tr><td>PATCH</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-07</td><td>FR-10</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/restorations</code></td><td>UC-07</td><td>FR-10</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/versions</code></td><td>UC-08</td><td>FR-11</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/folders</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/folders</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/share-links</code></td><td>UC-09</td><td>FR-14</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/share-links</code></td><td>UC-09</td><td>FR-12</td><td>stateful-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/share-links/{share_id}</code></td><td>UC-09</td><td>FR-14</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/public/shares/{token}/access</code></td><td>UC-10</td><td>FR-13</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/public/shares/{token}/content</code></td><td>UC-10</td><td>FR-13</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/access-requests</code></td><td>UC-14</td><td>FR-18</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/admin/access-requests</code></td><td>UC-14</td><td>FR-19</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/admin/access-requests/{request_id}/decisions</code></td><td>UC-14</td><td>FR-19</td><td>stateful-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/admin/users/{user_id}/quota</code></td><td>UC-15</td><td>FR-21</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/admin/audit-records</code></td><td>UC-16</td><td>FR-23</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/registrations</code></td><td>UC-01</td><td>FR-01</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/email-confirmations</code></td><td>UC-01</td><td>FR-01</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/sessions</code></td><td>UC-02</td><td>FR-02,FR-04</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/auth/sessions/current</code></td><td>UC-02</td><td>FR-02</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/password-resets</code></td><td>UC-02</td><td>FR-02</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/totp/enrollments</code></td><td>UC-03</td><td>FR-03</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/totp/verifications</code></td><td>UC-03</td><td>FR-03</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/uploads</code></td><td>UC-05</td><td>FR-06,FR-27</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/uploads/{upload_id}/parts/{part_no}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/uploads/{upload_id}/completions</code></td><td>UC-05</td><td>FR-06,FR-07</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/content</code></td><td>UC-06</td><td>FR-08,FR-26</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/previews</code></td><td>UC-06</td><td>FR-08</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/version-restorations</code></td><td>UC-08</td><td>FR-11</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/folders/{folder_id}/invitations</code></td><td>UC-11</td><td>FR-15</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/invitations/{invitation_id}/acceptances</code></td><td>UC-11</td><td>FR-15</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/folders/{folder_id}/members</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-13</td><td>FR-17</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-13</td><td>FR-17</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/notifications</code></td><td>UC-13</td><td>FR-25</td><td>contract-mock</td></tr>
+<tr><td>PATCH</td><td><code>/api/v1/notifications/{notification_id}</code></td><td>UC-13</td><td>FR-25</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/devices</code></td><td>UC-17</td><td>FR-25,FR-27</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/sync/changes</code></td><td>UC-17</td><td>FR-26</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/admin/users</code></td><td>UC-15</td><td>FR-20</td><td>contract-mock</td></tr>
+<tr><td>PATCH</td><td><code>/api/v1/admin/users/{user_id}</code></td><td>UC-15</td><td>FR-20</td><td>contract-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/admin/users/{user_id}/roles</code></td><td>UC-15</td><td>FR-21</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/admin/ldap-synchronizations</code></td><td>UC-18</td><td>FR-22</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/admin/reports</code></td><td>UC-16</td><td>FR-23,FR-24,FR-29</td><td>contract-mock</td></tr>
+</tbody></table></div>
+<h3>Пример запроса</h3>
+<pre><code>POST /api/v1/share-links HTTP/1.1
+Authorization: Bearer lab-owner-token
+Content-Type: application/json
+
+{
+  &quot;file_id&quot;: &quot;20000000-0000-4000-8000-000000000001&quot;,
+  &quot;password&quot;: &quot;laboratory123&quot;,
+  &quot;expires_in_days&quot;: 7,
+  &quot;access_level&quot;: &quot;download&quot;
+}</code></pre>
+<p>Успешный ответ имеет статус 201 и содержит id, file_id, token, url, expires_at и access_level. Пароль в ответ не включается.</p>
+<h3>Коды ответов</h3>
+<div class="table-scroll"><table><thead><tr><th>Код</th><th>Значение</th></tr></thead><tbody>
+<tr><td>200</td><td>Чтение или изменение выполнено</td></tr>
+<tr><td>201</td><td>Создан ресурс или результат операции</td></tr>
+<tr><td>401</td><td>Нет действующей сессии либо неверен пароль ссылки</td></tr>
+<tr><td>403</td><td>Пользователь определён, но действие ему не разрешено</td></tr>
+<tr><td>404</td><td>Объект не найден или публичная ссылка недействительна</td></tr>
+<tr><td>409</td><td>Конфликт состояния, повторное решение или неподходящая квота</td></tr>
+<tr><td>413</td><td>Часть файла превышает допустимый размер</td></tr>
+<tr><td>422</td><td>Запрос не соответствует схеме</td></tr>
+<tr><td>429</td><td>Превышен лимит попыток проверки пароля</td></tr>
+<tr><td>507</td><td>Не хватает квоты для загрузки</td></tr>
+</tbody></table></div>
+<p>Все POST, PUT и PATCH с данными имеют схему тела и пример. POST restorations без тела создаёт операцию восстановления. Для списка и деталей заданы схемы ответов.</p></section><section id="mcp"><h2>MCP сервер GremlinDrive</h2>
+<p>Сервер позволяет ассистенту находить доступные файлы, читать метаданные, создавать папки и защищённые ссылки, отзывать ссылки и работать с корзиной. Используется официальный MCP Python SDK 1.30.0 и транспорт stdio. Учебная база SQLite общая с REST mock при одинаковом GREMLIN_DB.</p>
+<h3>Запуск</h3>
+<pre><code>cd docs/labs/lab4/runtime
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+GREMLIN_USER_ID=00000000-0000-4000-8000-000000000001 .venv/bin/python mcp_server.py</code></pre>
+<p>Вывод stdout занят JSON-RPC. Диагностика направляется в stderr. В обычном терминале сервер ожидает клиента; для проверки используется Inspector.</p>
+<pre><code>MCP_AUTO_OPEN_ENABLED=false npx --yes @modelcontextprotocol/inspector --cli   .venv/bin/python mcp_server.py --method tools/list
+.venv/bin/python test_mcp.py</code></pre>
+<h3>Архитектура</h3>
+<figure><a href="diagrams/mcp.png"><img loading="lazy" src="diagrams/mcp.png" alt="MCP"></a><figcaption>Открыть схему в полном размере</figcaption></figure>
+<p>Личность пользователя задаёт окружение процесса GREMLIN_USER_ID. Инструменты не принимают user_id от LLM. Каждое действие проходит проверки доступа в store.py. Пользователь с ролью просмотра не может создать ссылку или удалить файл. SQLite содержит только демонстрационные записи и не заменяет промышленную PostgreSQL-схему.</p>
+<h3>Tools</h3>
+<div class="table-scroll"><table><thead><tr><th>Инструмент</th><th>Параметры</th><th>Результат и ограничения</th></tr></thead><tbody>
+<tr><td>list_files</td><td>query, limit 1–100</td><td>Доступные активные файлы</td></tr>
+<tr><td>get_file</td><td>file_id UUID</td><td>Метаданные с проверкой ACL</td></tr>
+<tr><td>create_folder</td><td>name, parent_id UUID или null</td><td>Новая папка; нужна запись в родительскую</td></tr>
+<tr><td>create_share_link</td><td>file_id UUID, password от 8 символов, expires_in_days 1–30, access_level view/download</td><td>Ссылка на активный файл</td></tr>
+<tr><td>revoke_share_link</td><td>share_id UUID</td><td>Отзыв при праве записи на файл</td></tr>
+<tr><td>trash_file</td><td>file_id UUID, confirm=true</td><td>Корзина и отзыв ссылок</td></tr>
+<tr><td>restore_file</td><td>file_id UUID</td><td>Возврат из корзины без публикации старых ссылок</td></tr>
+</tbody></table></div>
+<p>Полные JSON-схемы inputSchema и outputSchema получены через tools/list, а не написаны вручную: evidence/mcp-protocol.json и evidence/inspector-tools.json. Некорректный UUID и confirm=false отклоняются до выполнения действия.</p>
+<h3>Resources</h3>
+<p>Статические адреса gremlin://policy, gremlin://quota и gremlin://files/recent дают правила, текущую квоту и список доступных файлов. В MVP recent возвращает первые 20 файлов, отсортированных по имени; сортировка по времени добавляется при подключении PostgreSQL. Шаблон gremlin://files/{file_id} предоставляет метаданные конкретного файла с проверкой доступа.</p>
+<h3>Prompts</h3>
+<p>share_file_safely(filename) задаёт последовательность: прочитать правила, найти файл, уточнить выбор, получить пароль и срок, создать ссылку. review_storage читает квоту и доступные файлы, после чего предлагает варианты очистки. Промпт не выдаёт полномочий: проверки в сервисе выполняются независимо от текста запроса.</p>
+<p>Пример запроса пользователя: «Найди Лабораторная.txt и подготовь ссылку на семь дней с паролем». Ассистент получает UUID через list_files и уточняет параметры до create_share_link. Другой пример: «Покажи занятую квоту и предложи, что убрать в корзину». Здесь чтение выполняется сразу, а перенос требует выбранных file_id и confirm=true.</p>
+<h3>Подключение к клиенту</h3>
+<p>В конфигурации MCP клиента указываются command с абсолютным путём к .venv/bin/python, args с абсолютным путём к mcp_server.py и env с GREMLIN_DB и GREMLIN_USER_ID. Шаблон находится в mcp-client.example.json. Реальные секреты и абсолютные пути пользователя в репозиторий не сохраняются.</p>
+<h3>Проверка</h3>
+<p>test_mcp.py подключается как настоящий MCP-клиент по stdio, выполняет initialize, discovery, читает ресурсы и шаблон, получает оба промпта и вызывает все инструменты. Дополнительно проверяются отказ публикации для читателя, неверный UUID и отсутствие подтверждения. Официальный Inspector отдельно выполняет tools/list. Протоколы находятся в evidence.</p></section><section id="infrastructure"><h2>Инфраструктура и организация работы</h2>
+<h3>Локальное окружение</h3>
+<p>Docker Compose поднимает stateful API, Prism, PostgreSQL и nginx с документацией. API и PostgreSQL имеют healthcheck. Порты API, mock и web привязаны к 127.0.0.1, PostgreSQL не публикуется на хосте. SQLite и PostgreSQL используют разные volumes. Сервисы не обращаются к реальным файлам пользователя.</p>
+<figure><a href="diagrams/infrastructure.png"><img loading="lazy" src="diagrams/infrastructure.png" alt="Инфраструктура"></a><figcaption>Открыть схему в полном размере</figcaption></figure>
+<p>Содержимое web ограничено каталогом web с опубликованными материалами. Виртуальное окружение, локальная база и переменные окружения через nginx не раздаются. В Dockerfile приложение работает от непривилегированного пользователя. Для остановки используется docker compose down; данные остаются в volumes.</p>
+<h3>Непрерывная интеграция</h3>
+<p>Workflow lab4.yml запускает Ruff, pytest с порогом покрытия 70%, генерирует OpenAPI из исходников и валидирует документ. Только после тестов строится Docker-образ. Затем выполняются проверки PostgreSQL, всех операций Prism, коллекции Bruno и MCP через SDK и официальный Inspector. Протоколы сохраняются как GitHub Actions artifact.</p>
+<p>Шаг SonarCloud подготовлен отдельно и включается при наличии переменных SONAR_PROJECT_KEY, SONAR_ORGANIZATION и секрета SONAR_TOKEN. Без них он пропускается. Файл sonar-project.properties и необязательный сервис SonarQube в профиле quality предоставляют локальную конфигурацию. Для включения облачного Quality Gate нужно создать проект в соответствующем сервисе и настроить блокировку слияния при неуспехе проверки.</p>
+<h3>Репозитории и ветки</h3>
+<p>Основной приватный репозиторий hci-10-project-group-4 хранит учебные материалы и воспроизводимый прототип ЛР4. Публичный GremlinDrive содержит сайт и экспорт документации. При проверке GitHub доступны также hci-10-frontend-group-3 и hci-10-mobile-group-3, оба пустые. Их содержимое и принадлежность не подменялись новым кодом. Отдельного backend-репозитория GremlinDrive среди доступных репозиториев организации не обнаружено.</p>
+<p>Предлагаемое правило дальнейшей разработки: feature-ветки от development, проверка pull request, затем перенос проверенной версии в production. Изменение существующих правил защиты и создание новых репозиториев требуют согласования в команде. Для текущей лабораторной результаты оформлены одним набором файлов и проверяются CI.</p>
+<h3>План следующего этапа</h3>
+<div class="table-scroll"><table><thead><tr><th>Этап</th><th>Задача</th><th>Роль</th><th>Критерий завершения</th></tr></thead><tbody>
+<tr><td>API</td><td>Перенос stateful-сценариев на NestJS и PostgreSQL</td><td>Backend</td><td>Повторно проходят сценарии ссылок, корзины и квот</td></tr>
+<tr><td>Файлы</td><td>Загрузка частями, MinIO, проверка checksum и карантин</td><td>Backend</td><td>Обрыв и возобновление без потери частей</td></tr>
+<tr><td>Web</td><td>Подключение React к OpenAPI</td><td>Web</td><td>Вход, файловый список и диалог ссылки работают с API</td></tr>
+<tr><td>Mobile</td><td>Сессии, фоновая очередь и офлайн-кэш</td><td>Mobile</td><td>Загрузка продолжается после восстановления сети</td></tr>
+<tr><td>Качество</td><td>SonarCloud, развёртывание и защита веток</td><td>DevOps</td><td>Успешный pipeline и проверяемый адрес backend</td></tr>
+</tbody></table></div>
+<h3>Вклад участников</h3>
+<p>Матвей Вержбиба подготовил требования, User Stories, UML и архитектуру ЛР3; исходный коммит 392a849 сохранён в истории. Александр Сытин выполнил ЛР4: трассировку требований, DDL, контракт и коллекции, stateful mock, MCP MVP, тесты, контейнеры и документацию. Работа других участников в рамках ЛР4 не приписывается.</p>
+<h3>Проверка при защите</h3>
+<p>Сначала открыть PDF и страницу лабораторной. Показать связь US-03 → UC-09 → POST share-links, затем физическую модель и schema.sql. В Bruno запустить окружение contract, в Swagger mock показать запрет публикации для reader и успешное создание ссылки владельцем. Через Inspector показать tools/list, ресурс gremlin://policy и вызов list_files. В конце открыть протоколы тестов и workflow CI.</p></section><section id="models"><h2>Диаграммы данных</h2><figure><a href="diagrams/logical.png"><img loading="lazy" src="diagrams/logical.png" alt="Логическая модель"></a><figcaption>Логическая модель. <a href="diagrams/logical.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-identity.png"><img loading="lazy" src="diagrams/physical-identity.png" alt="Пользователи и управление"></a><figcaption>Пользователи и управление. <a href="diagrams/physical-identity.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-storage.png"><img loading="lazy" src="diagrams/physical-storage.png" alt="Файлы и загрузка"></a><figcaption>Файлы и загрузка. <a href="diagrams/physical-storage.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-sharing.png"><img loading="lazy" src="diagrams/physical-sharing.png" alt="Общий доступ"></a><figcaption>Общий доступ. <a href="diagrams/physical-sharing.puml">PlantUML</a></figcaption></figure></section>
+</main><footer>Александр Сытин · исходные требования ЛР3: Матвей Вержбиба · ФПМИ БГУ · 2026</footer></body></html>

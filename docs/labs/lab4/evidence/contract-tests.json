@@ -1,0 +1,372 @@
+{
+  "openapi_validation": "PASS",
+  "operations": [
+    {
+      "operation": "health",
+      "method": "GET",
+      "path": "/health",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "getMe",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "getQuota",
+      "method": "GET",
+      "path": "/api/v1/me/quota",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listFiles",
+      "method": "GET",
+      "path": "/api/v1/files",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "getFile",
+      "method": "GET",
+      "path": "/api/v1/files/{file_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "renameFile",
+      "method": "PATCH",
+      "path": "/api/v1/files/{file_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "trashFile",
+      "method": "DELETE",
+      "path": "/api/v1/files/{file_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "restoreFile",
+      "method": "POST",
+      "path": "/api/v1/files/{file_id}/restorations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listVersions",
+      "method": "GET",
+      "path": "/api/v1/files/{file_id}/versions",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listFolders",
+      "method": "GET",
+      "path": "/api/v1/folders",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "createFolder",
+      "method": "POST",
+      "path": "/api/v1/folders",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listShares",
+      "method": "GET",
+      "path": "/api/v1/share-links",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "createShare",
+      "method": "POST",
+      "path": "/api/v1/share-links",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "revokeShare",
+      "method": "DELETE",
+      "path": "/api/v1/share-links/{share_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "unlockShare",
+      "method": "POST",
+      "path": "/api/v1/public/shares/{token}/access",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "downloadShare",
+      "method": "GET",
+      "path": "/api/v1/public/shares/{token}/content",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "createAccessRequest",
+      "method": "POST",
+      "path": "/api/v1/access-requests",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listAccessRequests",
+      "method": "GET",
+      "path": "/api/v1/admin/access-requests",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "decideAccessRequest",
+      "method": "POST",
+      "path": "/api/v1/admin/access-requests/{request_id}/decisions",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "setQuota",
+      "method": "PUT",
+      "path": "/api/v1/admin/users/{user_id}/quota",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listAuditRecords",
+      "method": "GET",
+      "path": "/api/v1/admin/audit-records",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "register",
+      "method": "POST",
+      "path": "/api/v1/auth/registrations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "confirmEmail",
+      "method": "POST",
+      "path": "/api/v1/auth/email-confirmations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "login",
+      "method": "POST",
+      "path": "/api/v1/auth/sessions",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "logout",
+      "method": "DELETE",
+      "path": "/api/v1/auth/sessions/current",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "requestPasswordReset",
+      "method": "POST",
+      "path": "/api/v1/auth/password-resets",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "enrollTotp",
+      "method": "POST",
+      "path": "/api/v1/auth/totp/enrollments",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "verifyTotp",
+      "method": "POST",
+      "path": "/api/v1/auth/totp/verifications",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "startUpload",
+      "method": "POST",
+      "path": "/api/v1/uploads",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "getUpload",
+      "method": "GET",
+      "path": "/api/v1/uploads/{upload_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "cancelUpload",
+      "method": "DELETE",
+      "path": "/api/v1/uploads/{upload_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "uploadPart",
+      "method": "PUT",
+      "path": "/api/v1/uploads/{upload_id}/parts/{part_no}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "completeUpload",
+      "method": "POST",
+      "path": "/api/v1/uploads/{upload_id}/completions",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "downloadFile",
+      "method": "GET",
+      "path": "/api/v1/files/{file_id}/content",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "previewFile",
+      "method": "GET",
+      "path": "/api/v1/files/{file_id}/previews",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "restoreVersion",
+      "method": "POST",
+      "path": "/api/v1/files/{file_id}/version-restorations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "inviteMember",
+      "method": "POST",
+      "path": "/api/v1/folders/{folder_id}/invitations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "acceptInvitation",
+      "method": "POST",
+      "path": "/api/v1/invitations/{invitation_id}/acceptances",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listMembers",
+      "method": "GET",
+      "path": "/api/v1/folders/{folder_id}/members",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "setMemberRole",
+      "method": "PUT",
+      "path": "/api/v1/folders/{folder_id}/members/{user_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "removeMember",
+      "method": "DELETE",
+      "path": "/api/v1/folders/{folder_id}/members/{user_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listComments",
+      "method": "GET",
+      "path": "/api/v1/files/{file_id}/comments",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "addComment",
+      "method": "POST",
+      "path": "/api/v1/files/{file_id}/comments",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listNotifications",
+      "method": "GET",
+      "path": "/api/v1/notifications",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "readNotification",
+      "method": "PATCH",
+      "path": "/api/v1/notifications/{notification_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "registerDevice",
+      "method": "POST",
+      "path": "/api/v1/devices",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "syncChanges",
+      "method": "GET",
+      "path": "/api/v1/sync/changes",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "listUsers",
+      "method": "GET",
+      "path": "/api/v1/admin/users",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "setUserStatus",
+      "method": "PATCH",
+      "path": "/api/v1/admin/users/{user_id}",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "setUserRoles",
+      "method": "PUT",
+      "path": "/api/v1/admin/users/{user_id}/roles",
+      "status": 200,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "syncDirectory",
+      "method": "POST",
+      "path": "/api/v1/admin/ldap-synchronizations",
+      "status": 201,
+      "response_schema": "PASS"
+    },
+    {
+      "operation": "createReport",
+      "method": "POST",
+      "path": "/api/v1/admin/reports",
+      "status": 201,
+      "response_schema": "PASS"
+    }
+  ],
+  "negative_validation": 422,
+  "forced_forbidden_example": 403,
+  "scope": "Prism examples and schema validation; business invariants tested separately against SQLite mock"
+}

@@ -1,0 +1,25 @@
+meta {
+  name: acceptInvitation
+  type: http
+  seq: 38
+}
+
+post {
+  url: {{baseUrl}}/api/v1/invitations/20000000-0000-4000-8000-000000000001/acceptances
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "token": "demo-invitation"
+  }
+}
+
+tests {
+  test("Success response", function () { expect(res.status).to.be.within(200, 299); });
+}
