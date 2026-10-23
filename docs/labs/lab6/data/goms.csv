@@ -1,0 +1,13 @@
+﻿form,variant,input_method,K,P,H,M,estimated_seconds,interpretation
+Вход,A,mouse,41,5,4,3,19.35,analytical_model_not_measured
+Вход,A,mixed,41,3,1,3,15.95,analytical_model_not_measured
+Вход,B,mouse,39,3,4,2,15.4,analytical_model_not_measured
+Вход,B,mixed,39,1,1,2,12.0,analytical_model_not_measured
+Новая папка,A,mouse,17,5,2,3,13.75,analytical_model_not_measured
+Новая папка,A,mixed,16,3,1,3,10.95,analytical_model_not_measured
+Новая папка,B,mouse,15,3,2,2,9.8,analytical_model_not_measured
+Новая папка,B,mixed,14,1,1,2,7.0,analytical_model_not_measured
+Ссылка с паролем,A,mouse,17,7,2,4,17.3,analytical_model_not_measured
+Ссылка с паролем,A,mixed,18,4,1,4,13.8,analytical_model_not_measured
+Ссылка с паролем,B,mouse,15,5,2,2,12.0,analytical_model_not_measured
+Ссылка с паролем,B,mixed,16,2,1,2,8.5,analytical_model_not_measured

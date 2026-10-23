@@ -1,0 +1,156 @@
+{
+  "data_origin": "synthetic",
+  "seed": 20261024,
+  "simulated_profiles": 10,
+  "note": "All respondent rows are generated, not observations of people. Same profiles reused across conditions; conditions are correlated. No inferential claims.",
+  "semantic_means": {
+    "desktop": {
+      "blue": 4.087,
+      "green": 3.9,
+      "plum": 3.72
+    },
+    "mobile": {
+      "blue": 3.873,
+      "green": 3.767,
+      "plum": 3.527
+    }
+  },
+  "performance": {
+    "desktop": {
+      "T1": {
+        "success": 10,
+        "n": 10,
+        "median_success_seconds": 18.1
+      },
+      "T2": {
+        "success": 9,
+        "n": 10,
+        "median_success_seconds": 27.1
+      },
+      "T3": {
+        "success": 10,
+        "n": 10,
+        "median_success_seconds": 21.4
+      },
+      "T4": {
+        "success": 9,
+        "n": 10,
+        "median_success_seconds": 37.8
+      },
+      "T5": {
+        "success": 9,
+        "n": 10,
+        "median_success_seconds": 36.2
+      },
+      "T6": {
+        "success": 9,
+        "n": 10,
+        "median_success_seconds": 31.2
+      }
+    },
+    "mobile": {
+      "T1": {
+        "success": 7,
+        "n": 10,
+        "median_success_seconds": 21.5
+      },
+      "T2": {
+        "success": 10,
+        "n": 10,
+        "median_success_seconds": 30.2
+      },
+      "T3": {
+        "success": 9,
+        "n": 10,
+        "median_success_seconds": 28.3
+      },
+      "T4": {
+        "success": 7,
+        "n": 10,
+        "median_success_seconds": 56.0
+      },
+      "T5": {
+        "success": 8,
+        "n": 10,
+        "median_success_seconds": 49.9
+      },
+      "T6": {
+        "success": 10,
+        "n": 10,
+        "median_success_seconds": 36.5
+      }
+    }
+  },
+  "sus": {
+    "desktop": {
+      "mean": 77.0,
+      "min": 57.5,
+      "max": 92.5
+    },
+    "mobile": {
+      "mean": 73.5,
+      "min": 55.0,
+      "max": 95.0
+    }
+  },
+  "tree": {
+    "desktop": {
+      "C1": {
+        "success": 10,
+        "direct": 9,
+        "n": 10
+      },
+      "C2": {
+        "success": 10,
+        "direct": 9,
+        "n": 10
+      },
+      "C3": {
+        "success": 10,
+        "direct": 8,
+        "n": 10
+      },
+      "C4": {
+        "success": 9,
+        "direct": 8,
+        "n": 10
+      }
+    },
+    "mobile": {
+      "C1": {
+        "success": 9,
+        "direct": 7,
+        "n": 10
+      },
+      "C2": {
+        "success": 9,
+        "direct": 6,
+        "n": 10
+      },
+      "C3": {
+        "success": 9,
+        "direct": 6,
+        "n": 10
+      },
+      "C4": {
+        "success": 10,
+        "direct": 9,
+        "n": 10
+      }
+    }
+  },
+  "expectancy": {
+    "desktop": {
+      "E1": 10,
+      "E2": 9,
+      "E3": 7,
+      "E4": 10
+    },
+    "mobile": {
+      "E1": 9,
+      "E2": 8,
+      "E3": 7,
+      "E4": 9
+    }
+  }
+}

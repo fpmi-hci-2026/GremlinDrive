@@ -1,0 +1,81 @@
+﻿data_origin,respondent,device,task,target,selected,success,direct,time_seconds,method
+synthetic,S01,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,14.0,local_tree_simulation_not_Treejack
+synthetic,S01,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,11.3,local_tree_simulation_not_Treejack
+synthetic,S01,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,0,23.7,local_tree_simulation_not_Treejack
+synthetic,S01,desktop,C4,Избранное,Избранное,1,0,19.5,local_tree_simulation_not_Treejack
+synthetic,S01,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,0,17.8,local_tree_simulation_not_Treejack
+synthetic,S01,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,0,28.1,local_tree_simulation_not_Treejack
+synthetic,S01,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,14.3,local_tree_simulation_not_Treejack
+synthetic,S01,mobile,C4,Избранное,Избранное,1,0,22.1,local_tree_simulation_not_Treejack
+synthetic,S02,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,7.5,local_tree_simulation_not_Treejack
+synthetic,S02,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,12.7,local_tree_simulation_not_Treejack
+synthetic,S02,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,16.8,local_tree_simulation_not_Treejack
+synthetic,S02,desktop,C4,Избранное,Избранное,1,1,15.4,local_tree_simulation_not_Treejack
+synthetic,S02,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,18.3,local_tree_simulation_not_Treejack
+synthetic,S02,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,0,19.9,local_tree_simulation_not_Treejack
+synthetic,S02,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,20.9,local_tree_simulation_not_Treejack
+synthetic,S02,mobile,C4,Избранное,Избранное,1,1,19.2,local_tree_simulation_not_Treejack
+synthetic,S03,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,13.1,local_tree_simulation_not_Treejack
+synthetic,S03,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,0,13.9,local_tree_simulation_not_Treejack
+synthetic,S03,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,18.4,local_tree_simulation_not_Treejack
+synthetic,S03,desktop,C4,Избранное,Избранное,1,1,14.3,local_tree_simulation_not_Treejack
+synthetic,S03,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,0,22.3,local_tree_simulation_not_Treejack
+synthetic,S03,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,9.1,local_tree_simulation_not_Treejack
+synthetic,S03,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,0,10.8,local_tree_simulation_not_Treejack
+synthetic,S03,mobile,C4,Избранное,Избранное,1,1,11.1,local_tree_simulation_not_Treejack
+synthetic,S04,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,19.3,local_tree_simulation_not_Treejack
+synthetic,S04,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,22.4,local_tree_simulation_not_Treejack
+synthetic,S04,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,9.0,local_tree_simulation_not_Treejack
+synthetic,S04,desktop,C4,Избранное,Мои файлы,0,0,15.7,local_tree_simulation_not_Treejack
+synthetic,S04,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,27.6,local_tree_simulation_not_Treejack
+synthetic,S04,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,22.9,local_tree_simulation_not_Treejack
+synthetic,S04,mobile,C3,Общий доступ/Ссылки,Мои файлы,0,0,10.0,local_tree_simulation_not_Treejack
+synthetic,S04,mobile,C4,Избранное,Избранное,1,1,16.7,local_tree_simulation_not_Treejack
+synthetic,S05,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,0,17.0,local_tree_simulation_not_Treejack
+synthetic,S05,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,7.9,local_tree_simulation_not_Treejack
+synthetic,S05,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,18.8,local_tree_simulation_not_Treejack
+synthetic,S05,desktop,C4,Избранное,Избранное,1,1,12.9,local_tree_simulation_not_Treejack
+synthetic,S05,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,22.9,local_tree_simulation_not_Treejack
+synthetic,S05,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,13.9,local_tree_simulation_not_Treejack
+synthetic,S05,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,16.1,local_tree_simulation_not_Treejack
+synthetic,S05,mobile,C4,Избранное,Избранное,1,1,18.2,local_tree_simulation_not_Treejack
+synthetic,S06,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,14.4,local_tree_simulation_not_Treejack
+synthetic,S06,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,19.7,local_tree_simulation_not_Treejack
+synthetic,S06,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,20.1,local_tree_simulation_not_Treejack
+synthetic,S06,desktop,C4,Избранное,Избранное,1,1,21.8,local_tree_simulation_not_Treejack
+synthetic,S06,mobile,C1,Корзина/Восстановление,Мои файлы,0,0,28.1,local_tree_simulation_not_Treejack
+synthetic,S06,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,22.4,local_tree_simulation_not_Treejack
+synthetic,S06,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,12.4,local_tree_simulation_not_Treejack
+synthetic,S06,mobile,C4,Избранное,Избранное,1,1,20.2,local_tree_simulation_not_Treejack
+synthetic,S07,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,22.0,local_tree_simulation_not_Treejack
+synthetic,S07,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,12.9,local_tree_simulation_not_Treejack
+synthetic,S07,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,22.3,local_tree_simulation_not_Treejack
+synthetic,S07,desktop,C4,Избранное,Избранное,1,1,23.9,local_tree_simulation_not_Treejack
+synthetic,S07,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,8.9,local_tree_simulation_not_Treejack
+synthetic,S07,mobile,C2,Мои файлы/Файл/История версий,Мои файлы,0,0,15.0,local_tree_simulation_not_Treejack
+synthetic,S07,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,0,27.4,local_tree_simulation_not_Treejack
+synthetic,S07,mobile,C4,Избранное,Избранное,1,1,27.0,local_tree_simulation_not_Treejack
+synthetic,S08,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,13.4,local_tree_simulation_not_Treejack
+synthetic,S08,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,8.9,local_tree_simulation_not_Treejack
+synthetic,S08,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,9.0,local_tree_simulation_not_Treejack
+synthetic,S08,desktop,C4,Избранное,Избранное,1,1,11.6,local_tree_simulation_not_Treejack
+synthetic,S08,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,12.7,local_tree_simulation_not_Treejack
+synthetic,S08,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,16.8,local_tree_simulation_not_Treejack
+synthetic,S08,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,10.4,local_tree_simulation_not_Treejack
+synthetic,S08,mobile,C4,Избранное,Избранное,1,1,14.1,local_tree_simulation_not_Treejack
+synthetic,S09,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,7.9,local_tree_simulation_not_Treejack
+synthetic,S09,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,23.3,local_tree_simulation_not_Treejack
+synthetic,S09,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,21.4,local_tree_simulation_not_Treejack
+synthetic,S09,desktop,C4,Избранное,Избранное,1,1,16.6,local_tree_simulation_not_Treejack
+synthetic,S09,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,10.0,local_tree_simulation_not_Treejack
+synthetic,S09,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,20.5,local_tree_simulation_not_Treejack
+synthetic,S09,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,1,21.5,local_tree_simulation_not_Treejack
+synthetic,S09,mobile,C4,Избранное,Избранное,1,1,22.7,local_tree_simulation_not_Treejack
+synthetic,S10,desktop,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,16.6,local_tree_simulation_not_Treejack
+synthetic,S10,desktop,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,1,21.9,local_tree_simulation_not_Treejack
+synthetic,S10,desktop,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,0,16.2,local_tree_simulation_not_Treejack
+synthetic,S10,desktop,C4,Избранное,Избранное,1,1,22.3,local_tree_simulation_not_Treejack
+synthetic,S10,mobile,C1,Корзина/Восстановление,Корзина/Восстановление,1,1,27.1,local_tree_simulation_not_Treejack
+synthetic,S10,mobile,C2,Мои файлы/Файл/История версий,Мои файлы/Файл/История версий,1,0,19.0,local_tree_simulation_not_Treejack
+synthetic,S10,mobile,C3,Общий доступ/Ссылки,Общий доступ/Ссылки,1,0,27.8,local_tree_simulation_not_Treejack
+synthetic,S10,mobile,C4,Избранное,Избранное,1,1,9.6,local_tree_simulation_not_Treejack

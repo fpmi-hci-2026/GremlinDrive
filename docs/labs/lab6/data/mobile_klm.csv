@@ -1,0 +1,4 @@
+﻿form,K,T,M,estimated_seconds,assumption
+Вход,36,3,2,10.5,"T=K=0.2s; no swipe, no network response; not measured"
+Новая папка,12,3,2,5.7,"T=K=0.2s; no swipe, no network response; not measured"
+Ссылка с паролем,10,5,2,5.7,"T=K=0.2s; no swipe, no network response; not measured"

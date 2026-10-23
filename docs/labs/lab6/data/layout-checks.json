@@ -1,0 +1,79 @@
+[
+  {
+    "screen": "web1440",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "web1100",
+    "width": 1100,
+    "scrollWidth": 1100,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "web900",
+    "width": 900,
+    "scrollWidth": 900,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "web650",
+    "width": 650,
+    "scrollWidth": 650,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "web480",
+    "width": 480,
+    "scrollWidth": 480,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "web360",
+    "width": 360,
+    "scrollWidth": 360,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "mobile360",
+    "width": 360,
+    "scrollWidth": 360,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "mobile390",
+    "width": 390,
+    "scrollWidth": 390,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "mobile412",
+    "width": 412,
+    "scrollWidth": 412,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "tablet768",
+    "width": 768,
+    "scrollWidth": 768,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  },
+  {
+    "screen": "tablet1024",
+    "width": 1024,
+    "scrollWidth": 1024,
+    "minActionWidth": 44,
+    "minActionHeight": 44
+  }
+]

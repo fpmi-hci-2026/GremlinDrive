@@ -1,0 +1,6 @@
+﻿foreground,background,usage,ratio,passes_4_5
+#202c40,#ffffff,Основной текст,14.04,True
+#68768b,#ffffff,Вторичный текст,4.613,True
+#ffffff,#345fd1,Кнопка Blue,5.67,True
+#202c40,#f6f8fc,Текст на фоне,13.205,True
+#345fd1,#edf2ff,Активная навигация,5.062,True
