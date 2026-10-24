@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 title Lab 4 local Docker environment
 node "Developer computer / 127.0.0.1" {

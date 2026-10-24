@@ -1,66 +1,139 @@
 'use strict';
-const $=s=>document.querySelector(s), params=new URLSearchParams(location.search);
-const palettes={blue:['#345fd1','#2449ab','#edf2ff'],green:['#167658','#105740','#e8f5ee'],plum:['#8050a5','#663789','#f3edf8']};
-(palettes[params.get('theme')]||palettes.blue).forEach((v,i)=>document.documentElement.style.setProperty(['--accent','--accent-dark','--tint'][i],v));
+const $=s=>document.querySelector(s),params=new URLSearchParams(location.search);
+const palettes={brand:['#2e9e62','#23834f','#eaf4ee'],contrast:['#1f7a4b','#17613b','#eaf4ee'],emerald:['#087f63','#06654f','#e8f5ef']};
+(palettes[params.get('theme')]||palettes.contrast).forEach((v,i)=>document.documentElement.style.setProperty(['--accent','--accent-hover','--soft'][i],v));
 if(params.has('mobile'))document.body.classList.add('mobile-mode');
-const fixture=()=>({folders:['Учёба','Проект GremlinDrive','Личное'],files:[
-{id:1,name:'Отчёт_ЛР4.pdf',size:'1,8 МБ',folder:'Учёба',type:'doc',favorite:true},
-{id:2,name:'Требования.docx',size:'248 КБ',folder:'Проект GremlinDrive',type:'doc',shared:true},
-{id:3,name:'Макеты.png',size:'3,2 МБ',folder:'Проект GremlinDrive',type:'img'},
-{id:4,name:'Материалы.zip',size:'12,4 МБ',folder:'Учёба',type:'zip'},
-{id:5,name:'План проекта.docx',size:'86 КБ',folder:'Личное',type:'doc'}]});
-let state;try{state=JSON.parse(localStorage.getItem('gremlindrive-lab5'))||fixture()}catch{state=fixture()}
-if(!Array.isArray(state.files)||!Array.isArray(state.folders))state=fixture();
-let view='files',folder='',toastTimer;
-function save(){localStorage.setItem('gremlindrive-lab5',JSON.stringify(state));render()}
-function node(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
-function button(text,label,fn,cls=''){const b=node('button',cls,text);b.type='button';if(label)b.setAttribute('aria-label',label);b.onclick=fn;return b}
-function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),4000)}
-const titles={files:'Мои файлы',recent:'Недавние',favorites:'Избранное',shared:'Общий доступ',trash:'Корзина'};
-function render(){
- document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
- $('#view-title').textContent=folder||titles[view];$('#crumb').textContent=folder||titles[view];
- $('#list-title').textContent=view==='trash'?'Удалённые файлы':'Все файлы';
- $('#subtitle').textContent=view==='trash'?'Файлы можно восстановить в прежнюю папку.':'Всё, над чем вы работаете, всегда под рукой.';
- const q=$('#search').value.toLocaleLowerCase('ru');
- $('#folders').replaceChildren();const folders=state.folders.filter(f=>f.toLocaleLowerCase('ru').includes(q));
- $('#folder-section').hidden=view!=='files'||!!folder;
- folders.forEach(f=>{const b=button('',null,()=>{folder=f;$('#search').value='';render()});b.className='folder';b.append(node('span','folder-icon','▰'),node('strong','',f),node('small','',state.files.filter(x=>x.folder===f&&!x.trash).length+' файлов'));$('#folders').append(b)});
- $('#folder-count').textContent=folders.length+' папки';
- let files=state.files.filter(f=>(view==='trash'?f.trash:!f.trash)&&(!folder||f.folder===folder)&&(!q||f.name.toLocaleLowerCase('ru').includes(q)));
- if(view==='favorites')files=files.filter(f=>f.favorite);if(view==='shared')files=files.filter(f=>f.shared);
- $('#files').replaceChildren();$('#file-count').textContent=files.length+' файлов';$('#empty').hidden=files.length>0;
- files.forEach(f=>{
-  const row=node('div','file-row'),name=node('div','file-name');name.append(node('span','file-icon '+f.type,f.type==='img'?'▧':f.type==='zip'?'▤':'▥'));
-  const label=node('div','file-labels');label.append(button(f.name,'Открыть '+f.name,()=>details(f),'filename'),node('small','',f.folder+(f.shared?' · По ссылке':'')));name.append(label);
-  row.append(name,node('span','file-date','24 окт. 2026'),node('span','file-size',f.size));const actions=node('div','row-actions');
-  if(f.trash)actions.append(button('↶','Восстановить '+f.name,()=>{f.trash=false;save();toast('Файл восстановлен')}));
-  else actions.append(button(f.favorite?'★':'☆','Избранное: '+f.name,()=>{f.favorite=!f.favorite;save()},'favorite-action'),button('↗','Поделиться '+f.name,()=>share(f)),button('⌫','Удалить '+f.name,()=>remove(f)));
-  row.append(actions);$('#files').append(row);
- });
-}
+const TEST_HASH='74cc54b7752e854e8a872c71fb41d110d4f1489a0b0a518769fa8557aa36e07b';
+const fixture=()=>({schema:2,quota:15,used:12.4,role:'user',dark:false,biometry:false,autoUpload:true,folders:[{id:'course',name:'ПЧМИ',path:'Университет / ПЧМИ',shared:false},{id:'photos',name:'Фото_проекта',parent:'course',shared:false},{id:'manuals',name:'Методички',parent:'course',shared:false},{id:'team',name:'Проект GremlinDrive',shared:true,role:'owner'}],files:[
+{id:1,name:'lab2_pchmi.pdf',type:'pdf',size:'2,4 МБ',bytes:2400000,folder:'course',favorite:true,offline:false,versions:[{number:1,date:'22.10.2026',author:'Александр'},{number:2,date:'24.10.2026',author:'Матвей'}],comments:[]},
+{id:2,name:'Отчёт_ЛР1.docx',type:'doc',size:'1,1 МБ',bytes:1100000,folder:'course',versions:[{number:1,date:'23.10.2026',author:'Александр'}],comments:[]},
+{id:3,name:'Презентация.pptx',type:'doc',size:'6,8 МБ',bytes:6800000,folder:'course',versions:[{number:1,date:'12.10.2026',author:'Александр'}],comments:[]},
+{id:4,name:'dataset.zip',type:'zip',size:'48 МБ',bytes:48000000,folder:'course',versions:[{number:1,date:'10.10.2026',author:'Александр'}],comments:[]},
+{id:5,name:'Требования.docx',type:'doc',size:'248 КБ',bytes:248000,folder:'team',versions:[{number:1,date:'24.10.2026',author:'Матвей'}],comments:[]}],
+shares:[{id:'gd-demo',fileId:1,access:'download',days:14,passwordHash:TEST_HASH,active:true,downloads:0}],members:[{email:'owner@example.test',role:'Владелец',status:'принято'}],requests:[],audit:[],notifications:[{title:'Матвей обновил lab2_pchmi.pdf',body:'Доступна версия 2',fileId:1}],jobs:[{id:'j1',name:'lab2_pchmi.pdf',size:'2,4 МБ',progress:68,status:'paused',folder:'course'},{id:'j2',name:'IMG_2041.jpg',size:'4,1 МБ',progress:0,status:'queued',folder:'photos'}]});
+let state;try{state=JSON.parse(localStorage.getItem('gremlindrive-lr5-v2'))||fixture()}catch{state=fixture()}
+if(state.schema!==2)state=fixture();
+let view='files',folder=params.get('folder')||'',filter='all',sort='name',grid=false,registration=false,noNetwork=false,adminUnlocked=false,toastTimer;
+document.body.classList.toggle('dark',state.dark);
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+function btn(text,fn,cls='',label){const b=el('button',cls,text);b.type='button';if(label)b.setAttribute('aria-label',label);b.onclick=fn;return b}
+function field(label,name,value='',type='text'){const l=el('label','',label),i=el('input');i.type=type;i.name=name;i.value=value;l.append(i);return l}
+function selectField(label,name,options,value){const l=el('label','',label),s=el('select');s.name=name;for(const [v,t] of options){const o=el('option','',t);o.value=v;s.append(o)}if(value!==undefined)s.value=value;l.append(s);return l}
+function notice(text){$('#toast').textContent=text;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),5000)}
+function save(){localStorage.setItem('gremlindrive-lr5-v2',JSON.stringify(state))}
+function changed(text){save();render();if(text)notice(text)}
+function audit(action,target){state.audit.unshift({action,target,time:new Date().toLocaleTimeString('ru')})}
+function inform(title,body,fileId){state.notifications.unshift({title,body,fileId})}
+function close(){$('#modal').close()}
 function modal(title,body,submit,label='Сохранить'){
- $('#modal-title').textContent=title;$('#modal-body').replaceChildren(body);$('#modal-actions').replaceChildren(button('Отмена',null,()=>$('#modal').close(),'outline'));
- if(submit){const b=node('button','primary',label);b.type='submit';$('#modal-actions').append(b)}
+ close();$('#modal-title').textContent=title;$('#modal-body').replaceChildren(body);$('#modal-actions').replaceChildren(btn(submit?'Отмена':'Закрыть',close,'outline'));
+ if(submit){const b=el('button','primary',label);b.type='submit';$('#modal-actions').append(b)}
  $('#modal-form').onsubmit=e=>{e.preventDefault();if(submit)submit(new FormData(e.currentTarget))};$('#modal').showModal();
 }
-function field(text,name,value='',type='text'){const l=node('label','',text),i=node('input');i.name=name;i.value=value;i.type=type;l.append(i);return l}
-function details(f){const box=node('div');box.append(button(f.favorite?'Убрать из избранного':'В избранное',null,()=>{f.favorite=!f.favorite;save();modalClose();toast('Избранное обновлено')},'outline')); box.append(node('p','',f.folder+' · '+f.size),node('h3','','История версий'),node('p','','Версия 2 · 24 октября 2026'+(f.version===1?'':' · текущая')),node('p','','Версия 1 · 22 октября 2026'+(f.version===1?' · текущая':'')));
- box.append(button('Восстановить версию 1',null,()=>{f.version=1;$('#modal').close();toast('Версия 1 восстановлена (демо)')},'outline'));modal(f.name,box)}
-function share(f){const box=node('div');box.append(node('p','muted','Получатель сможет скачать файл. Ссылка работает только в учебном прототипе.'));
- const pass=field('Пароль ссылки (необязательно)','link-password','','password');pass.querySelector('input').minLength=8;
- const expiry=node('label','','Срок действия'),select=node('select');select.name='expiry';for(const [v,t] of [['7','7 дней'],['1','1 день'],['30','30 дней']]){const o=node('option','',t);o.value=v;select.append(o)}expiry.append(select);box.append(expiry,pass);
- modal('Поделиться файлом',box,data=>{f.shared=true;f.expiry=data.get('expiry');save();const result=node('div');result.append(node('p','','Ссылка создана. Доступ: скачивание. Срок: '+f.expiry+' дней.'));const link=field('Демонстрационная ссылка','demo-link','https://gremlindrive.example/s/demo-'+f.id);link.querySelector('input').readOnly=true;result.append(link);modalClose();modal('Ссылка готова',result)},'Создать ссылку');
+function go(next){view=next;folder='';filter='all';$('#search').value='';render();window.scrollTo(0,0)}
+const titles={files:'Мои файлы',shared:'Общие папки',recent:'Недавние',favorites:'Избранное',trash:'Корзина',uploads:'Загрузка',profile:'Профиль',notifications:'Уведомления',admin:'Администрирование'};
+function folderBy(id){return state.folders.find(f=>f.id===id)}
+function fileBy(id){return state.files.find(f=>f.id===id)}
+function canWriteFolder(id=folder){return !noNetwork&&(!folderBy(id)?.shared||folderBy(id)?.role!=='viewer')}
+function canEdit(f){return canWriteFolder(f.folder)}
+function render(){
+ $('#view-title').textContent=titles[view];$('#mobile-title').textContent=titles[view];$('#view-subtitle').textContent=view==='shared'?'Папки команды и права участников':view==='trash'?'Восстановление в исходную папку':view==='uploads'?'Очередь и возобновление загрузки':'Ваши файлы. Ваши правила.';
+ document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));$('#admin-nav').hidden=state.role!=='admin';$('#quota-text').textContent=state.used.toLocaleString('ru')+' ГБ из '+state.quota+' ГБ';$('#quota-bar').style.width=Math.min(100,state.used/state.quota*100)+'%';$('#notification-dot').hidden=!state.notifications.length;
+ const crumbs=$('#breadcrumbs');crumbs.replaceChildren(btn(titles[view],()=>{folder='';render()}));if(folder){crumbs.append(el('span','','/'),btn(folderBy(folder)?.path||folderBy(folder)?.name||'',()=>{folder='';render()}))}
+ $('#workspace').replaceChildren();$('#mobile-upload').disabled=!canWriteFolder();$('#search').disabled=!['files','shared','recent','favorites','trash'].includes(view);
+ if(['files','shared','recent','favorites','trash'].includes(view))renderFiles();else if(view==='uploads')renderUploads();else if(view==='profile')renderProfile();else if(view==='notifications')renderNotifications();else renderAdmin();
 }
-function modalClose(){$('#modal').close()}
-function remove(f){modal('Переместить в корзину?',node('p','',f.name+' можно будет восстановить.'),()=>{f.trash=true;f.shared=false;save();modalClose();toast('Файл перемещён в корзину')},'В корзину')}
-$('#close-modal').onclick=modalClose;
-$('#new-folder').onclick=()=>{const f=field('Название папки','folder');f.querySelector('input').required=true;f.querySelector('input').maxLength=80;modal('Новая папка',f,data=>{const value=data.get('folder').trim(),i=f.querySelector('input');if(!value||state.folders.some(x=>x.toLocaleLowerCase('ru')===value.toLocaleLowerCase('ru'))){i.setCustomValidity('Введите новое название папки');i.reportValidity();i.oninput=()=>i.setCustomValidity('');return}state.folders.push(value);save();modalClose();toast('Папка создана')},'Создать папку')};
-$('#search').oninput=render;document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view=b.dataset.view;folder='';$('#search').value='';render()});
-$('.brand').onclick=e=>{e.preventDefault();view='files';folder='';render()};
-$('#grid-toggle').onclick=()=>{$('.content').classList.toggle('grid-view');$('#grid-toggle').setAttribute('aria-pressed',$('.content').classList.contains('grid-view'))};
-$('#upload').onclick=()=>$('#file-input').click();$('#file-input').onchange=e=>{const f=e.target.files[0];if(!f)return;state.files.push({id:Date.now(),name:f.name,size:Math.max(1,Math.round(f.size/1024))+' КБ',folder:folder||'Личное',type:'doc'});save();toast('Добавлен демонстрационный файл');e.target.value=''};
-$('#reset').onclick=()=>{state=fixture();folder='';view='files';$('#search').value='';save();toast('Учебные данные восстановлены')};
-function enter(){$('#login').hidden=true;$('#app').hidden=false;render()}
-$('#login-form').onsubmit=e=>{e.preventDefault();enter()};$('#logout').onclick=()=>{$('#login').hidden=false;$('#app').hidden=true};
-if(params.get('screen')==='files')enter();
+function renderFiles(){
+ const area=$('#workspace'),toolbar=el('div','toolbar');toolbar.append(btn('↑ Загрузить',uploadChoice,'primary upload-web'),btn('+ Папка',newFolder,'outline'));
+ for(const b of toolbar.querySelectorAll('button'))b.disabled=!canWriteFolder();if(folderBy(folder)?.shared)toolbar.append(btn('Участники',members,'outline'));
+ const right=el('div','right'),order=el('select');order.setAttribute('aria-label','Сортировка');for(const [v,t] of [['name','По имени'],['date','По изменению'],['size','По размеру']]){const o=el('option','',t);o.value=v;order.append(o)}order.value=sort;order.onchange=()=>{sort=order.value;render()};right.append(order,btn(grid?'☷':'▦',()=>{grid=!grid;render()},'outline','Сменить вид'));toolbar.append(right);area.append(toolbar);
+ if(view==='shared'&&!folder)area.append(el('p','note','Общие папки доступны приглашённым участникам. Публичные ссылки на файлы настраиваются отдельно через «Поделиться».'));
+ const filters=el('div','filters');for(const [v,t] of [['all','Все'],['doc','Документы'],['image','Фото'],['video','Видео']])filters.append(btn(t,()=>{filter=v;render()},filter===v?'selected':''));area.append(filters);
+ const q=$('#search').value.trim().toLocaleLowerCase('ru'),matchName=n=>n.toLocaleLowerCase('ru').includes(q);
+ let files=state.files.filter(f=>(view==='trash'?f.trash:!f.trash)&&(!['files','shared'].includes(view)||(folder?f.folder===folder:(q||!f.folder)))&&(view!=='shared'||folderBy(f.folder)?.shared)&&(view!=='files'||!folderBy(f.folder)?.shared)&&matchName(f.name));
+ if(view==='favorites')files=files.filter(f=>f.favorite);if(filter!=='all')files=files.filter(f=>filter==='doc'?['doc','pdf'].includes(f.type):f.type===filter);
+ files.sort((a,b)=>sort==='size'?b.bytes-a.bytes:sort==='date'?b.id-a.id:a.name.localeCompare(b.name,'ru'));
+ const table=el('div','file-table'+(grid?' grid':'')),head=el('div','table-head');['Имя','Изменён','Размер','Действия'].forEach(t=>head.append(el('span','',t)));table.append(head);const rows=el('div','rows');
+ const folders=['files','shared'].includes(view)&&filter==='all'?state.folders.filter(f=>(view==='shared'?f.shared:!f.shared)&&(folder?f.parent===folder:!f.parent)&&matchName(f.name)):[];
+ for(const f of folders){const row=el('div','file-row'),name=el('div','file-name'),label=el('div','file-label');label.append(btn(f.name,()=>{folder=f.id;render()}),el('small','',f.shared?'Общая папка':'Папка'));name.append(el('span','file-icon folder','▰'),label);row.append(name,el('span','file-date',''),el('span','file-size','—'),btn('⋯',()=>folderActions(f),'icon-button','Действия с папкой '+f.name));rows.append(row)}
+ for(const f of files){const row=el('div','file-row'),name=el('div','file-name'),label=el('div','file-label');label.append(btn(f.name,()=>details(f)),el('small','',f.size+' · '+(f.offline?'Доступен офлайн':f.trash?'Удалён':f.favorite?'Избранное':'24.10.2026')));name.append(el('span','file-icon '+f.type,f.type==='image'?'JPG':f.type==='pdf'?'PDF':f.type==='zip'?'ZIP':'DOC'),label);row.append(name,el('span','file-date','24.10.2026'),el('span','file-size',f.size),btn('⋮',()=>fileActions(f),'icon-button','Действия с файлом '+f.name));row.oncontextmenu=e=>{e.preventDefault();fileActions(f)};rows.append(row)}
+ table.append(rows);area.append(table);if(!files.length&&!folders.length){const empty=el('div','empty');empty.append(el('h2','','Здесь пока пусто'),el('p','','Попробуйте изменить поиск или фильтр.'));area.append(empty)}
+ const count=el('p','muted',files.length+' файлов · '+folders.length+' папок');count.style.marginTop='16px';area.append(count);
+}
+function newFolder(){if(!canWriteFolder()){notice('Создание папки недоступно для этой роли или без сети.');return}const box=field('Название папки','folder'),input=box.querySelector('input');input.required=true;input.maxLength=80;input.autofocus=true;
+ modal('Новая папка',box,data=>{const name=data.get('folder').trim();if(!name||state.folders.some(f=>f.name.toLocaleLowerCase('ru')===name.toLocaleLowerCase('ru'))){input.setCustomValidity('Введите новое название папки');input.reportValidity();input.oninput=()=>input.setCustomValidity('');return}state.folders.push({id:'f'+Date.now(),name,parent:folder||undefined,shared:view==='shared',role:'owner'});audit('Создана папка',name);close();changed('Папка создана')},'Создать папку')}
+function folderActions(f){const box=el('div','action-menu');box.append(btn('Открыть папку',()=>{close();folder=f.id;view=f.shared?'shared':'files';render()}));if(f.shared)box.append(btn('Участники',()=>{folder=f.id;members()}));modal(f.name,box)}
+function fileActions(f){const box=el('div','action-menu');if(f.trash){const b=btn('Восстановить',()=>restoreTrash(f));b.disabled=!canEdit(f);box.append(b)}else{
+ box.append(btn('Предпросмотр',()=>details(f)),btn('Поделиться...',()=>share(f)),btn('Версии',()=>details(f,'versions')),btn('Комментарии',()=>details(f,'comments')),btn(f.favorite?'Убрать из избранного':'В избранное',()=>{f.favorite=!f.favorite;close();changed('Избранное обновлено')}),btn(f.offline?'Удалить офлайн-копию':'Доступен офлайн',()=>{f.offline=!f.offline;close();changed('Настройка офлайн-доступа сохранена')}));
+ const rename=btn('Переименовать...',()=>renameFile(f));rename.disabled=!canEdit(f);const trash=btn('Удалить...',()=>trashFile(f),'danger');trash.disabled=!canEdit(f);box.append(rename,trash);for(const b of box.querySelectorAll('button'))if(b.textContent==='Поделиться...')b.disabled=!canEdit(f)||noNetwork}modal(f.name,box)}
+function renameFile(f){const box=field('Новое имя','filename',f.name),input=box.querySelector('input');input.required=true;input.maxLength=120;modal('Переименовать файл',box,data=>{f.name=data.get('filename').trim();if(!f.name)return;close();audit('Переименован файл',f.name);changed('Имя изменено')},'Переименовать')}
+function trashFile(f){if(!canEdit(f))return;modal('Переместить в корзину?',el('p','',f.name+' можно восстановить в течение 30 дней. Созданные ссылки будут отозваны.'),()=>{f.trash=true;state.shares.filter(s=>s.fileId===f.id).forEach(s=>s.active=false);audit('Файл в корзине',f.name);close();changed('Файл перемещён в корзину')},'В корзину')}
+function restoreTrash(f){if(!canEdit(f))return;f.trash=false;close();audit('Файл восстановлен',f.name);changed('Файл восстановлен в '+(folderBy(f.folder)?.path||folderBy(f.folder)?.name)+'. Старые ссылки не активированы.')}
+function details(f,tab='preview'){
+ if(noNetwork&&!f.offline){notice('Файл не отмечен для офлайн-доступа.');return}
+ const box=el('div'),tabs=el('div','detail-tabs');for(const [k,t] of [['preview','Предпросмотр'],['versions','Версии'],['comments','Комментарии'],['access','Доступ']])tabs.append(btn(t,()=>details(f,k),tab===k?'selected':''));box.append(tabs);
+ if(tab==='preview'){box.append(el('div','preview',f.type==='pdf'?'PDF · '+f.name:'Предпросмотр · '+f.name),el('p','muted',f.size+' · '+(folderBy(f.folder)?.path||folderBy(f.folder)?.name)),btn('Поделиться...',()=>share(f),'primary'))}
+ if(tab==='versions'){
+  const versions=[...f.versions].reverse();for(const v of versions){const row=el('div','version-row');row.append(el('strong','','Версия '+v.number+(v===f.versions.at(-1)?' · текущая':'')),el('p','muted',v.author+' · '+v.date+(v.source?' · из версии '+v.source:'')));
+   if(v!==f.versions.at(-1)){const b=btn('Восстановить версию '+v.number,()=>{f.versions.push({number:Math.max(...f.versions.map(x=>x.number))+1,date:'24.10.2026',author:'Александр',source:v.number});audit('Восстановлена версия',f.name);save();details(f,'versions');notice('Создана новая версия. История сохранена.')},'outline');b.disabled=!canEdit(f);row.append(b)}box.append(row)}
+ }
+ if(tab==='comments'){f.comments.forEach(c=>box.append(el('p','',c)));if(!f.comments.length)box.append(el('p','muted','Комментариев пока нет.'));const input=field('Комментарий','comment'),b=btn('Добавить комментарий',()=>{const value=input.querySelector('input').value.trim();if(!value)return;f.comments.push('Александр: '+value);audit('Добавлен комментарий',f.name);inform('Новый комментарий',f.name,f.id);save();details(f,'comments')},'primary');b.disabled=!canEdit(f)||noNetwork;box.append(input,b)}
+ if(tab==='access'){box.append(el('p','',folderBy(f.folder)?.shared?'Доступ определяется ролью в общей папке.':'Личный файл: владелец Александр.'),btn('Настроить ссылку...',()=>share(f),'primary'));state.shares.filter(s=>s.fileId===f.id).forEach(s=>{const card=el('div','version-row');card.append(el('p','',s.active?'Ссылка активна · '+s.days+' дней · '+s.downloads+' скачиваний':'Ссылка отозвана'));if(s.active)card.append(btn('Отозвать ссылку',()=>{s.active=false;audit('Ссылка отозвана',f.name);save();details(f,'access')},'outline'));box.append(card)})}
+ for(const b of box.querySelectorAll('button'))if(['Поделиться...','Настроить ссылку...','Отозвать ссылку'].includes(b.textContent))b.disabled=!canEdit(f)||noNetwork;
+ modal(f.name,box);
+}
+async function hashPassword(value){const data=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value));return [...new Uint8Array(data)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function share(f){
+ if(noNetwork){notice('Нет сети. Создание ссылки недоступно.');return}if(!canEdit(f)){notice('Роль «Просмотр» не позволяет менять доступ.');return}
+ const box=el('div');box.append(el('p','muted',f.name),selectField('Уровень доступа','access',[['view','Только просмотр'],['download','Просмотр и скачивание']],'download'),selectField('Срок действия','days',[['1','1 день'],['7','7 дней'],['14','14 дней'],['30','30 дней'],['0','Бессрочно']],'14'));
+ const password=field('Пароль ссылки (необязательно)','password','','password');password.querySelector('input').minLength=8;box.append(password,el('p','field-help','При заполнении - от 8 символов. Статистика скачиваний доступна владельцу.'));
+ modal('Поделиться',box,async data=>{const secret=data.get('password'),s={id:'gd-'+Date.now().toString(36),fileId:f.id,access:data.get('access'),days:Number(data.get('days')),passwordHash:secret?await hashPassword(secret):'',active:true,downloads:0};state.shares.push(s);audit('Создана ссылка',f.name);save();showLink(s,secret)},'Создать ссылку');
+}
+function showLink(s,password=''){
+ const url=location.origin+location.pathname+'?guest='+s.id,box=el('div','link-result');box.append(el('p','','Ссылка создана. '+(s.access==='view'?'Только просмотр.':'Просмотр и скачивание.')+' Срок: '+(s.days?s.days+' дней.':'бессрочно.')));
+ const link=field('Ссылка доступа','share-url',url);link.querySelector('input').readOnly=true;box.append(link,btn('Копировать ссылку',()=>copy(url),'outline'));
+ if(password){const pass=field('Пароль (показан однократно)','share-password',password);pass.querySelector('input').readOnly=true;box.append(pass,btn('Копировать пароль',()=>copy(password),'outline'))}
+ box.append(btn('Открыть гостевой просмотр',()=>{close();renderGuest(s.id)},'primary'),el('p','field-help','Демонстрационная ссылка: состояние доступно в этом браузере. Реальный сервер в прототип не подключён.'));modal('Ссылка готова',box);
+}
+async function copy(value){try{await navigator.clipboard.writeText(value);notice('Скопировано')}catch{notice('Выделите и скопируйте значение в поле')}}
+function members(){const team=folderBy(folder)||folderBy('team'),box=el('div');box.append(el('p','note','Общая папка: '+team.name));for(const m of state.members){const row=el('div','version-row');row.append(el('strong','',m.email),el('p','muted',m.role+' · '+m.status));box.append(row)}
+ const currentRole=selectField('Моя роль в папке (демонстрация)','my-role',[['owner','Владелец'],['editor','Редактирование'],['viewer','Просмотр']],team.role);currentRole.querySelector('select').onchange=e=>{team.role=e.target.value;save();render();members();notice('Роль в демонстрационной папке изменена')};box.append(currentRole);
+ const email=field('E-mail участника','email','','email');email.querySelector('input').required=true;const role=selectField('Роль','role',[['Просмотр','Просмотр'],['Редактирование','Редактирование']],'Просмотр');box.append(email,role,el('p','field-help','Роль «Просмотр» не позволяет менять и удалять файлы. Приглашение действует 7 дней.'));
+ modal('Участники',box,data=>{if(team.role!=='owner'||noNetwork)return;state.members.push({email:data.get('email'),role:data.get('role'),status:'отправлено (демо)'});audit('Приглашение в общую папку',team.name);inform('Приглашение подготовлено',team.name);save();members();notice('Приглашение добавлено в прототип. Письмо не отправлялось.')},'Пригласить');
+ $('#modal-form button[type="submit"]').disabled=team.role!=='owner'||noNetwork;
+}
+function uploadChoice(){if(!canWriteFolder()){notice('Загрузка недоступна для этой роли или без сети.');return}const box=el('div','action-menu');box.append(btn('Выбрать файлы',()=>{close();$('#file-input').click()}),btn('Снять и загрузить (демо)',()=>{state.jobs.push({id:'j'+Date.now(),name:'IMG_2042.jpg',size:'3,8 МБ',progress:0,status:'queued',folder:folder||'course'});close();go('uploads');save()}),btn('Открыть очередь загрузки',()=>{close();go('uploads')}));modal('Загрузить',box)}
+$('#file-input').onchange=e=>{if(!canWriteFolder()){e.target.value='';return}for(const f of e.target.files)state.jobs.push({id:'j'+Date.now()+Math.random().toString(36).slice(2),name:f.name,size:Math.max(1,Math.round(f.size/1024))+' КБ',progress:0,status:'queued',folder:folder||'course'});save();go('uploads');e.target.value=''};
+function renderUploads(){const area=$('#workspace');area.append(el('p','note','Прогресс, пауза и возобновление показаны как состояния прототипа. Содержимое файлов не передаётся.'));
+ for(const job of state.jobs){const card=el('div','card'),row=el('div','row-between');row.append(el('strong','',job.name),el('strong','status',job.progress+'%'));card.append(row);const progress=el('div','progress'),bar=el('span');bar.style.width=job.progress+'%';progress.append(bar);card.append(progress,el('p','muted',job.size+' · '+({paused:'Загрузка приостановлена',queued:'В очереди',complete:'Загружено'}[job.status]||'Загрузка')));
+  if(job.status!=='complete')card.append(btn(job.status==='paused'?'Продолжить загрузку':'Завершить загрузку (демо)',()=>{if(noNetwork){notice('Нет сети. Прогресс сохранён.');return}job.status='complete';job.progress=100;if(!state.files.some(f=>f.name===job.name&&f.folder===job.folder))state.files.push({id:Date.now(),name:job.name,type:/\.jpe?g|png$/i.test(job.name)?'image':'doc',size:job.size,bytes:1000000,folder:job.folder,versions:[{number:1,date:'24.10.2026',author:'Александр'}],comments:[]});audit('Завершена загрузка',job.name);inform('Файл загружен',job.name);changed('Загрузка завершена')},'primary'));area.append(card)}
+ const settings=el('div','card');settings.append(el('h2','','Автозагрузка фото'),el('p','muted','С камеры - по Wi-Fi'),switchControl('Автозагрузка фото',state.autoUpload,value=>{state.autoUpload=value;save()}));area.append(settings);
+}
+function switchControl(label,value,fn){const row=el('label','switch-row',label),i=el('input');i.type='checkbox';i.checked=value;i.onchange=()=>fn(i.checked);row.append(i);return row}
+function renderProfile(){const area=$('#workspace'),card=el('section','card');card.append(el('h2','','Александр Сытин'),el('p','muted','student@example.test'),el('h3','','Квота и тариф'),el('p','',state.used.toLocaleString('ru')+' ГБ использовано из '+state.quota+' ГБ'),btn('Запросить расширение...',quotaRequest,'primary'));area.append(card);
+ const prefs=el('section','card');prefs.append(el('h2','','Настройки'),switchControl('Тёмная тема',state.dark,value=>{state.dark=value;document.body.classList.toggle('dark',value);save()}),switchControl('Биометрический вход (мобильный макет)',state.biometry,value=>{state.biometry=value;save();notice('Настройка сохранена. Системная биометрия в браузере не запускается.')}),switchControl('Нет сети (проверка прототипа)',noNetwork,value=>{noNetwork=value;notice(value?'Нет сети. Доступны отмеченные офлайн-файлы.':'Соединение восстановлено.');render()}));area.append(prefs);
+ const more=el('section','card');more.append(el('h2','','Быстрый доступ'));const links=el('div','profile-links');for(const [k,t] of [['recent','Недавние'],['favorites','Избранное'],['trash','Корзина'],['uploads','Загрузка']])links.append(btn(t,()=>go(k),'outline'));more.append(links,btn('Перейти в демонстрационный режим администратора',adminLogin,'text-button'),btn('Выйти',logout,'text-button'));area.append(more);
+ if(state.requests.length){const req=el('section','card');req.append(el('h2','','Мои запросы'));state.requests.forEach(r=>req.append(el('p','',r.quota+' ГБ · '+r.reason+' · '+r.status)));area.append(req)}
+}
+function quotaRequest(){if(noNetwork){notice('Запрос квоты недоступен без сети.');return}const box=el('div'),amount=field('Новая квота, ГБ','quota','50','number');amount.querySelector('input').min=state.quota+1;amount.querySelector('input').max=1000;amount.querySelector('input').required=true;const reason=field('Обоснование','reason');reason.querySelector('input').required=true;box.append(amount,reason);
+ modal('Запрос на расширение',box,data=>{const r={id:Date.now(),quota:Number(data.get('quota')),reason:data.get('reason').trim(),status:'Ожидает решения'};if(!r.reason)return;state.requests.push(r);audit('Запрошена квота',r.quota+' ГБ');inform('Запрос отправлен',r.quota+' ГБ');close();changed('Запрос передан администратору')},'Отправить запрос')}
+function adminLogin(){const box=el('div'),code=field('Код 2FA (тестовый: 000000)','code');code.querySelector('input').required=true;code.querySelector('input').pattern='000000';box.append(el('p','note','Демонстрация отдельной административной роли. Реальная аутентификация не выполняется.'),code);modal('Вход администратора',box,()=>{adminUnlocked=true;state.role='admin';close();save();go('admin')},'Подтвердить вход')}
+function renderAdmin(){if(!adminUnlocked){adminLogin();return}const area=$('#workspace'),tabs=el('div','detail-tabs');for(const t of ['Пользователи','Роли','Квоты','Запросы прав','Журнал аудита','Статистика'])tabs.append(btn(t,()=>{const target=document.getElementById(t==='Журнал аудита'?'audit-log':'requests-list');if(target)target.scrollIntoView({block:'start'})},t==='Пользователи'?'selected':''));area.append(tabs);const layout=el('div','admin-layout'),users=el('section','card');users.append(el('h2','','Пользователи'));
+ for(const [initials,name,quota] of [['АС','Александр Сытин',state.used+' / '+state.quota+' ГБ'],['МВ','Матвей Вержбиба','4 / 15 ГБ']]){const r=el('div','admin-user');r.append(el('span','avatar',initials));const txt=el('div');txt.append(el('strong','',name),el('small','','Пользователь · '+quota));r.append(txt);users.append(r)}const requests=el('section','card');requests.id='requests-list';requests.append(el('h2','','Запросы на расширение прав'));
+ if(!state.requests.length)requests.append(el('p','muted','Новых запросов нет. Создайте запрос в профиле.'));
+ for(const r of state.requests){const row=el('div','version-row');row.append(el('strong','','Александр · '+r.quota+' ГБ'),el('p','muted',r.reason+' · '+r.status));if(r.status==='Ожидает решения'){const buttons=el('div','button-row');buttons.append(btn('Подтвердить',()=>{if(r.status!=='Ожидает решения')return;state.quota=r.quota;r.status='Одобрен';audit('Квота расширена',r.quota+' ГБ');inform('Квота увеличена',r.quota+' ГБ');changed('Квота обновлена')},'primary'),btn('Отклонить',()=>{const box=field('Причина отказа','reason');box.querySelector('input').required=true;modal('Отклонить запрос',box,data=>{r.status='Отклонён: '+data.get('reason');audit('Запрос отклонён',r.quota+' ГБ');close();changed('Решение сохранено')},'Отклонить')},'outline'));row.append(buttons)}requests.append(row)}layout.append(users,requests);area.append(layout);const log=el('section','card');log.id='audit-log';log.append(el('h2','','Журнал аудита'));state.audit.slice(0,12).forEach(a=>log.append(el('p','',a.time+' · '+a.action+' · '+a.target)));area.append(log,btn('Вернуться к файлам',()=>go('files'),'outline'));
+}
+function renderNotifications(){const area=$('#workspace');if(!state.notifications.length)area.append(el('p','muted','Новых уведомлений нет.'));for(const n of state.notifications){const row=el('div','notification');row.append(el('strong','',n.title),el('p','muted',n.body));if(n.fileId)row.append(btn('Открыть файл',()=>details(fileBy(n.fileId)),'text-button'));area.append(row)}}
+async function renderGuest(id){$('#auth').hidden=true;$('#app').hidden=true;$('#guest').hidden=false;const area=$('#guest');area.replaceChildren();const brand=el('a','brand');brand.href=location.pathname;brand.append(el('span','mark','G'),el('span','','GremlinDrive'));area.append(brand);const s=state.shares.find(x=>x.id===id),f=s&&fileBy(s.fileId);if(!s||!s.active||!f||f.trash){area.append(el('h1','','Ссылка недействительна'),el('p','','Доступ завершён или отозван.'));return}
+ const card=el('div','card');area.append(card);if(s.passwordHash){card.append(el('h1','','Файл защищён паролем'));const form=el('form'),pass=field('Пароль','password','','password'),error=el('p','error');pass.querySelector('input').required=true;const unlock=el('button','primary','Открыть файл');unlock.type='submit';form.append(pass,error,unlock);let tries=0;form.onsubmit=async e=>{e.preventDefault();if(tries>=5){error.textContent='Слишком много попыток. Повторите через 15 минут.';return}if(await hashPassword(pass.querySelector('input').value)!==s.passwordHash){tries++;error.textContent=tries>=5?'Слишком много попыток. Повторите через 15 минут.':'Неверный пароль';return}showGuestFile(card,s,f)};card.append(form)}else showGuestFile(card,s,f)}
+function showGuestFile(card,s,f){card.replaceChildren(el('h1','',f.name),el('p','muted',f.size+' · '+(s.days?'Доступ '+s.days+' дней':'Бессрочная ссылка')),el('div','preview','Предпросмотр документа'));
+ if(s.access==='download')card.append(btn('Скачать',()=>{s.downloads++;audit('Демонстрационное скачивание',f.name);save();notice('Скачивание показано в прототипе. Бинарный файл не подключён.')},'primary'));else card.append(el('p','note','Только просмотр. Скачивание отключено.'));
+ card.append(btn('Вернуться в прототип',()=>{$('#guest').hidden=true;enter()},'text-button'))}
+function authMode(register){registration=register;$('#name-field').hidden=!register;$('#confirm-field').hidden=!register;$('#auth-form input[name=confirm]').required=register;$('#login-tab').classList.toggle('selected',!register);$('#register-tab').classList.toggle('selected',register);$('#auth-title').textContent=register?'Создать аккаунт':'С возвращением';$('#auth-submit').textContent=register?'Зарегистрироваться':'Войти';$('#auth-error').textContent=''}
+$('#login-tab').onclick=()=>authMode(false);$('#register-tab').onclick=()=>authMode(true);
+$('#auth-form').onsubmit=e=>{e.preventDefault();const data=new FormData(e.currentTarget),pass=data.get('password');if(!/[a-zа-я]/i.test(pass)||!/[0-9]/.test(pass)){$('#auth-error').textContent='Добавьте в пароль буквы и цифры.';return}if(registration&&data.get('confirm')!==pass){$('#auth-error').textContent='Пароли не совпадают.';return}if(registration){const box=el('div');box.append(el('p','','В реальном приложении ссылка подтверждения действует 24 часа. В прототипе переход выполняется этой кнопкой.'),btn('Подтвердить e-mail (демо)',()=>{close();authMode(false);enter()},'primary'));modal('Подтверждение e-mail',box)}else enter()};
+$('#forgot').onclick=()=>{const email=field('Электронная почта','email','','email');email.querySelector('input').required=true;modal('Восстановить пароль',email,()=>{close();notice('Если адрес зарегистрирован, будет отправлено письмо. Это демонстрация без отправки.')},'Продолжить')};
+function enter(){$('#auth').hidden=true;$('#guest').hidden=true;$('#app').hidden=false;render()}
+function logout(){$('#app').hidden=true;$('#auth').hidden=false;state.files.forEach(f=>f.offline=false);state.role='user';adminUnlocked=false;save()}
+$('#search').oninput=render;$('#close-modal').onclick=close;$('#quota-shortcut').onclick=quotaRequest;$('#mobile-upload').onclick=uploadChoice;document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>go(b.dataset.view));$('.sidebar .brand').onclick=e=>{e.preventDefault();go('files')};$('#reset').onclick=()=>{state=fixture();noNetwork=false;adminUnlocked=false;document.body.classList.remove('dark');save();go('files');notice('Демонстрационные данные восстановлены')};
+if(params.has('guest'))renderGuest(params.get('guest'));else if(params.get('screen')==='files'){view=params.get('view')||'files';enter()}

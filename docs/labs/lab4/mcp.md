@@ -31,7 +31,7 @@ MCP_AUTO_OPEN_ENABLED=false npx --yes @modelcontextprotocol/inspector --cli   .v
 | list_files | query, limit 1–100 | Доступные активные файлы |
 | get_file | file_id UUID | Метаданные с проверкой ACL |
 | create_folder | name, parent_id UUID или null | Новая папка; нужна запись в родительскую |
-| create_share_link | file_id UUID, password от 8 символов, expires_in_days 1–30, access_level view/download | Ссылка на активный файл |
+| create_share_link | file_id UUID, password от 8 символов, expires_in_days 1–30 или null (по умолчанию 14), access_level view/download | Ссылка на активный файл |
 | revoke_share_link | share_id UUID | Отзыв при праве записи на файл |
 | trash_file | file_id UUID, confirm=true | Корзина и отзыв ссылок |
 | restore_file | file_id UUID | Возврат из корзины без публикации старых ссылок |

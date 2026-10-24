@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 title Identity and administration
 entity "users" as users {
@@ -67,10 +67,10 @@ entity "access_requests" as access_requests {
   created_at : timestamptz
 }
 users ||--o{ audit_records : user_id
-roles ||--o{ user_roles : role_id
 users ||--o{ sessions : user_id
-users ||--o{ access_requests : user_id
-users ||--o| quotas : user_id
 users ||--o{ access_requests : decided_by
+users ||--o| quotas : user_id
+users ||--o{ access_requests : user_id
 users ||--o{ user_roles : user_id
+roles ||--o{ user_roles : role_id
 @enduml

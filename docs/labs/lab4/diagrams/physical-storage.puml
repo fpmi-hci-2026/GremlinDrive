@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 title Files and uploads
 entity "users" as users {
@@ -60,12 +60,12 @@ entity "upload_sessions" as upload_sessions {
   status : varchar(20)
   expires_at : timestamptz
 }
-users ||--o{ upload_sessions : user_id
-folders ||--o{ folders : parent_id
-users ||--o{ files : owner_id
-folders ||--o{ files : folder_id
 files ||--o{ file_versions : file_id
-users ||--o{ file_versions : created_by
-files ||--o{ upload_sessions : file_id
 users ||--o{ folders : owner_id
+folders ||--o{ folders : parent_id
+files ||--o{ upload_sessions : file_id
+folders ||--o{ files : folder_id
+users ||--o{ files : owner_id
+users ||--o{ file_versions : created_by
+users ||--o{ upload_sessions : user_id
 @enduml

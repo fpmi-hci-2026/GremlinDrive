@@ -215,7 +215,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-02",
+        "x-use-case": "UC-07",
         "x-requirements": [
           "FR-02",
           "FR-30"
@@ -224,7 +224,7 @@
           "US-02"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-02; US-02; FR-02,FR-30. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-07; US-02; FR-02,FR-30. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/me/quota": {
@@ -324,7 +324,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-14",
+        "x-use-case": "UC-05",
         "x-requirements": [
           "FR-18"
         ],
@@ -332,7 +332,7 @@
           "US-15"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-14; US-15; FR-18. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-05; US-15; FR-18. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files": {
@@ -509,7 +509,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-06",
+        "x-use-case": "UC-10",
         "x-requirements": [
           "FR-09"
         ],
@@ -517,7 +517,7 @@
           "US-07"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-06; US-07; FR-09. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-10; US-07; FR-09. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}": {
@@ -633,7 +633,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-06",
+        "x-use-case": "UC-10",
         "x-requirements": [
           "FR-08"
         ],
@@ -641,7 +641,7 @@
           "US-06"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-06; US-06; FR-08. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-10; US-06; FR-08. stateful-mock. Все проверки прав выполняет сервер."
       },
       "patch": {
         "tags": [
@@ -768,7 +768,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-04",
+        "x-use-case": "UC-09",
         "x-requirements": [
           "FR-05"
         ],
@@ -776,7 +776,7 @@
           "US-07"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-04; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-09; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
       },
       "delete": {
         "tags": [
@@ -890,7 +890,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-07",
+        "x-use-case": "UC-11",
         "x-requirements": [
           "FR-10"
         ],
@@ -898,7 +898,7 @@
           "US-11"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-07; US-11; FR-10. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-11; US-11; FR-10. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/restorations": {
@@ -1014,7 +1014,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-07",
+        "x-use-case": "UC-11",
         "x-requirements": [
           "FR-10"
         ],
@@ -1022,7 +1022,7 @@
           "US-11"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-07; US-11; FR-10. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-11; US-11; FR-10. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/versions": {
@@ -1152,7 +1152,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-08",
+        "x-use-case": "UC-04",
         "x-requirements": [
           "FR-11"
         ],
@@ -1160,7 +1160,7 @@
           "US-06"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-08; US-06; FR-11. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-04; US-06; FR-11. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/folders": {
@@ -1277,7 +1277,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-04",
+        "x-use-case": "UC-09",
         "x-requirements": [
           "FR-05"
         ],
@@ -1285,7 +1285,7 @@
           "US-07"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-04; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-09; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
       },
       "post": {
         "tags": [
@@ -1398,7 +1398,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-04",
+        "x-use-case": "UC-09",
         "x-requirements": [
           "FR-05"
         ],
@@ -1406,7 +1406,7 @@
           "US-07"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-04; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-09; US-07; FR-05. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/share-links": {
@@ -1525,7 +1525,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-09",
+        "x-use-case": "UC-02",
         "x-requirements": [
           "FR-14"
         ],
@@ -1533,7 +1533,7 @@
           "US-16"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-09; US-16; FR-14. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-02; US-16; FR-14. stateful-mock. Все проверки прав выполняет сервер."
       },
       "post": {
         "tags": [
@@ -1550,7 +1550,7 @@
               "example": {
                 "file_id": "20000000-0000-4000-8000-000000000001",
                 "password": "laboratory123",
-                "expires_in_days": 7,
+                "expires_in_days": 14,
                 "access_level": "download"
               }
             }
@@ -1650,7 +1650,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-09",
+        "x-use-case": "UC-02",
         "x-requirements": [
           "FR-12"
         ],
@@ -1658,7 +1658,7 @@
           "US-03"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-09; US-03; FR-12. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-02; US-03; FR-12. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/share-links/{share_id}": {
@@ -1783,7 +1783,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-09",
+        "x-use-case": "UC-02",
         "x-requirements": [
           "FR-14"
         ],
@@ -1791,7 +1791,7 @@
           "US-16"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-09; US-16; FR-14. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-02; US-16; FR-14. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/public/shares/{token}/access": {
@@ -1949,7 +1949,7 @@
             }
           }
         },
-        "x-use-case": "UC-10",
+        "x-use-case": "UC-12",
         "x-requirements": [
           "FR-13"
         ],
@@ -1957,7 +1957,7 @@
           "US-04"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-10; US-04; FR-13. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-12; US-04; FR-13. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/public/shares/{token}/content": {
@@ -2075,7 +2075,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-10",
+        "x-use-case": "UC-12",
         "x-requirements": [
           "FR-13"
         ],
@@ -2083,7 +2083,7 @@
           "US-04"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-10; US-04; FR-13. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-12; US-04; FR-13. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/access-requests": {
@@ -2201,7 +2201,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-14",
+        "x-use-case": "UC-05",
         "x-requirements": [
           "FR-18"
         ],
@@ -2209,7 +2209,7 @@
           "US-15"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-14; US-15; FR-18. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-05; US-15; FR-18. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/admin/access-requests": {
@@ -2329,7 +2329,7 @@
             "HTTPBearer": []
           }
         ],
-        "x-use-case": "UC-14",
+        "x-use-case": "UC-05",
         "x-requirements": [
           "FR-19"
         ],
@@ -2337,7 +2337,7 @@
           "US-10"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-14; US-10; FR-19. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-05; US-10; FR-19. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/admin/access-requests/{request_id}/decisions": {
@@ -2468,7 +2468,7 @@
             "description": "Превышен лимит попыток"
           }
         },
-        "x-use-case": "UC-14",
+        "x-use-case": "UC-05",
         "x-requirements": [
           "FR-19"
         ],
@@ -2476,7 +2476,7 @@
           "US-10"
         ],
         "x-implementation": "stateful-mock",
-        "description": "UC-14; US-10; FR-19. stateful-mock. Все проверки прав выполняет сервер."
+        "description": "UC-05; US-10; FR-19. stateful-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/admin/users/{user_id}/quota": {
@@ -2879,14 +2879,14 @@
             }
           }
         },
-        "x-use-case": "UC-01",
+        "x-use-case": "UC-06",
         "x-requirements": [
           "FR-01"
         ],
         "x-user-stories": [
           "US-01"
         ],
-        "description": "UC-01; US-01; FR-01. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-06; US-01; FR-01. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/email-confirmations": {
@@ -3003,14 +3003,14 @@
             }
           }
         },
-        "x-use-case": "UC-01",
+        "x-use-case": "UC-06",
         "x-requirements": [
           "FR-01"
         ],
         "x-user-stories": [
           "US-01"
         ],
-        "description": "UC-01; US-01; FR-01. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-06; US-01; FR-01. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/sessions": {
@@ -3135,7 +3135,7 @@
             }
           }
         },
-        "x-use-case": "UC-02",
+        "x-use-case": "UC-07",
         "x-requirements": [
           "FR-02",
           "FR-04"
@@ -3143,7 +3143,7 @@
         "x-user-stories": [
           "US-02"
         ],
-        "description": "UC-02; US-02; FR-02,FR-04. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-07; US-02; FR-02,FR-04. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/sessions/current": {
@@ -3240,14 +3240,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-02",
+        "x-use-case": "UC-07",
         "x-requirements": [
           "FR-02"
         ],
         "x-user-stories": [
           "US-02"
         ],
-        "description": "UC-02; US-02; FR-02. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-07; US-02; FR-02. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/password-resets": {
@@ -3363,14 +3363,14 @@
             }
           }
         },
-        "x-use-case": "UC-02",
+        "x-use-case": "UC-07",
         "x-requirements": [
           "FR-02"
         ],
         "x-user-stories": [
           "US-02"
         ],
-        "description": "UC-02; US-02; FR-02. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-07; US-02; FR-02. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/totp/enrollments": {
@@ -3491,14 +3491,14 @@
             }
           }
         },
-        "x-use-case": "UC-03",
+        "x-use-case": "UC-08",
         "x-requirements": [
           "FR-03"
         ],
         "x-user-stories": [
           "US-12"
         ],
-        "description": "UC-03; US-12; FR-03. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-08; US-12; FR-03. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/auth/totp/verifications": {
@@ -3618,14 +3618,14 @@
             }
           }
         },
-        "x-use-case": "UC-03",
+        "x-use-case": "UC-08",
         "x-requirements": [
           "FR-03"
         ],
         "x-user-stories": [
           "US-12"
         ],
-        "description": "UC-03; US-12; FR-03. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-08; US-12; FR-03. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/uploads": {
@@ -3773,7 +3773,7 @@
             }
           }
         },
-        "x-use-case": "UC-05",
+        "x-use-case": "UC-01",
         "x-requirements": [
           "FR-06",
           "FR-27"
@@ -3781,7 +3781,7 @@
         "x-user-stories": [
           "US-07"
         ],
-        "description": "UC-05; US-07; FR-06,FR-27. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-01; US-07; FR-06,FR-27. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/uploads/{upload_id}": {
@@ -3891,14 +3891,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-05",
+        "x-use-case": "UC-01",
         "x-requirements": [
           "FR-06"
         ],
         "x-user-stories": [
           "US-07"
         ],
-        "description": "UC-05; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-01; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
       },
       "delete": {
         "operationId": "cancelUpload",
@@ -4003,14 +4003,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-05",
+        "x-use-case": "UC-01",
         "x-requirements": [
           "FR-06"
         ],
         "x-user-stories": [
           "US-07"
         ],
-        "description": "UC-05; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-01; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/uploads/{upload_id}/parts/{part_no}": {
@@ -4146,14 +4146,14 @@
             }
           }
         },
-        "x-use-case": "UC-05",
+        "x-use-case": "UC-01",
         "x-requirements": [
           "FR-06"
         ],
         "x-user-stories": [
           "US-07"
         ],
-        "description": "UC-05; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-01; US-07; FR-06. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/uploads/{upload_id}/completions": {
@@ -4295,7 +4295,7 @@
             }
           }
         },
-        "x-use-case": "UC-05",
+        "x-use-case": "UC-01",
         "x-requirements": [
           "FR-06",
           "FR-07"
@@ -4303,7 +4303,7 @@
         "x-user-stories": [
           "US-07"
         ],
-        "description": "UC-05; US-07; FR-06,FR-07. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-01; US-07; FR-06,FR-07. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/content": {
@@ -4408,7 +4408,7 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-06",
+        "x-use-case": "UC-10",
         "x-requirements": [
           "FR-08",
           "FR-26"
@@ -4417,7 +4417,7 @@
           "US-06",
           "US-08"
         ],
-        "description": "UC-06; US-06,US-08; FR-08,FR-26. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-10; US-06,US-08; FR-08,FR-26. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/previews": {
@@ -4530,14 +4530,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-06",
+        "x-use-case": "UC-10",
         "x-requirements": [
           "FR-08"
         ],
         "x-user-stories": [
           "US-06"
         ],
-        "description": "UC-06; US-06; FR-08. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-10; US-06; FR-08. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/version-restorations": {
@@ -4671,14 +4671,14 @@
             }
           }
         },
-        "x-use-case": "UC-08",
+        "x-use-case": "UC-04",
         "x-requirements": [
           "FR-11"
         ],
         "x-user-stories": [
           "US-06"
         ],
-        "description": "UC-08; US-06; FR-11. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-04; US-06; FR-11. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/folders/{folder_id}/invitations": {
@@ -4817,14 +4817,14 @@
             }
           }
         },
-        "x-use-case": "UC-11",
+        "x-use-case": "UC-03",
         "x-requirements": [
           "FR-15"
         ],
         "x-user-stories": [
           "US-05"
         ],
-        "description": "UC-11; US-05; FR-15. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-03; US-05; FR-15. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/invitations/{invitation_id}/acceptances": {
@@ -4955,14 +4955,14 @@
             }
           }
         },
-        "x-use-case": "UC-11",
+        "x-use-case": "UC-03",
         "x-requirements": [
           "FR-15"
         ],
         "x-user-stories": [
           "US-05"
         ],
-        "description": "UC-11; US-05; FR-15. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-03; US-05; FR-15. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/folders/{folder_id}/members": {
@@ -5087,14 +5087,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-12",
+        "x-use-case": "UC-13",
         "x-requirements": [
           "FR-16"
         ],
         "x-user-stories": [
           "US-05"
         ],
-        "description": "UC-12; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-13; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/folders/{folder_id}/members/{user_id}": {
@@ -5236,14 +5236,14 @@
             }
           }
         },
-        "x-use-case": "UC-12",
+        "x-use-case": "UC-13",
         "x-requirements": [
           "FR-16"
         ],
         "x-user-stories": [
           "US-05"
         ],
-        "description": "UC-12; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-13; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
       },
       "delete": {
         "operationId": "removeMember",
@@ -5357,14 +5357,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-12",
+        "x-use-case": "UC-13",
         "x-requirements": [
           "FR-16"
         ],
         "x-user-stories": [
           "US-05"
         ],
-        "description": "UC-12; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-13; US-05; FR-16. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/files/{file_id}/comments": {
@@ -5490,14 +5490,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-13",
+        "x-use-case": "UC-14",
         "x-requirements": [
           "FR-17"
         ],
         "x-user-stories": [
           "US-13"
         ],
-        "description": "UC-13; US-13; FR-17. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-14; US-13; FR-17. contract-mock. Все проверки прав выполняет сервер."
       },
       "post": {
         "operationId": "addComment",
@@ -5629,14 +5629,14 @@
             }
           }
         },
-        "x-use-case": "UC-13",
+        "x-use-case": "UC-14",
         "x-requirements": [
           "FR-17"
         ],
         "x-user-stories": [
           "US-13"
         ],
-        "description": "UC-13; US-13; FR-17. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-14; US-13; FR-17. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/notifications": {
@@ -5752,14 +5752,14 @@
           }
         ],
         "x-implementation": "contract-mock",
-        "x-use-case": "UC-13",
+        "x-use-case": "UC-14",
         "x-requirements": [
           "FR-25"
         ],
         "x-user-stories": [
           "US-13"
         ],
-        "description": "UC-13; US-13; FR-25. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-14; US-13; FR-25. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/notifications/{notification_id}": {
@@ -5891,14 +5891,14 @@
             }
           }
         },
-        "x-use-case": "UC-13",
+        "x-use-case": "UC-14",
         "x-requirements": [
           "FR-25"
         ],
         "x-user-stories": [
           "US-13"
         ],
-        "description": "UC-13; US-13; FR-25. contract-mock. Все проверки прав выполняет сервер."
+        "description": "UC-14; US-13; FR-25. contract-mock. Все проверки прав выполняет сервер."
       }
     },
     "/api/v1/devices": {
@@ -7009,11 +7009,18 @@
             "title": "Password"
           },
           "expires_in_days": {
-            "type": "integer",
-            "maximum": 30.0,
-            "minimum": 1.0,
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 30.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Expires In Days",
-            "default": 7
+            "default": 14
           },
           "access_level": {
             "type": "string",
@@ -7155,7 +7162,11 @@
             "type": "string"
           },
           "expires_at": {
-            "type": "number"
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Unix timestamp; null means no expiry"
           },
           "access_level": {
             "type": "string"
@@ -7184,7 +7195,11 @@
             "type": "string"
           },
           "expires_at": {
-            "type": "number"
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Unix timestamp; null means no expiry"
           },
           "revoked": {
             "type": "integer",

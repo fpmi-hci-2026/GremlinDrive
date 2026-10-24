@@ -1,81 +1,121 @@
 ﻿data_origin,respondent,device,item,title,expected_behavior_matches
 synthetic,S01,desktop,E1,Поиск,1
-synthetic,S01,desktop,E2,Общий доступ,1
-synthetic,S01,desktop,E3,История версий,1
-synthetic,S01,desktop,E4,Восстановление,1
+synthetic,S01,desktop,E2,Общие папки,1
+synthetic,S01,desktop,E3,История версий,0
+synthetic,S01,desktop,E4,Запрос квоты,1
 synthetic,S01,mobile,E1,Поиск,1
-synthetic,S01,mobile,E2,Общий доступ,0
+synthetic,S01,mobile,E2,Общие папки,1
 synthetic,S01,mobile,E3,История версий,1
-synthetic,S01,mobile,E4,Восстановление,1
+synthetic,S01,mobile,E4,Запрос квоты,1
 synthetic,S02,desktop,E1,Поиск,1
-synthetic,S02,desktop,E2,Общий доступ,1
+synthetic,S02,desktop,E2,Общие папки,1
 synthetic,S02,desktop,E3,История версий,1
-synthetic,S02,desktop,E4,Восстановление,1
-synthetic,S02,mobile,E1,Поиск,1
-synthetic,S02,mobile,E2,Общий доступ,1
+synthetic,S02,desktop,E4,Запрос квоты,1
+synthetic,S02,mobile,E1,Поиск,0
+synthetic,S02,mobile,E2,Общие папки,1
 synthetic,S02,mobile,E3,История версий,1
-synthetic,S02,mobile,E4,Восстановление,1
-synthetic,S03,desktop,E1,Поиск,1
-synthetic,S03,desktop,E2,Общий доступ,1
-synthetic,S03,desktop,E3,История версий,1
-synthetic,S03,desktop,E4,Восстановление,1
+synthetic,S02,mobile,E4,Запрос квоты,1
+synthetic,S03,desktop,E1,Поиск,0
+synthetic,S03,desktop,E2,Общие папки,1
+synthetic,S03,desktop,E3,История версий,0
+synthetic,S03,desktop,E4,Запрос квоты,1
 synthetic,S03,mobile,E1,Поиск,1
-synthetic,S03,mobile,E2,Общий доступ,1
+synthetic,S03,mobile,E2,Общие папки,1
 synthetic,S03,mobile,E3,История версий,1
-synthetic,S03,mobile,E4,Восстановление,1
+synthetic,S03,mobile,E4,Запрос квоты,1
 synthetic,S04,desktop,E1,Поиск,1
-synthetic,S04,desktop,E2,Общий доступ,1
-synthetic,S04,desktop,E3,История версий,0
-synthetic,S04,desktop,E4,Восстановление,1
-synthetic,S04,mobile,E1,Поиск,0
-synthetic,S04,mobile,E2,Общий доступ,1
+synthetic,S04,desktop,E2,Общие папки,0
+synthetic,S04,desktop,E3,История версий,1
+synthetic,S04,desktop,E4,Запрос квоты,1
+synthetic,S04,mobile,E1,Поиск,1
+synthetic,S04,mobile,E2,Общие папки,1
 synthetic,S04,mobile,E3,История версий,1
-synthetic,S04,mobile,E4,Восстановление,1
+synthetic,S04,mobile,E4,Запрос квоты,1
 synthetic,S05,desktop,E1,Поиск,1
-synthetic,S05,desktop,E2,Общий доступ,1
+synthetic,S05,desktop,E2,Общие папки,1
 synthetic,S05,desktop,E3,История версий,1
-synthetic,S05,desktop,E4,Восстановление,1
+synthetic,S05,desktop,E4,Запрос квоты,1
 synthetic,S05,mobile,E1,Поиск,1
-synthetic,S05,mobile,E2,Общий доступ,0
-synthetic,S05,mobile,E3,История версий,0
-synthetic,S05,mobile,E4,Восстановление,1
+synthetic,S05,mobile,E2,Общие папки,1
+synthetic,S05,mobile,E3,История версий,1
+synthetic,S05,mobile,E4,Запрос квоты,1
 synthetic,S06,desktop,E1,Поиск,1
-synthetic,S06,desktop,E2,Общий доступ,1
-synthetic,S06,desktop,E3,История версий,1
-synthetic,S06,desktop,E4,Восстановление,1
+synthetic,S06,desktop,E2,Общие папки,1
+synthetic,S06,desktop,E3,История версий,0
+synthetic,S06,desktop,E4,Запрос квоты,0
 synthetic,S06,mobile,E1,Поиск,1
-synthetic,S06,mobile,E2,Общий доступ,1
+synthetic,S06,mobile,E2,Общие папки,1
 synthetic,S06,mobile,E3,История версий,0
-synthetic,S06,mobile,E4,Восстановление,1
+synthetic,S06,mobile,E4,Запрос квоты,1
 synthetic,S07,desktop,E1,Поиск,1
-synthetic,S07,desktop,E2,Общий доступ,1
+synthetic,S07,desktop,E2,Общие папки,1
 synthetic,S07,desktop,E3,История версий,1
-synthetic,S07,desktop,E4,Восстановление,1
+synthetic,S07,desktop,E4,Запрос квоты,1
 synthetic,S07,mobile,E1,Поиск,1
-synthetic,S07,mobile,E2,Общий доступ,1
+synthetic,S07,mobile,E2,Общие папки,0
 synthetic,S07,mobile,E3,История версий,1
-synthetic,S07,mobile,E4,Восстановление,1
+synthetic,S07,mobile,E4,Запрос квоты,1
 synthetic,S08,desktop,E1,Поиск,1
-synthetic,S08,desktop,E2,Общий доступ,0
-synthetic,S08,desktop,E3,История версий,0
-synthetic,S08,desktop,E4,Восстановление,1
+synthetic,S08,desktop,E2,Общие папки,1
+synthetic,S08,desktop,E3,История версий,1
+synthetic,S08,desktop,E4,Запрос квоты,1
 synthetic,S08,mobile,E1,Поиск,1
-synthetic,S08,mobile,E2,Общий доступ,1
-synthetic,S08,mobile,E3,История версий,0
-synthetic,S08,mobile,E4,Восстановление,0
+synthetic,S08,mobile,E2,Общие папки,1
+synthetic,S08,mobile,E3,История версий,1
+synthetic,S08,mobile,E4,Запрос квоты,1
 synthetic,S09,desktop,E1,Поиск,1
-synthetic,S09,desktop,E2,Общий доступ,1
+synthetic,S09,desktop,E2,Общие папки,1
 synthetic,S09,desktop,E3,История версий,1
-synthetic,S09,desktop,E4,Восстановление,1
+synthetic,S09,desktop,E4,Запрос квоты,1
 synthetic,S09,mobile,E1,Поиск,1
-synthetic,S09,mobile,E2,Общий доступ,1
+synthetic,S09,mobile,E2,Общие папки,1
 synthetic,S09,mobile,E3,История версий,1
-synthetic,S09,mobile,E4,Восстановление,1
+synthetic,S09,mobile,E4,Запрос квоты,1
 synthetic,S10,desktop,E1,Поиск,1
-synthetic,S10,desktop,E2,Общий доступ,1
+synthetic,S10,desktop,E2,Общие папки,1
 synthetic,S10,desktop,E3,История версий,0
-synthetic,S10,desktop,E4,Восстановление,1
+synthetic,S10,desktop,E4,Запрос квоты,1
 synthetic,S10,mobile,E1,Поиск,1
-synthetic,S10,mobile,E2,Общий доступ,1
-synthetic,S10,mobile,E3,История версий,1
-synthetic,S10,mobile,E4,Восстановление,1
+synthetic,S10,mobile,E2,Общие папки,1
+synthetic,S10,mobile,E3,История версий,0
+synthetic,S10,mobile,E4,Запрос квоты,1
+synthetic,S11,desktop,E1,Поиск,1
+synthetic,S11,desktop,E2,Общие папки,1
+synthetic,S11,desktop,E3,История версий,1
+synthetic,S11,desktop,E4,Запрос квоты,1
+synthetic,S11,mobile,E1,Поиск,1
+synthetic,S11,mobile,E2,Общие папки,1
+synthetic,S11,mobile,E3,История версий,1
+synthetic,S11,mobile,E4,Запрос квоты,1
+synthetic,S12,desktop,E1,Поиск,1
+synthetic,S12,desktop,E2,Общие папки,1
+synthetic,S12,desktop,E3,История версий,1
+synthetic,S12,desktop,E4,Запрос квоты,1
+synthetic,S12,mobile,E1,Поиск,1
+synthetic,S12,mobile,E2,Общие папки,1
+synthetic,S12,mobile,E3,История версий,0
+synthetic,S12,mobile,E4,Запрос квоты,1
+synthetic,S13,desktop,E1,Поиск,1
+synthetic,S13,desktop,E2,Общие папки,1
+synthetic,S13,desktop,E3,История версий,1
+synthetic,S13,desktop,E4,Запрос квоты,1
+synthetic,S13,mobile,E1,Поиск,1
+synthetic,S13,mobile,E2,Общие папки,1
+synthetic,S13,mobile,E3,История версий,1
+synthetic,S13,mobile,E4,Запрос квоты,1
+synthetic,S14,desktop,E1,Поиск,1
+synthetic,S14,desktop,E2,Общие папки,1
+synthetic,S14,desktop,E3,История версий,1
+synthetic,S14,desktop,E4,Запрос квоты,1
+synthetic,S14,mobile,E1,Поиск,1
+synthetic,S14,mobile,E2,Общие папки,1
+synthetic,S14,mobile,E3,История версий,1
+synthetic,S14,mobile,E4,Запрос квоты,1
+synthetic,S15,desktop,E1,Поиск,0
+synthetic,S15,desktop,E2,Общие папки,1
+synthetic,S15,desktop,E3,История версий,1
+synthetic,S15,desktop,E4,Запрос квоты,1
+synthetic,S15,mobile,E1,Поиск,1
+synthetic,S15,mobile,E2,Общие папки,1
+synthetic,S15,mobile,E3,История версий,1
+synthetic,S15,mobile,E4,Запрос квоты,1

@@ -1,217 +1,3278 @@
-{
-  "runner": "Bruno CLI",
-  "requests": 52,
-  "passed": 52,
-  "statuses": [
-    {
-      "request": "01-health.bru",
-      "status": 200
-    },
-    {
-      "request": "02-getMe.bru",
-      "status": 200
-    },
-    {
-      "request": "03-getQuota.bru",
-      "status": 200
-    },
-    {
-      "request": "04-listFiles.bru",
-      "status": 200
-    },
-    {
-      "request": "05-getFile.bru",
-      "status": 200
-    },
-    {
-      "request": "06-renameFile.bru",
-      "status": 200
-    },
-    {
-      "request": "07-trashFile.bru",
-      "status": 200
-    },
-    {
-      "request": "08-restoreFile.bru",
-      "status": 201
-    },
-    {
-      "request": "09-listVersions.bru",
-      "status": 200
-    },
-    {
-      "request": "10-listFolders.bru",
-      "status": 200
-    },
-    {
-      "request": "11-createFolder.bru",
-      "status": 201
-    },
-    {
-      "request": "12-listShares.bru",
-      "status": 200
-    },
-    {
-      "request": "13-createShare.bru",
-      "status": 201
-    },
-    {
-      "request": "14-revokeShare.bru",
-      "status": 200
-    },
-    {
-      "request": "15-unlockShare.bru",
-      "status": 200
-    },
-    {
-      "request": "16-downloadShare.bru",
-      "status": 200
-    },
-    {
-      "request": "17-createAccessRequest.bru",
-      "status": 201
-    },
-    {
-      "request": "18-listAccessRequests.bru",
-      "status": 200
-    },
-    {
-      "request": "19-decideAccessRequest.bru",
-      "status": 201
-    },
-    {
-      "request": "20-setQuota.bru",
-      "status": 200
-    },
-    {
-      "request": "21-listAuditRecords.bru",
-      "status": 200
-    },
-    {
-      "request": "22-register.bru",
-      "status": 201
-    },
-    {
-      "request": "23-confirmEmail.bru",
-      "status": 201
-    },
-    {
-      "request": "24-login.bru",
-      "status": 201
-    },
-    {
-      "request": "25-logout.bru",
-      "status": 200
-    },
-    {
-      "request": "26-requestPasswordReset.bru",
-      "status": 201
-    },
-    {
-      "request": "27-enrollTotp.bru",
-      "status": 201
-    },
-    {
-      "request": "28-verifyTotp.bru",
-      "status": 201
-    },
-    {
-      "request": "29-startUpload.bru",
-      "status": 201
-    },
-    {
-      "request": "30-getUpload.bru",
-      "status": 200
-    },
-    {
-      "request": "31-cancelUpload.bru",
-      "status": 200
-    },
-    {
-      "request": "32-uploadPart.bru",
-      "status": 200
-    },
-    {
-      "request": "33-completeUpload.bru",
-      "status": 201
-    },
-    {
-      "request": "34-downloadFile.bru",
-      "status": 200
-    },
-    {
-      "request": "35-previewFile.bru",
-      "status": 200
-    },
-    {
-      "request": "36-restoreVersion.bru",
-      "status": 201
-    },
-    {
-      "request": "37-inviteMember.bru",
-      "status": 201
-    },
-    {
-      "request": "38-acceptInvitation.bru",
-      "status": 201
-    },
-    {
-      "request": "39-listMembers.bru",
-      "status": 200
-    },
-    {
-      "request": "40-setMemberRole.bru",
-      "status": 200
-    },
-    {
-      "request": "41-removeMember.bru",
-      "status": 200
-    },
-    {
-      "request": "42-listComments.bru",
-      "status": 200
-    },
-    {
-      "request": "43-addComment.bru",
-      "status": 201
-    },
-    {
-      "request": "44-listNotifications.bru",
-      "status": 200
-    },
-    {
-      "request": "45-readNotification.bru",
-      "status": 200
-    },
-    {
-      "request": "46-registerDevice.bru",
-      "status": 201
-    },
-    {
-      "request": "47-syncChanges.bru",
-      "status": 200
-    },
-    {
-      "request": "48-listUsers.bru",
-      "status": 200
-    },
-    {
-      "request": "49-setUserStatus.bru",
-      "status": 200
-    },
-    {
-      "request": "50-setUserRoles.bru",
-      "status": 200
-    },
-    {
-      "request": "51-syncDirectory.bru",
-      "status": 201
-    },
-    {
-      "request": "52-createReport.bru",
-      "status": 201
+[
+  {
+    "iterationIndex": 0,
+    "results": [
+      {
+        "test": {
+          "filename": "01-health.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/health",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "33",
+            "date": "Sat, 24 Oct 2026 08:49:46 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "ok",
+            "mode": "lab-mock"
+          },
+          "url": "http://127.0.0.1/health",
+          "responseTime": 36,
+          "duration": 36,
+          "size": 33
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "WUu08P763J2RjhY15NBpI"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.29529925,
+        "name": "health",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/01-health",
+        "path": "01-health",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "02-getMe.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/me",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "79",
+            "date": "Sat, 24 Oct 2026 08:49:46 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "name": "Артём",
+            "role": "user"
+          },
+          "url": "http://127.0.0.1/api/v1/me",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 79
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "DiV_Ba1AX1m2D78F8l0DZ"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.100782167,
+        "name": "getMe",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/02-getMe",
+        "path": "02-getMe",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "03-getQuota.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/me/quota",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "92",
+            "date": "Sat, 24 Oct 2026 08:49:46 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "user_id": "00000000-0000-4000-8000-000000000001",
+            "used_bytes": 64,
+            "total_bytes": 16106127360
+          },
+          "url": "http://127.0.0.1/api/v1/me/quota",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 92
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "jqvW4qvnbFFkq6SP5gTFI"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097686167,
+        "name": "getQuota",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/03-getQuota",
+        "path": "03-getQuota",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "04-listFiles.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "252",
+            "date": "Sat, 24 Oct 2026 08:49:46 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "20000000-0000-4000-8000-000000000001",
+                "owner_id": "00000000-0000-4000-8000-000000000001",
+                "folder_id": "10000000-0000-4000-8000-000000000001",
+                "name": "Лабораторная.txt",
+                "size_bytes": 64,
+                "status": "active",
+                "version": 1
+              }
+            ],
+            "total": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files",
+          "responseTime": 15,
+          "duration": 15,
+          "size": 252
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "UzdoiTYos7oM8dFMidi-n"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.096642875,
+        "name": "listFiles",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/04-listFiles",
+        "path": "04-listFiles",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "05-getFile.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "responseTime": 20,
+          "duration": 20,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "OZj-Humm-q0elqOIXXBgu"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.102772208,
+        "name": "getFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/05-getFile",
+        "path": "05-getFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "06-renameFile.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "30",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"name\": \"Отчёт.txt\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "D3TifSy5N-RCN4uMl5hdx"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099213875,
+        "name": "renameFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/06-renameFile",
+        "path": "06-renameFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "07-trashFile.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001",
+          "responseTime": 21,
+          "duration": 21,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "PRHoi8l83zWeUkwBphNiu"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.102546667,
+        "name": "trashFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/07-trashFile",
+        "path": "07-trashFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "08-restoreFile.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/restorations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Content-Length": "0",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/restorations",
+          "responseTime": 15,
+          "duration": 15,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "HMx55ecsjeGN1ciuGVckl"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097999834,
+        "name": "restoreFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/08-restoreFile",
+        "path": "08-restoreFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "09-listVersions.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/versions",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "175",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "20000000-0000-4000-8000-000000000001",
+                "file_id": "20000000-0000-4000-8000-000000000001",
+                "version_no": 1,
+                "name": "Лабораторная.txt",
+                "size_bytes": 64
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/versions",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 175
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "JL9tqezQ1pVAbu4r5-vQ6"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101115875,
+        "name": "listVersions",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/09-listVersions",
+        "path": "09-listVersions",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "10-listFolders.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/folders",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "144",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "10000000-0000-4000-8000-000000000001",
+                "owner_id": "00000000-0000-4000-8000-000000000001",
+                "parent_id": null,
+                "name": "Учёба"
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/folders",
+          "responseTime": 23,
+          "duration": 23,
+          "size": 144
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "5eBd06XvnPmVEh0Xg4Tu0"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.10545625,
+        "name": "listFolders",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/10-listFolders",
+        "path": "10-listFolders",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "11-createFolder.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/folders",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "83",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"name\": \"Отчёты\",\n  \"parent_id\": \"10000000-0000-4000-8000-000000000001\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "132",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "10000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "parent_id": null,
+            "name": "Учёба"
+          },
+          "url": "http://127.0.0.1/api/v1/folders",
+          "responseTime": 22,
+          "duration": 22,
+          "size": 132
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "MN2GG-EmOkdDmWJuJCoLd"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.103663625,
+        "name": "createFolder",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/11-createFolder",
+        "path": "11-createFolder",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "12-listShares.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/share-links",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "182",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "30000000-0000-4000-8000-000000000001",
+                "file_id": "20000000-0000-4000-8000-000000000001",
+                "access_level": "download",
+                "expires_at": 1793404800,
+                "revoked": 0,
+                "downloads": 0
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/share-links",
+          "responseTime": 20,
+          "duration": 20,
+          "size": 182
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "w85VvGNziuhhfE0scnAGW"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101590333,
+        "name": "listShares",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/12-listShares",
+        "path": "12-listShares",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "13-createShare.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/share-links",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "141",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"file_id\": \"20000000-0000-4000-8000-000000000001\",\n  \"password\": \"laboratory123\",\n  \"expires_in_days\": 14,\n  \"access_level\": \"download\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "223",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "30000000-0000-4000-8000-000000000001",
+            "file_id": "20000000-0000-4000-8000-000000000001",
+            "token": "demo-public-link-token",
+            "url": "/public/shares/demo-public-link-token",
+            "expires_at": 1793404800,
+            "access_level": "download"
+          },
+          "url": "http://127.0.0.1/api/v1/share-links",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 223
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "jTi6RYLeKO11sqx_ioDZb"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.087149459,
+        "name": "createShare",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/13-createShare",
+        "path": "13-createShare",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "14-revokeShare.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://127.0.0.1:4010/api/v1/share-links/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "60",
+            "date": "Sat, 24 Oct 2026 08:49:47 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "30000000-0000-4000-8000-000000000001",
+            "revoked": true
+          },
+          "url": "http://127.0.0.1/api/v1/share-links/20000000-0000-4000-8000-000000000001",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 60
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "cswRiegDsI3IrQS5LGIi7"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.091044292,
+        "name": "revokeShare",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/14-revokeShare",
+        "path": "14-revokeShare",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "15-unlockShare.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/public/shares/demo-public-link-token/access",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "33",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"password\": \"laboratory123\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "299",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "access_token": "demo-guest-grant",
+            "file": {
+              "id": "20000000-0000-4000-8000-000000000001",
+              "owner_id": "00000000-0000-4000-8000-000000000001",
+              "folder_id": "10000000-0000-4000-8000-000000000001",
+              "name": "Лабораторная.txt",
+              "size_bytes": 64,
+              "status": "active",
+              "version": 1
+            },
+            "access_level": "download"
+          },
+          "url": "http://127.0.0.1/api/v1/public/shares/demo-public-link-token/access",
+          "responseTime": 31,
+          "duration": 31,
+          "size": 299
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "MtpjS5XXnFNT4qxGuJbAU"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.112439583,
+        "name": "unlockShare",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/15-unlockShare",
+        "path": "15-unlockShare",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "16-downloadShare.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/public/shares/demo-public-link-token/content",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "text/plain",
+            "content-length": "34",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": "GremlinDrive laboratory mock file\n",
+          "url": "http://127.0.0.1/api/v1/public/shares/demo-public-link-token/content",
+          "responseTime": 20,
+          "duration": 20,
+          "size": 34
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "FLs_0X_Rn_P32u8Ly2ltH"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101841167,
+        "name": "downloadShare",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/16-downloadShare",
+        "path": "16-downloadShare",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "17-createAccessRequest.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/access-requests",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "116",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"reason\": \"Нужно место для учебных материалов\",\n  \"requested_bytes\": 21474836480\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "237",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "40000000-0000-4000-8000-000000000001",
+            "user_id": "00000000-0000-4000-8000-000000000001",
+            "reason": "Нужно место для материалов",
+            "requested_bytes": 21474836480,
+            "status": "pending",
+            "decided_by": null,
+            "comment": null
+          },
+          "url": "http://127.0.0.1/api/v1/access-requests",
+          "responseTime": 18,
+          "duration": 18,
+          "size": 237
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "mEj_hGifovE0x-wK1XFdw"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099316917,
+        "name": "createAccessRequest",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/17-createAccessRequest",
+        "path": "17-createAccessRequest",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "18-listAccessRequests.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/admin/access-requests",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "249",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "40000000-0000-4000-8000-000000000001",
+                "user_id": "00000000-0000-4000-8000-000000000001",
+                "reason": "Нужно место для материалов",
+                "requested_bytes": 21474836480,
+                "status": "pending",
+                "decided_by": null,
+                "comment": null
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/admin/access-requests",
+          "responseTime": 23,
+          "duration": 23,
+          "size": 249
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "10YBvzdizhsvD3irBZLbi"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.104885166,
+        "name": "listAccessRequests",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/18-listAccessRequests",
+        "path": "18-listAccessRequests",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "19-decideAccessRequest.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/admin/access-requests/20000000-0000-4000-8000-000000000001/decisions",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "89",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"status\": \"approved\",\n  \"comment\": \"Одобрено\",\n  \"total_bytes\": 21474836480\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "237",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "40000000-0000-4000-8000-000000000001",
+            "user_id": "00000000-0000-4000-8000-000000000001",
+            "reason": "Нужно место для материалов",
+            "requested_bytes": 21474836480,
+            "status": "pending",
+            "decided_by": null,
+            "comment": null
+          },
+          "url": "http://127.0.0.1/api/v1/admin/access-requests/20000000-0000-4000-8000-000000000001/decisions",
+          "responseTime": 21,
+          "duration": 21,
+          "size": 237
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "sU5BLXpusar7-7iP0Ozoj"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.100993833,
+        "name": "decideAccessRequest",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/19-decideAccessRequest",
+        "path": "19-decideAccessRequest",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "20-setQuota.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://127.0.0.1:4010/api/v1/admin/users/00000000-0000-4000-8000-000000000001/quota",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "32",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"total_bytes\": 21474836480\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "92",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "user_id": "00000000-0000-4000-8000-000000000001",
+            "used_bytes": 64,
+            "total_bytes": 16106127360
+          },
+          "url": "http://127.0.0.1/api/v1/admin/users/00000000-0000-4000-8000-000000000001/quota",
+          "responseTime": 7,
+          "duration": 7,
+          "size": 92
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "5gBawwCjvir5XsXMsOBgJ"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.088476416,
+        "name": "setQuota",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/20-setQuota",
+        "path": "20-setQuota",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "21-listAuditRecords.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/admin/audit-records",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "172",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": 1,
+                "user_id": "00000000-0000-4000-8000-000000000001",
+                "action": "ShareLinkCreated",
+                "entity_id": "20000000-0000-4000-8000-000000000001",
+                "created_at": 1792785600
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/admin/audit-records",
+          "responseTime": 17,
+          "duration": 17,
+          "size": 172
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "VunEbYvFLtsOIEIPdLIYR"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.0984125,
+        "name": "listAuditRecords",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/21-listAuditRecords",
+        "path": "21-listAuditRecords",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "22-register.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/registrations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "92",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"name\": \"Артём\",\n  \"email\": \"student@example.test\",\n  \"password\": \"laboratory123\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/registrations",
+          "responseTime": 21,
+          "duration": 21,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "SCD_YCZONaO9yDnbR3dBM"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101291083,
+        "name": "register",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/22-register",
+        "path": "22-register",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "23-confirmEmail.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/email-confirmations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "34",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"token\": \"demo-confirmation\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/email-confirmations",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "08xJ6Uv37NxMI_DP_mMcM"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099223,
+        "name": "confirmEmail",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/23-confirmEmail",
+        "path": "23-confirmEmail",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "24-login.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/sessions",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "68",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"email\": \"student@example.test\",\n  \"password\": \"laboratory123\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "74",
+            "date": "Sat, 24 Oct 2026 08:49:48 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "access_token": "lab-owner-token",
+            "token_type": "Bearer",
+            "expires_in": 1800
+          },
+          "url": "http://127.0.0.1/api/v1/auth/sessions",
+          "responseTime": 23,
+          "duration": 23,
+          "size": 74
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "6xBOoGhQvEq_UjmbYfzfN"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.102842916,
+        "name": "login",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/24-login",
+        "path": "24-login",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "25-logout.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://127.0.0.1:4010/api/v1/auth/sessions/current",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/sessions/current",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "tQoyn_3605z1QqMLUs2H5"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099552458,
+        "name": "logout",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/25-logout",
+        "path": "25-logout",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "26-requestPasswordReset.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/password-resets",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "37",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"email\": \"student@example.test\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/password-resets",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "bF2nSO7fO69hh1AjMkqFL"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.098408167,
+        "name": "requestPasswordReset",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/26-requestPasswordReset",
+        "path": "26-requestPasswordReset",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "27-enrollTotp.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/totp/enrollments",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "33",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"password\": \"laboratory123\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/totp/enrollments",
+          "responseTime": 20,
+          "duration": 20,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "YbunjFLeR2CS9sT3K2ryN"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.100798916,
+        "name": "enrollTotp",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/27-enrollTotp",
+        "path": "27-enrollTotp",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "28-verifyTotp.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/auth/totp/verifications",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "22",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"code\": \"123456\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/auth/totp/verifications",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "dI2uj0VIHhkpwMZwEheAi"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.1007225,
+        "name": "verifyTotp",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/28-verifyTotp",
+        "path": "28-verifyTotp",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "29-startUpload.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/uploads",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "174",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"folder_id\": \"10000000-0000-4000-8000-000000000001\",\n  \"name\": \"Материалы.txt\",\n  \"size_bytes\": 64,\n  \"idempotency_key\": \"20000000-0000-4000-8000-000000000001\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "103",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "received_bytes": 0,
+            "expected_bytes": 64,
+            "status": "pending"
+          },
+          "url": "http://127.0.0.1/api/v1/uploads",
+          "responseTime": 18,
+          "duration": 18,
+          "size": 103
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "noqIkc-F8d54cQ1azHNGF"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099096792,
+        "name": "startUpload",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/29-startUpload",
+        "path": "29-startUpload",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "30-getUpload.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/uploads/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "103",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "received_bytes": 0,
+            "expected_bytes": 64,
+            "status": "pending"
+          },
+          "url": "http://127.0.0.1/api/v1/uploads/20000000-0000-4000-8000-000000000001",
+          "responseTime": 17,
+          "duration": 17,
+          "size": 103
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "_z1qaSlAXQqb2NnWjvgsb"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099200625,
+        "name": "getUpload",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/30-getUpload",
+        "path": "30-getUpload",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "31-cancelUpload.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://127.0.0.1:4010/api/v1/uploads/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/uploads/20000000-0000-4000-8000-000000000001",
+          "responseTime": 17,
+          "duration": 17,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "XXpnQjbZVL22hkXyVGEbO"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097497583,
+        "name": "cancelUpload",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/31-cancelUpload",
+        "path": "31-cancelUpload",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "32-uploadPart.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://127.0.0.1:4010/api/v1/uploads/20000000-0000-4000-8000-000000000001/parts/1",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "8",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Content-Type": "application/octet-stream",
+            "Authorization": "Bearer ********"
+          },
+          "data": "lab data"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "103",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "received_bytes": 0,
+            "expected_bytes": 64,
+            "status": "pending"
+          },
+          "url": "http://127.0.0.1/api/v1/uploads/20000000-0000-4000-8000-000000000001/parts/1",
+          "responseTime": 17,
+          "duration": 17,
+          "size": 103
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "nIz8CUC3Cp54_gJxOh-w6"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099330833,
+        "name": "uploadPart",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/32-uploadPart",
+        "path": "32-uploadPart",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "33-completeUpload.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/uploads/20000000-0000-4000-8000-000000000001/completions",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "84",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"checksum\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/uploads/20000000-0000-4000-8000-000000000001/completions",
+          "responseTime": 14,
+          "duration": 14,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "QaeT-Wl2CxN72acxMrJgE"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.094360917,
+        "name": "completeUpload",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/33-completeUpload",
+        "path": "33-completeUpload",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "34-downloadFile.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/content",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "text/plain",
+            "content-length": "34",
+            "date": "Sat, 24 Oct 2026 08:49:49 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": "GremlinDrive laboratory mock file\n",
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/content",
+          "responseTime": 22,
+          "duration": 22,
+          "size": 34
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "YWlfvzG1npnp7jZHMHl8y"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.10266925,
+        "name": "downloadFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/34-downloadFile",
+        "path": "34-downloadFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "35-previewFile.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/previews",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "230",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "owner_id": "00000000-0000-4000-8000-000000000001",
+            "folder_id": "10000000-0000-4000-8000-000000000001",
+            "name": "Лабораторная.txt",
+            "size_bytes": 64,
+            "status": "active",
+            "version": 1
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/previews",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 230
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "3R1s3QXqzXuoadhxEQvyL"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097978292,
+        "name": "previewFile",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/35-previewFile",
+        "path": "35-previewFile",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "36-restoreVersion.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/version-restorations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "58",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"version_id\": \"20000000-0000-4000-8000-000000000001\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "163",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "file_id": "20000000-0000-4000-8000-000000000001",
+            "version_no": 1,
+            "name": "Лабораторная.txt",
+            "size_bytes": 64
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/version-restorations",
+          "responseTime": 20,
+          "duration": 20,
+          "size": 163
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "T4A8jSBFiAtx9WsMa4fAn"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101023666,
+        "name": "restoreVersion",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/36-restoreVersion",
+        "path": "36-restoreVersion",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "37-inviteMember.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/folders/10000000-0000-4000-8000-000000000001/invitations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "53",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"email\": \"team@example.test\",\n  \"level\": \"view\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/folders/10000000-0000-4000-8000-000000000001/invitations",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "1l3IcGNx65PpxG6na98GI"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099601541,
+        "name": "inviteMember",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/37-inviteMember",
+        "path": "37-inviteMember",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "38-acceptInvitation.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/invitations/20000000-0000-4000-8000-000000000001/acceptances",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "32",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"token\": \"demo-invitation\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/invitations/20000000-0000-4000-8000-000000000001/acceptances",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "X9GEsBKxWpoZmTfWRm3HB"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097791916,
+        "name": "acceptInvitation",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/38-acceptInvitation",
+        "path": "38-acceptInvitation",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "39-listMembers.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/folders/10000000-0000-4000-8000-000000000001/members",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "91",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "00000000-0000-4000-8000-000000000001",
+                "name": "Артём",
+                "role": "user"
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/folders/10000000-0000-4000-8000-000000000001/members",
+          "responseTime": 15,
+          "duration": 15,
+          "size": 91
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "aaZdKzImE7yakq52Q6zBU"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.096017041,
+        "name": "listMembers",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/39-listMembers",
+        "path": "39-listMembers",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "40-setMemberRole.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://127.0.0.1:4010/api/v1/folders/10000000-0000-4000-8000-000000000001/members/00000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "20",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"role\": \"edit\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/folders/10000000-0000-4000-8000-000000000001/members/00000000-0000-4000-8000-000000000001",
+          "responseTime": 13,
+          "duration": 13,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "DBq1HL6tlEyrav3-u6t0F"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.095254291,
+        "name": "setMemberRole",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/40-setMemberRole",
+        "path": "40-setMemberRole",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "41-removeMember.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "http://127.0.0.1:4010/api/v1/folders/10000000-0000-4000-8000-000000000001/members/00000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/folders/10000000-0000-4000-8000-000000000001/members/00000000-0000-4000-8000-000000000001",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "QE4PymSIa3SmDhywApa9l"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.101258958,
+        "name": "removeMember",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/41-removeMember",
+        "path": "41-removeMember",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "42-listComments.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/comments",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "179",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "20000000-0000-4000-8000-000000000001",
+                "file_id": "20000000-0000-4000-8000-000000000001",
+                "author_id": "00000000-0000-4000-8000-000000000001",
+                "text": "Готово"
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/comments",
+          "responseTime": 13,
+          "duration": 13,
+          "size": 179
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "mlSz2vkY5Rc7ykAGf7g4W"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.09176175,
+        "name": "listComments",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/42-listComments",
+        "path": "42-listComments",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "43-addComment.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/files/20000000-0000-4000-8000-000000000001/comments",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "48",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"text\": \"Готово к проверке\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "167",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "file_id": "20000000-0000-4000-8000-000000000001",
+            "author_id": "00000000-0000-4000-8000-000000000001",
+            "text": "Готово"
+          },
+          "url": "http://127.0.0.1/api/v1/files/20000000-0000-4000-8000-000000000001/comments",
+          "responseTime": 24,
+          "duration": 24,
+          "size": 167
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "zp08O5GOQUm1TEcYEt0N1"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.105586459,
+        "name": "addComment",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/43-addComment",
+        "path": "43-addComment",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "44-listNotifications.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/notifications",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "131",
+            "date": "Sat, 24 Oct 2026 08:49:50 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "20000000-0000-4000-8000-000000000001",
+                "type": "file_uploaded",
+                "text": "Файл загружен",
+                "is_read": false
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/notifications",
+          "responseTime": 10,
+          "duration": 10,
+          "size": 131
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "HNtNtWTFmF8Dda6-EzEnd"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.090438083,
+        "name": "listNotifications",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/44-listNotifications",
+        "path": "44-listNotifications",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "45-readNotification.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "http://127.0.0.1:4010/api/v1/notifications/20000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "21",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"is_read\": true\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "119",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "id": "20000000-0000-4000-8000-000000000001",
+            "type": "file_uploaded",
+            "text": "Файл загружен",
+            "is_read": false
+          },
+          "url": "http://127.0.0.1/api/v1/notifications/20000000-0000-4000-8000-000000000001",
+          "responseTime": 13,
+          "duration": 13,
+          "size": 119
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "W5dSkKIi38NELtHqBcr0_"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.092876375,
+        "name": "readNotification",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/45-readNotification",
+        "path": "45-readNotification",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "46-registerDevice.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/devices",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "62",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"platform\": \"android\",\n  \"push_token\": \"demo-push-token\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/devices",
+          "responseTime": 19,
+          "duration": 19,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "abiDz33cuWgJ2hyG63SBK"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.099094291,
+        "name": "registerDevice",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/46-registerDevice",
+        "path": "46-registerDevice",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "47-syncChanges.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/sync/changes",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "242",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "20000000-0000-4000-8000-000000000001",
+                "owner_id": "00000000-0000-4000-8000-000000000001",
+                "folder_id": "10000000-0000-4000-8000-000000000001",
+                "name": "Лабораторная.txt",
+                "size_bytes": 64,
+                "status": "active",
+                "version": 1
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/sync/changes",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 242
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "ODea8sdPjhEPkkfYTQYOE"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.096228333,
+        "name": "syncChanges",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/47-syncChanges",
+        "path": "47-syncChanges",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "48-listUsers.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "http://127.0.0.1:4010/api/v1/admin/users",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": null
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "91",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "items": [
+              {
+                "id": "00000000-0000-4000-8000-000000000001",
+                "name": "Артём",
+                "role": "user"
+              }
+            ]
+          },
+          "url": "http://127.0.0.1/api/v1/admin/users",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 91
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "RVsya7eELyQtsBMXwSFcq"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.096500917,
+        "name": "listUsers",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/48-listUsers",
+        "path": "48-listUsers",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "49-setUserStatus.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "http://127.0.0.1:4010/api/v1/admin/users/00000000-0000-4000-8000-000000000001",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "25",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"status\": \"blocked\"\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/admin/users/00000000-0000-4000-8000-000000000001",
+          "responseTime": 15,
+          "duration": 15,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "dnFNgZ3U_goE7vHesT3Gk"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.09625325,
+        "name": "setUserStatus",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/49-setUserStatus",
+        "path": "49-setUserStatus",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "50-setUserRoles.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "http://127.0.0.1:4010/api/v1/admin/users/00000000-0000-4000-8000-000000000001/roles",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "31",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"roles\": [\n    \"user\"\n  ]\n}"
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/admin/users/00000000-0000-4000-8000-000000000001/roles",
+          "responseTime": 18,
+          "duration": 18,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "VrSBl8_-yu1gNLOyoeDF1"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.097734042,
+        "name": "setUserRoles",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/50-setUserRoles",
+        "path": "50-setUserRoles",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "51-syncDirectory.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/admin/ldap-synchronizations",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "21",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"dry_run\": true\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/admin/ldap-synchronizations",
+          "responseTime": 6,
+          "duration": 6,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "-CzdCOC-R1PiMDJhnLY6a"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.085514167,
+        "name": "syncDirectory",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/51-syncDirectory",
+        "path": "51-syncDirectory",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "52-createReport.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "http://127.0.0.1:4010/api/v1/admin/reports",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "User-Agent": "bruno-runtime/4.3.0",
+            "Content-Length": "40",
+            "Accept-Encoding": "gzip, compress, deflate, br",
+            "Host": "127.0.0.1:4010",
+            "Connection": "keep-alive",
+            "Authorization": "Bearer ********",
+            "content-type": "application/json"
+          },
+          "data": "{\n  \"format\": \"csv\",\n  \"type\": \"users\"\n}"
+        },
+        "response": {
+          "status": 201,
+          "statusText": "Created",
+          "headers": {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "*",
+            "access-control-allow-credentials": "true",
+            "access-control-expose-headers": "*",
+            "content-type": "application/json",
+            "content-length": "21",
+            "date": "Sat, 24 Oct 2026 08:49:51 GMT",
+            "connection": "keep-alive",
+            "keep-alive": "timeout=5"
+          },
+          "data": {
+            "status": "accepted"
+          },
+          "url": "http://127.0.0.1/api/v1/admin/reports",
+          "responseTime": 16,
+          "duration": 16,
+          "size": 21
+        },
+        "error": null,
+        "status": "pass",
+        "assertionResults": [],
+        "testResults": [
+          {
+            "description": "Success response",
+            "status": "pass",
+            "uid": "Zif9jRXF8m0eAZVg2q-D7"
+          }
+        ],
+        "preRequestTestResults": [],
+        "postResponseTestResults": [],
+        "shouldStopRunnerExecution": false,
+        "runDuration": 0.096348708,
+        "name": "createReport",
+        "suitename": "/Users/alex/BSU/hci-10-project-group-4/docs/labs/lab4/bruno/52-createReport",
+        "path": "52-createReport",
+        "iterationIndex": 0
+      }
+    ],
+    "summary": {
+      "totalRequests": 52,
+      "passedRequests": 52,
+      "failedRequests": 0,
+      "errorRequests": 0,
+      "skippedRequests": 0,
+      "skippedByBail": 0,
+      "totalAssertions": 0,
+      "passedAssertions": 0,
+      "failedAssertions": 0,
+      "totalTests": 52,
+      "passedTests": 52,
+      "failedTests": 0,
+      "totalPreRequestTests": 0,
+      "passedPreRequestTests": 0,
+      "failedPreRequestTests": 0,
+      "totalPostResponseTests": 0,
+      "passedPostResponseTests": 0,
+      "failedPostResponseTests": 0
     }
-  ],
-  "tests": 52,
-  "tests_passed": 52
-}
+  }
+]

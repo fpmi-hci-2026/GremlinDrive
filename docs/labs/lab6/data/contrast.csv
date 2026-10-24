@@ -1,6 +1,8 @@
-﻿foreground,background,usage,ratio,passes_4_5
-#202c40,#ffffff,Основной текст,14.04,True
-#68768b,#ffffff,Вторичный текст,4.613,True
-#ffffff,#345fd1,Кнопка Blue,5.67,True
-#202c40,#f6f8fc,Текст на фоне,13.205,True
-#345fd1,#edf2ff,Активная навигация,5.062,True
+﻿foreground,background,usage,ratio,passes_4_5,required_selected_pair
+#17251f,#ffffff,Основной текст,15.899,True,True
+#5d6f66,#ffffff,Вторичный текст,5.342,True,True
+#ffffff,#1f7a4b,Кнопка выбранного варианта,5.325,True,True
+#17251f,#f6f8f7,Текст на фоне,14.906,True,True
+#1f7a4b,#eaf4ee,Активная навигация,4.735,True,True
+#003c82,#ffffff,Ссылка,10.667,True,True
+#ffffff,#2e9e62,Исходный brand с белым текстом,3.396,False,False

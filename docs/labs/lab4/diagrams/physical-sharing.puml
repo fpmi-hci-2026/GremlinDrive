@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 title Sharing and collaboration
 entity "files" as files {
@@ -84,13 +84,13 @@ entity "notifications" as notifications {
   is_read : boolean
   created_at : timestamptz
 }
-files ||--o{ comments : file_id
-files ||--o{ share_links : file_id
 folders ||--o{ share_links : folder_id
-folders ||--o{ invitations : folder_id
 folders ||--o{ folders : parent_id
-files ||--o{ access_permissions : file_id
-folders ||--o{ access_permissions : folder_id
 folders ||--o{ files : folder_id
+files ||--o{ access_permissions : file_id
 folders ||--o{ folder_members : folder_id
+files ||--o{ comments : file_id
+folders ||--o{ access_permissions : folder_id
+folders ||--o{ invitations : folder_id
+files ||--o{ share_links : file_id
 @enduml

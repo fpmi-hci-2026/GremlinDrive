@@ -1,79 +1,101 @@
 [
   {
-    "screen": "web1440",
+    "device": "desktop",
     "width": 1440,
+    "height": 900,
     "scrollWidth": 1440,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "web1100",
+    "device": "desktop",
     "width": 1100,
+    "height": 900,
     "scrollWidth": 1100,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "web900",
+    "device": "desktop",
     "width": 900,
+    "height": 900,
     "scrollWidth": 900,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "web650",
+    "device": "desktop",
     "width": 650,
+    "height": 900,
     "scrollWidth": 650,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "web480",
+    "device": "desktop",
     "width": 480,
+    "height": 900,
     "scrollWidth": 480,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "web360",
+    "device": "desktop",
     "width": 360,
+    "height": 900,
     "scrollWidth": 360,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "mobile360",
-    "width": 360,
-    "scrollWidth": 360,
+    "device": "mobile",
+    "width": 375,
+    "height": 670,
+    "scrollWidth": 375,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "mobile390",
+    "device": "mobile",
     "width": 390,
+    "height": 844,
     "scrollWidth": 390,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "mobile412",
+    "device": "mobile",
     "width": 412,
+    "height": 915,
     "scrollWidth": 412,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "tablet768",
+    "device": "mobile",
     "width": 768,
+    "height": 1024,
     "scrollWidth": 768,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   },
   {
-    "screen": "tablet1024",
+    "device": "mobile",
     "width": 1024,
+    "height": 1366,
     "scrollWidth": 1024,
     "minActionWidth": 44,
-    "minActionHeight": 44
+    "minActionHeight": 44,
+    "method": "native_IAB_viewport"
   }
 ]

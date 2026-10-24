@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 title GremlinDrive logical data model
 entity "users" as users {
@@ -161,32 +161,32 @@ entity "upload_sessions" as upload_sessions {
   status
   expires_at
 }
-files ||--o{ comments : file_id
-files ||--o{ share_links : file_id
+files ||--o{ file_versions : file_id
 users ||--o{ audit_records : user_id
 folders ||--o{ share_links : folder_id
-folders ||--o{ invitations : folder_id
-roles ||--o{ user_roles : role_id
-users ||--o{ folder_members : user_id
-users ||--o{ upload_sessions : user_id
+users ||--o{ folders : owner_id
 folders ||--o{ folders : parent_id
 users ||--o{ notifications : user_id
-users ||--o{ files : owner_id
 users ||--o{ comments : author_id
-users ||--o{ invitations : invited_by
-files ||--o{ access_permissions : file_id
-users ||--o{ sessions : user_id
-folders ||--o{ access_permissions : folder_id
-folders ||--o{ files : folder_id
-files ||--o{ file_versions : file_id
-users ||--o{ file_versions : created_by
-users ||--o{ access_requests : user_id
 files ||--o{ upload_sessions : file_id
-users ||--o| quotas : user_id
-users ||--o{ access_requests : decided_by
-folders ||--o{ folder_members : folder_id
-users ||--o{ folders : owner_id
-users ||--o{ access_permissions : user_id
-users ||--o{ user_roles : user_id
+folders ||--o{ files : folder_id
+users ||--o{ sessions : user_id
 users ||--o{ share_links : created_by
+files ||--o{ access_permissions : file_id
+folders ||--o{ folder_members : folder_id
+users ||--o{ folder_members : user_id
+users ||--o{ access_requests : decided_by
+users ||--o{ files : owner_id
+files ||--o{ comments : file_id
+users ||--o| quotas : user_id
+folders ||--o{ access_permissions : folder_id
+users ||--o{ file_versions : created_by
+folders ||--o{ invitations : folder_id
+users ||--o{ access_permissions : user_id
+users ||--o{ access_requests : user_id
+users ||--o{ user_roles : user_id
+roles ||--o{ user_roles : role_id
+users ||--o{ upload_sessions : user_id
+files ||--o{ share_links : file_id
+users ||--o{ invitations : invited_by
 @enduml

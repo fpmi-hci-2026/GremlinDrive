@@ -6,8 +6,8 @@ skinparam defaultFontSize 15
 skinparam shadowing false
 skinparam roundcorner 5
 skinparam linetype ortho
-skinparam classBackgroundColor #F4F7FA
-skinparam classBorderColor #49647A
+skinparam classBackgroundColor #F6F8F7
+skinparam classBorderColor #1F7A4B
 hide circle
 left to right direction
 title Actor to User Story to Use Case
@@ -20,10 +20,10 @@ rectangle "US-03 Передать защищённой ссылкой" as us3
 rectangle "US-04 Скачать без регистрации" as us4
 rectangle "US-05 Пригласить команду" as us5
 rectangle "US-09 Управлять квотами" as us9
-usecase "UC-05 Загрузка частями" as uc5
-usecase "UC-09 Создание и отзыв ссылки" as uc9
-usecase "UC-10 Гостевой доступ" as uc10
-usecase "UC-11 Приглашение участника" as uc11
+usecase "UC-01 Загрузка частями" as uc5
+usecase "UC-02 Создание и отзыв ссылки" as uc9
+usecase "UC-12 Гостевой доступ" as uc10
+usecase "UC-03 Приглашение участника" as uc11
 usecase "UC-15 Управление пользователями" as uc15
 user --> us7
 user --> us3

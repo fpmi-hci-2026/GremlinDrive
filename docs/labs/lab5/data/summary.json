@@ -1,156 +1,166 @@
 {
   "data_origin": "synthetic",
   "seed": 20261024,
-  "simulated_profiles": 10,
+  "simulated_profiles": 15,
   "note": "All respondent rows are generated, not observations of people. Same profiles reused across conditions; conditions are correlated. No inferential claims.",
   "semantic_means": {
     "desktop": {
-      "blue": 4.087,
-      "green": 3.9,
-      "plum": 3.72
+      "brand": 3.716,
+      "contrast": 4.133,
+      "emerald": 3.858
     },
     "mobile": {
-      "blue": 3.873,
-      "green": 3.767,
-      "plum": 3.527
+      "brand": 3.56,
+      "contrast": 3.969,
+      "emerald": 3.733
     }
   },
   "performance": {
     "desktop": {
       "T1": {
-        "success": 10,
-        "n": 10,
-        "median_success_seconds": 18.1
+        "success": 14,
+        "n": 15,
+        "median_success_seconds": 36.7
       },
       "T2": {
-        "success": 9,
-        "n": 10,
-        "median_success_seconds": 27.1
+        "success": 15,
+        "n": 15,
+        "median_success_seconds": 39.9
       },
       "T3": {
-        "success": 10,
-        "n": 10,
-        "median_success_seconds": 21.4
+        "success": 14,
+        "n": 15,
+        "median_success_seconds": 23.4
       },
       "T4": {
-        "success": 9,
-        "n": 10,
-        "median_success_seconds": 37.8
+        "success": 13,
+        "n": 15,
+        "median_success_seconds": 53.9
       },
       "T5": {
-        "success": 9,
-        "n": 10,
-        "median_success_seconds": 36.2
+        "success": 14,
+        "n": 15,
+        "median_success_seconds": 32.4
       },
       "T6": {
-        "success": 9,
-        "n": 10,
-        "median_success_seconds": 31.2
+        "success": 12,
+        "n": 15,
+        "median_success_seconds": 60.5
+      },
+      "T7": {
+        "success": 14,
+        "n": 15,
+        "median_success_seconds": 29.6
       }
     },
     "mobile": {
       "T1": {
-        "success": 7,
-        "n": 10,
-        "median_success_seconds": 21.5
+        "success": 13,
+        "n": 15,
+        "median_success_seconds": 42.5
       },
       "T2": {
-        "success": 10,
-        "n": 10,
-        "median_success_seconds": 30.2
+        "success": 12,
+        "n": 15,
+        "median_success_seconds": 51.2
       },
       "T3": {
-        "success": 9,
-        "n": 10,
-        "median_success_seconds": 28.3
+        "success": 13,
+        "n": 15,
+        "median_success_seconds": 26.6
       },
       "T4": {
-        "success": 7,
-        "n": 10,
-        "median_success_seconds": 56.0
+        "success": 11,
+        "n": 15,
+        "median_success_seconds": 68.2
       },
       "T5": {
-        "success": 8,
-        "n": 10,
-        "median_success_seconds": 49.9
+        "success": 13,
+        "n": 15,
+        "median_success_seconds": 43.6
       },
       "T6": {
-        "success": 10,
-        "n": 10,
-        "median_success_seconds": 36.5
+        "success": 12,
+        "n": 15,
+        "median_success_seconds": 80.2
+      },
+      "T7": {
+        "success": 13,
+        "n": 15,
+        "median_success_seconds": 36.0
       }
     }
   },
   "sus": {
     "desktop": {
-      "mean": 77.0,
-      "min": 57.5,
-      "max": 92.5
+      "mean": 72.33,
+      "min": 45.0,
+      "max": 85.0
     },
     "mobile": {
-      "mean": 73.5,
-      "min": 55.0,
-      "max": 95.0
+      "mean": 69.0,
+      "min": 52.5,
+      "max": 82.5
     }
   },
   "tree": {
     "desktop": {
       "C1": {
-        "success": 10,
-        "direct": 9,
-        "n": 10
+        "success": 14,
+        "direct": 11,
+        "n": 15
       },
       "C2": {
-        "success": 10,
-        "direct": 9,
-        "n": 10
+        "success": 13,
+        "direct": 8,
+        "n": 15
       },
       "C3": {
-        "success": 10,
-        "direct": 8,
-        "n": 10
+        "success": 15,
+        "direct": 11,
+        "n": 15
       },
       "C4": {
-        "success": 9,
-        "direct": 8,
-        "n": 10
+        "success": 14,
+        "direct": 13,
+        "n": 15
       }
     },
     "mobile": {
       "C1": {
-        "success": 9,
-        "direct": 7,
-        "n": 10
+        "success": 14,
+        "direct": 9,
+        "n": 15
       },
       "C2": {
-        "success": 9,
-        "direct": 6,
-        "n": 10
+        "success": 15,
+        "direct": 14,
+        "n": 15
       },
       "C3": {
-        "success": 9,
-        "direct": 6,
-        "n": 10
+        "success": 14,
+        "direct": 12,
+        "n": 15
       },
       "C4": {
-        "success": 10,
-        "direct": 9,
-        "n": 10
+        "success": 14,
+        "direct": 8,
+        "n": 15
       }
     }
   },
   "expectancy": {
     "desktop": {
-      "E1": 10,
-      "E2": 9,
-      "E3": 7,
-      "E4": 10
+      "E1": 13,
+      "E2": 14,
+      "E3": 11,
+      "E4": 14
     },
     "mobile": {
-      "E1": 9,
-      "E2": 8,
-      "E3": 7,
-      "E4": 9
+      "E1": 14,
+      "E2": 14,
+      "E3": 12,
+      "E4": 15
     }
   }
 }

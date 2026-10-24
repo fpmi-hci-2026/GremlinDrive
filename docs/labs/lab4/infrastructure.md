@@ -36,4 +36,4 @@ Workflow lab4.yml запускает Ruff, pytest с порогом покрыт
 
 ## Проверка при защите
 
-Сначала открыть PDF и страницу лабораторной. Показать связь US-03 → UC-09 → POST share-links, затем физическую модель и schema.sql. В Bruno запустить окружение contract, в Swagger mock показать запрет публикации для reader и успешное создание ссылки владельцем. Через Inspector показать tools/list, ресурс gremlin://policy и вызов list_files. В конце открыть протоколы тестов и workflow CI.
+Сначала открыть PDF и страницу лабораторной. Показать связь US-03 → UC-02 → POST share-links, затем физическую модель и schema.sql. В Bruno запустить окружение contract, в Swagger mock показать запрет публикации для reader и успешное создание ссылки владельцем. Через Inspector показать tools/list, ресурс gremlin://policy и вызов list_files. В конце открыть протоколы тестов и workflow CI.

@@ -1,121 +1,211 @@
 ﻿data_origin,respondent,device,task,title,success,time_seconds,errors,SEQ_1_7
-synthetic,S01,desktop,T1,Войти,1,20.7,0,6
-synthetic,S01,desktop,T2,Создать папку,1,33.9,1,5
-synthetic,S01,desktop,T3,Найти файл,1,21.4,1,6
-synthetic,S01,desktop,T4,Создать ссылку с паролем,1,65.3,2,6
-synthetic,S01,desktop,T5,Восстановить из корзины,1,50.8,0,6
-synthetic,S01,desktop,T6,Открыть историю версий,1,41.8,1,6
-synthetic,S01,mobile,T1,Войти,1,29.5,0,6
-synthetic,S01,mobile,T2,Создать папку,1,29.9,0,6
-synthetic,S01,mobile,T3,Найти файл,1,31.6,0,6
-synthetic,S01,mobile,T4,Создать ссылку с паролем,1,82.4,0,3
-synthetic,S01,mobile,T5,Восстановить из корзины,1,49.1,0,5
-synthetic,S01,mobile,T6,Открыть историю версий,1,30.6,1,6
-synthetic,S02,desktop,T1,Войти,1,15.0,1,6
-synthetic,S02,desktop,T2,Создать папку,1,17.3,0,6
-synthetic,S02,desktop,T3,Найти файл,1,15.2,0,7
-synthetic,S02,desktop,T4,Создать ссылку с паролем,1,35.8,0,5
-synthetic,S02,desktop,T5,Восстановить из корзины,1,31.7,0,4
-synthetic,S02,desktop,T6,Открыть историю версий,1,26.1,0,6
-synthetic,S02,mobile,T1,Войти,1,21.2,2,5
-synthetic,S02,mobile,T2,Создать папку,1,18.3,0,6
-synthetic,S02,mobile,T3,Найти файл,1,24.2,2,6
-synthetic,S02,mobile,T4,Создать ссылку с паролем,1,48.1,2,7
-synthetic,S02,mobile,T5,Восстановить из корзины,1,24.7,0,7
-synthetic,S02,mobile,T6,Открыть историю версий,1,26.3,1,7
-synthetic,S03,desktop,T1,Войти,1,16.2,1,5
-synthetic,S03,desktop,T2,Создать папку,1,17.5,2,5
-synthetic,S03,desktop,T3,Найти файл,1,17.5,0,6
-synthetic,S03,desktop,T4,Создать ссылку с паролем,1,25.9,1,5
-synthetic,S03,desktop,T5,Восстановить из корзины,1,27.9,0,6
-synthetic,S03,desktop,T6,Открыть историю версий,1,26.0,1,5
-synthetic,S03,mobile,T1,Войти,0,30.6,1,2
-synthetic,S03,mobile,T2,Создать папку,1,23.9,0,6
-synthetic,S03,mobile,T3,Найти файл,1,24.8,1,6
-synthetic,S03,mobile,T4,Создать ссылку с паролем,1,39.7,0,4
-synthetic,S03,mobile,T5,Восстановить из корзины,1,42.1,1,4
-synthetic,S03,mobile,T6,Открыть историю версий,1,23.3,0,7
-synthetic,S04,desktop,T1,Войти,1,16.7,0,6
-synthetic,S04,desktop,T2,Создать папку,1,27.1,1,5
-synthetic,S04,desktop,T3,Найти файл,1,14.1,0,6
-synthetic,S04,desktop,T4,Создать ссылку с паролем,1,35.6,1,6
-synthetic,S04,desktop,T5,Восстановить из корзины,1,39.2,0,6
-synthetic,S04,desktop,T6,Открыть историю версий,1,31.2,0,6
-synthetic,S04,mobile,T1,Войти,0,32.5,1,3
-synthetic,S04,mobile,T2,Создать папку,1,20.5,0,5
-synthetic,S04,mobile,T3,Найти файл,1,29.9,0,5
-synthetic,S04,mobile,T4,Создать ссылку с паролем,1,53.3,0,5
-synthetic,S04,mobile,T5,Восстановить из корзины,1,50.6,1,6
-synthetic,S04,mobile,T6,Открыть историю версий,1,25.4,1,6
-synthetic,S05,desktop,T1,Войти,1,22.7,0,6
-synthetic,S05,desktop,T2,Создать папку,1,33.6,1,5
-synthetic,S05,desktop,T3,Найти файл,1,30.0,0,5
-synthetic,S05,desktop,T4,Создать ссылку с паролем,0,88.8,2,2
-synthetic,S05,desktop,T5,Восстановить из корзины,1,29.1,0,7
-synthetic,S05,desktop,T6,Открыть историю версий,1,39.0,0,6
-synthetic,S05,mobile,T1,Войти,1,18.6,0,5
-synthetic,S05,mobile,T2,Создать папку,1,31.7,0,7
-synthetic,S05,mobile,T3,Найти файл,1,27.2,1,6
-synthetic,S05,mobile,T4,Создать ссылку с паролем,0,109.6,1,2
-synthetic,S05,mobile,T5,Восстановить из корзины,0,50.8,1,2
-synthetic,S05,mobile,T6,Открыть историю версий,1,43.5,0,5
-synthetic,S06,desktop,T1,Войти,1,19.3,0,5
-synthetic,S06,desktop,T2,Создать папку,1,20.0,0,5
-synthetic,S06,desktop,T3,Найти файл,1,21.5,1,6
-synthetic,S06,desktop,T4,Создать ссылку с паролем,1,37.8,0,5
-synthetic,S06,desktop,T5,Восстановить из корзины,1,36.2,0,7
-synthetic,S06,desktop,T6,Открыть историю версий,1,28.0,0,6
-synthetic,S06,mobile,T1,Войти,1,21.5,0,5
-synthetic,S06,mobile,T2,Создать папку,1,35.0,0,6
-synthetic,S06,mobile,T3,Найти файл,1,31.1,0,6
-synthetic,S06,mobile,T4,Создать ссылку с паролем,1,56.0,0,6
-synthetic,S06,mobile,T5,Восстановить из корзины,1,56.2,0,5
-synthetic,S06,mobile,T6,Открыть историю версий,1,43.7,0,6
-synthetic,S07,desktop,T1,Войти,1,19.5,0,6
-synthetic,S07,desktop,T2,Создать папку,0,40.6,2,3
-synthetic,S07,desktop,T3,Найти файл,1,28.3,1,5
-synthetic,S07,desktop,T4,Создать ссылку с паролем,1,57.0,0,5
-synthetic,S07,desktop,T5,Восстановить из корзины,0,87.8,1,2
-synthetic,S07,desktop,T6,Открыть историю версий,1,30.1,0,5
-synthetic,S07,mobile,T1,Войти,1,25.1,1,6
-synthetic,S07,mobile,T2,Создать папку,1,40.7,1,4
-synthetic,S07,mobile,T3,Найти файл,0,49.3,1,1
-synthetic,S07,mobile,T4,Создать ссылку с паролем,0,110.0,1,2
-synthetic,S07,mobile,T5,Восстановить из корзины,1,80.1,0,6
-synthetic,S07,mobile,T6,Открыть историю версий,1,62.7,0,7
-synthetic,S08,desktop,T1,Войти,1,15.0,0,7
-synthetic,S08,desktop,T2,Создать папку,1,22.4,0,6
-synthetic,S08,desktop,T3,Найти файл,1,21.0,0,6
-synthetic,S08,desktop,T4,Создать ссылку с паролем,1,35.4,1,4
-synthetic,S08,desktop,T5,Восстановить из корзины,1,20.4,1,5
-synthetic,S08,desktop,T6,Открыть историю версий,0,29.2,1,2
-synthetic,S08,mobile,T1,Войти,0,27.3,1,3
-synthetic,S08,mobile,T2,Создать папку,1,30.5,0,6
-synthetic,S08,mobile,T3,Найти файл,1,26.2,0,6
-synthetic,S08,mobile,T4,Создать ссылку с паролем,0,79.8,2,2
-synthetic,S08,mobile,T5,Восстановить из корзины,1,43.3,0,7
-synthetic,S08,mobile,T6,Открыть историю версий,1,21.5,0,6
-synthetic,S09,desktop,T1,Войти,1,16.8,0,5
-synthetic,S09,desktop,T2,Создать папку,1,32.7,1,6
-synthetic,S09,desktop,T3,Найти файл,1,27.2,0,6
-synthetic,S09,desktop,T4,Создать ссылку с паролем,1,47.9,0,5
-synthetic,S09,desktop,T5,Восстановить из корзины,1,42.0,0,6
-synthetic,S09,desktop,T6,Открыть историю версий,1,35.6,2,7
-synthetic,S09,mobile,T1,Войти,1,18.9,0,6
-synthetic,S09,mobile,T2,Создать папку,1,23.3,0,4
-synthetic,S09,mobile,T3,Найти файл,1,32.6,0,5
-synthetic,S09,mobile,T4,Создать ссылку с паролем,1,68.6,0,6
-synthetic,S09,mobile,T5,Восстановить из корзины,0,65.5,1,2
-synthetic,S09,mobile,T6,Открыть историю версий,1,42.3,0,5
-synthetic,S10,desktop,T1,Войти,1,29.6,1,7
-synthetic,S10,desktop,T2,Создать папку,1,33.2,1,6
-synthetic,S10,desktop,T3,Найти файл,1,25.9,0,4
-synthetic,S10,desktop,T4,Создать ссылку с паролем,1,57.0,0,5
-synthetic,S10,desktop,T5,Восстановить из корзины,1,59.5,0,7
-synthetic,S10,desktop,T6,Открыть историю версий,1,47.4,0,5
-synthetic,S10,mobile,T1,Войти,1,31.9,0,5
-synthetic,S10,mobile,T2,Создать папку,1,44.9,1,5
-synthetic,S10,mobile,T3,Найти файл,1,28.3,0,5
-synthetic,S10,mobile,T4,Создать ссылку с паролем,1,89.6,0,6
-synthetic,S10,mobile,T5,Восстановить из корзины,1,55.6,0,6
-synthetic,S10,mobile,T6,Открыть историю версий,1,49.1,2,4
+synthetic,S01,desktop,T1,Вход и первая загрузка,1,26.6,2,5
+synthetic,S01,desktop,T2,Пригласить участника с ролью просмотра,1,31.3,1,6
+synthetic,S01,desktop,T3,Найти файл,1,22.2,0,6
+synthetic,S01,desktop,T4,Защищённая ссылка и гостевой просмотр,1,46.9,0,6
+synthetic,S01,desktop,T5,Восстановить предыдущую версию,1,34.3,0,6
+synthetic,S01,desktop,T6,Запрос и одобрение квоты,1,72.1,1,6
+synthetic,S01,desktop,T7,Включить офлайн-доступ к файлу,1,24.4,2,4
+synthetic,S01,mobile,T1,Вход и первая загрузка,1,46.3,1,7
+synthetic,S01,mobile,T2,Пригласить участника с ролью просмотра,1,44.5,0,6
+synthetic,S01,mobile,T3,Найти файл,1,25.5,0,6
+synthetic,S01,mobile,T4,Защищённая ссылка и гостевой просмотр,0,103.2,3,2
+synthetic,S01,mobile,T5,Восстановить предыдущую версию,0,60.4,1,4
+synthetic,S01,mobile,T6,Запрос и одобрение квоты,1,77.3,1,5
+synthetic,S01,mobile,T7,Включить офлайн-доступ к файлу,1,46.9,0,5
+synthetic,S02,desktop,T1,Вход и первая загрузка,1,32.2,0,6
+synthetic,S02,desktop,T2,Пригласить участника с ролью просмотра,1,29.7,0,6
+synthetic,S02,desktop,T3,Найти файл,1,18.5,0,6
+synthetic,S02,desktop,T4,Защищённая ссылка и гостевой просмотр,1,53.9,0,5
+synthetic,S02,desktop,T5,Восстановить предыдущую версию,1,23.6,1,5
+synthetic,S02,desktop,T6,Запрос и одобрение квоты,1,34.4,2,5
+synthetic,S02,desktop,T7,Включить офлайн-доступ к файлу,1,22.7,0,6
+synthetic,S02,mobile,T1,Вход и первая загрузка,1,27.7,1,7
+synthetic,S02,mobile,T2,Пригласить участника с ролью просмотра,0,62.1,1,3
+synthetic,S02,mobile,T3,Найти файл,1,17.0,0,5
+synthetic,S02,mobile,T4,Защищённая ссылка и гостевой просмотр,1,64.3,2,7
+synthetic,S02,mobile,T5,Восстановить предыдущую версию,1,35.3,1,4
+synthetic,S02,mobile,T6,Запрос и одобрение квоты,1,55.8,1,7
+synthetic,S02,mobile,T7,Включить офлайн-доступ к файлу,1,31.6,0,7
+synthetic,S03,desktop,T1,Вход и первая загрузка,1,33.0,0,6
+synthetic,S03,desktop,T2,Пригласить участника с ролью просмотра,1,51.9,2,5
+synthetic,S03,desktop,T3,Найти файл,1,23.8,1,6
+synthetic,S03,desktop,T4,Защищённая ссылка и гостевой просмотр,1,50.4,1,6
+synthetic,S03,desktop,T5,Восстановить предыдущую версию,0,42.7,1,2
+synthetic,S03,desktop,T6,Запрос и одобрение квоты,1,70.7,1,6
+synthetic,S03,desktop,T7,Включить офлайн-доступ к файлу,1,38.1,1,5
+synthetic,S03,mobile,T1,Вход и первая загрузка,1,39.0,1,7
+synthetic,S03,mobile,T2,Пригласить участника с ролью просмотра,1,57.8,1,5
+synthetic,S03,mobile,T3,Найти файл,1,32.6,1,4
+synthetic,S03,mobile,T4,Защищённая ссылка и гостевой просмотр,1,68.2,0,6
+synthetic,S03,mobile,T5,Восстановить предыдущую версию,1,40.2,0,6
+synthetic,S03,mobile,T6,Запрос и одобрение квоты,1,72.8,0,6
+synthetic,S03,mobile,T7,Включить офлайн-доступ к файлу,1,31.3,0,6
+synthetic,S04,desktop,T1,Вход и первая загрузка,1,36.1,1,6
+synthetic,S04,desktop,T2,Пригласить участника с ролью просмотра,1,37.3,0,5
+synthetic,S04,desktop,T3,Найти файл,1,13.5,0,7
+synthetic,S04,desktop,T4,Защищённая ссылка и гостевой просмотр,0,54.3,1,2
+synthetic,S04,desktop,T5,Восстановить предыдущую версию,1,23.2,0,7
+synthetic,S04,desktop,T6,Запрос и одобрение квоты,1,53.1,0,5
+synthetic,S04,desktop,T7,Включить офлайн-доступ к файлу,1,23.9,2,6
+synthetic,S04,mobile,T1,Вход и первая загрузка,1,35.7,0,5
+synthetic,S04,mobile,T2,Пригласить участника с ролью просмотра,0,61.6,1,2
+synthetic,S04,mobile,T3,Найти файл,1,24.1,0,6
+synthetic,S04,mobile,T4,Защищённая ссылка и гостевой просмотр,1,53.8,0,5
+synthetic,S04,mobile,T5,Восстановить предыдущую версию,1,40.4,0,6
+synthetic,S04,mobile,T6,Запрос и одобрение квоты,1,71.6,0,5
+synthetic,S04,mobile,T7,Включить офлайн-доступ к файлу,1,30.5,1,7
+synthetic,S05,desktop,T1,Вход и первая загрузка,1,37.9,0,5
+synthetic,S05,desktop,T2,Пригласить участника с ролью просмотра,1,26.8,0,6
+synthetic,S05,desktop,T3,Найти файл,1,14.2,0,5
+synthetic,S05,desktop,T4,Защищённая ссылка и гостевой просмотр,1,48.9,1,5
+synthetic,S05,desktop,T5,Восстановить предыдущую версию,1,20.5,0,6
+synthetic,S05,desktop,T6,Запрос и одобрение квоты,1,46.4,0,5
+synthetic,S05,desktop,T7,Включить офлайн-доступ к файлу,0,35.5,2,2
+synthetic,S05,mobile,T1,Вход и первая загрузка,1,38.9,1,6
+synthetic,S05,mobile,T2,Пригласить участника с ролью просмотра,1,52.5,1,5
+synthetic,S05,mobile,T3,Найти файл,1,21.1,0,6
+synthetic,S05,mobile,T4,Защищённая ссылка и гостевой просмотр,1,56.5,1,5
+synthetic,S05,mobile,T5,Восстановить предыдущую версию,1,35.7,0,7
+synthetic,S05,mobile,T6,Запрос и одобрение квоты,1,54.6,0,7
+synthetic,S05,mobile,T7,Включить офлайн-доступ к файлу,1,23.6,0,5
+synthetic,S06,desktop,T1,Вход и первая загрузка,1,43.8,0,6
+synthetic,S06,desktop,T2,Пригласить участника с ролью просмотра,1,34.7,0,5
+synthetic,S06,desktop,T3,Найти файл,1,25.0,0,7
+synthetic,S06,desktop,T4,Защищённая ссылка и гостевой просмотр,1,62.3,0,5
+synthetic,S06,desktop,T5,Восстановить предыдущую версию,1,26.2,1,6
+synthetic,S06,desktop,T6,Запрос и одобрение квоты,1,43.3,0,5
+synthetic,S06,desktop,T7,Включить офлайн-доступ к файлу,1,33.9,0,5
+synthetic,S06,mobile,T1,Вход и первая загрузка,1,39.9,1,6
+synthetic,S06,mobile,T2,Пригласить участника с ролью просмотра,1,61.0,0,5
+synthetic,S06,mobile,T3,Найти файл,1,31.9,1,6
+synthetic,S06,mobile,T4,Защищённая ссылка и гостевой просмотр,1,81.1,0,5
+synthetic,S06,mobile,T5,Восстановить предыдущую версию,1,56.3,0,6
+synthetic,S06,mobile,T6,Запрос и одобрение квоты,1,83.1,1,5
+synthetic,S06,mobile,T7,Включить офлайн-доступ к файлу,1,27.9,1,7
+synthetic,S07,desktop,T1,Вход и первая загрузка,1,37.0,1,5
+synthetic,S07,desktop,T2,Пригласить участника с ролью просмотра,1,49.9,0,4
+synthetic,S07,desktop,T3,Найти файл,1,21.3,0,7
+synthetic,S07,desktop,T4,Защищённая ссылка и гостевой просмотр,1,45.1,0,4
+synthetic,S07,desktop,T5,Восстановить предыдущую версию,1,45.1,0,5
+synthetic,S07,desktop,T6,Запрос и одобрение квоты,0,86.7,1,3
+synthetic,S07,desktop,T7,Включить офлайн-доступ к файлу,1,23.4,0,7
+synthetic,S07,mobile,T1,Вход и первая загрузка,1,33.4,2,6
+synthetic,S07,mobile,T2,Пригласить участника с ролью просмотра,1,43.3,1,4
+synthetic,S07,mobile,T3,Найти файл,1,33.8,1,5
+synthetic,S07,mobile,T4,Защищённая ссылка и гостевой просмотр,1,78.6,0,5
+synthetic,S07,mobile,T5,Восстановить предыдущую версию,1,57.3,0,6
+synthetic,S07,mobile,T6,Запрос и одобрение квоты,1,83.2,0,5
+synthetic,S07,mobile,T7,Включить офлайн-доступ к файлу,1,45.5,0,5
+synthetic,S08,desktop,T1,Вход и первая загрузка,1,25.3,1,6
+synthetic,S08,desktop,T2,Пригласить участника с ролью просмотра,1,39.9,1,6
+synthetic,S08,desktop,T3,Найти файл,1,16.1,0,6
+synthetic,S08,desktop,T4,Защищённая ссылка и гостевой просмотр,1,39.0,1,5
+synthetic,S08,desktop,T5,Восстановить предыдущую версию,1,25.4,0,6
+synthetic,S08,desktop,T6,Запрос и одобрение квоты,1,32.9,1,7
+synthetic,S08,desktop,T7,Включить офлайн-доступ к файлу,1,20.5,0,5
+synthetic,S08,mobile,T1,Вход и первая загрузка,1,42.5,0,6
+synthetic,S08,mobile,T2,Пригласить участника с ролью просмотра,1,44.2,0,6
+synthetic,S08,mobile,T3,Найти файл,0,35.3,2,3
+synthetic,S08,mobile,T4,Защищённая ссылка и гостевой просмотр,1,61.1,0,5
+synthetic,S08,mobile,T5,Восстановить предыдущую версию,1,39.4,1,6
+synthetic,S08,mobile,T6,Запрос и одобрение квоты,0,104.1,1,2
+synthetic,S08,mobile,T7,Включить офлайн-доступ к файлу,0,50.9,1,2
+synthetic,S09,desktop,T1,Вход и первая загрузка,1,40.8,0,6
+synthetic,S09,desktop,T2,Пригласить участника с ролью просмотра,1,50.0,1,6
+synthetic,S09,desktop,T3,Найти файл,1,27.1,0,6
+synthetic,S09,desktop,T4,Защищённая ссылка и гостевой просмотр,0,70.4,1,3
+synthetic,S09,desktop,T5,Восстановить предыдущую версию,1,32.1,0,6
+synthetic,S09,desktop,T6,Запрос и одобрение квоты,1,71.6,1,7
+synthetic,S09,desktop,T7,Включить офлайн-доступ к файлу,1,39.7,0,6
+synthetic,S09,mobile,T1,Вход и первая загрузка,1,43.7,1,6
+synthetic,S09,mobile,T2,Пригласить участника с ролью просмотра,1,51.2,0,6
+synthetic,S09,mobile,T3,Найти файл,1,33.0,1,5
+synthetic,S09,mobile,T4,Защищённая ссылка и гостевой просмотр,0,105.7,1,3
+synthetic,S09,mobile,T5,Восстановить предыдущую версию,1,49.4,0,4
+synthetic,S09,mobile,T6,Запрос и одобрение квоты,1,91.7,1,5
+synthetic,S09,mobile,T7,Включить офлайн-доступ к файлу,0,48.6,1,3
+synthetic,S10,desktop,T1,Вход и первая загрузка,1,38.6,1,4
+synthetic,S10,desktop,T2,Пригласить участника с ролью просмотра,1,50.9,0,6
+synthetic,S10,desktop,T3,Найти файл,1,35.1,1,5
+synthetic,S10,desktop,T4,Защищённая ссылка и гостевой просмотр,1,70.9,0,6
+synthetic,S10,desktop,T5,Восстановить предыдущую версию,1,34.2,0,7
+synthetic,S10,desktop,T6,Запрос и одобрение квоты,1,94.0,0,6
+synthetic,S10,desktop,T7,Включить офлайн-доступ к файлу,1,36.1,1,5
+synthetic,S10,mobile,T1,Вход и первая загрузка,0,105.1,2,2
+synthetic,S10,mobile,T2,Пригласить участника с ролью просмотра,1,49.0,0,6
+synthetic,S10,mobile,T3,Найти файл,1,24.9,0,7
+synthetic,S10,mobile,T4,Защищённая ссылка и гостевой просмотр,0,107.4,2,2
+synthetic,S10,mobile,T5,Восстановить предыдущую версию,0,63.3,2,4
+synthetic,S10,mobile,T6,Запрос и одобрение квоты,0,158.8,1,2
+synthetic,S10,mobile,T7,Включить офлайн-доступ к файлу,1,40.4,0,6
+synthetic,S11,desktop,T1,Вход и первая загрузка,1,42.8,1,5
+synthetic,S11,desktop,T2,Пригласить участника с ролью просмотра,1,70.8,0,6
+synthetic,S11,desktop,T3,Найти файл,1,24.7,0,5
+synthetic,S11,desktop,T4,Защищённая ссылка и гостевой просмотр,1,69.5,0,6
+synthetic,S11,desktop,T5,Восстановить предыдущую версию,1,38.5,0,6
+synthetic,S11,desktop,T6,Запрос и одобрение квоты,1,67.9,1,4
+synthetic,S11,desktop,T7,Включить офлайн-доступ к файлу,1,29.3,1,4
+synthetic,S11,mobile,T1,Вход и первая загрузка,1,48.4,1,4
+synthetic,S11,mobile,T2,Пригласить участника с ролью просмотра,1,60.5,1,7
+synthetic,S11,mobile,T3,Найти файл,1,44.3,0,5
+synthetic,S11,mobile,T4,Защищённая ссылка и гостевой просмотр,1,93.2,2,5
+synthetic,S11,mobile,T5,Восстановить предыдущую версию,1,60.5,0,6
+synthetic,S11,mobile,T6,Запрос и одобрение квоты,1,91.4,0,7
+synthetic,S11,mobile,T7,Включить офлайн-доступ к файлу,1,60.9,0,6
+synthetic,S12,desktop,T1,Вход и первая загрузка,0,49.7,1,3
+synthetic,S12,desktop,T2,Пригласить участника с ролью просмотра,1,47.1,0,5
+synthetic,S12,desktop,T3,Найти файл,1,30.2,0,7
+synthetic,S12,desktop,T4,Защищённая ссылка и гостевой просмотр,1,76.8,0,5
+synthetic,S12,desktop,T5,Восстановить предыдущую версию,1,32.7,0,7
+synthetic,S12,desktop,T6,Запрос и одобрение квоты,0,113.8,1,2
+synthetic,S12,desktop,T7,Включить офлайн-доступ к файлу,1,26.9,0,7
+synthetic,S12,mobile,T1,Вход и первая загрузка,1,51.5,0,7
+synthetic,S12,mobile,T2,Пригласить участника с ролью просмотра,1,66.5,0,6
+synthetic,S12,mobile,T3,Найти файл,1,26.6,0,7
+synthetic,S12,mobile,T4,Защищённая ссылка и гостевой просмотр,1,97.3,0,6
+synthetic,S12,mobile,T5,Восстановить предыдущую версию,1,48.4,1,5
+synthetic,S12,mobile,T6,Запрос и одобрение квоты,1,99.5,1,6
+synthetic,S12,mobile,T7,Включить офлайн-доступ к файлу,1,48.3,0,7
+synthetic,S13,desktop,T1,Вход и первая загрузка,1,41.2,1,6
+synthetic,S13,desktop,T2,Пригласить участника с ролью просмотра,1,35.4,1,6
+synthetic,S13,desktop,T3,Найти файл,1,22.9,0,5
+synthetic,S13,desktop,T4,Защищённая ссылка и гостевой просмотр,1,55.1,0,7
+synthetic,S13,desktop,T5,Восстановить предыдущую версию,1,43.2,0,5
+synthetic,S13,desktop,T6,Запрос и одобрение квоты,1,44.4,0,6
+synthetic,S13,desktop,T7,Включить офлайн-доступ к файлу,1,32.3,1,7
+synthetic,S13,mobile,T1,Вход и первая загрузка,0,50.8,1,2
+synthetic,S13,mobile,T2,Пригласить участника с ролью просмотра,1,39.9,0,6
+synthetic,S13,mobile,T3,Найти файл,1,30.1,0,5
+synthetic,S13,mobile,T4,Защищённая ссылка и гостевой просмотр,0,77.5,1,2
+synthetic,S13,mobile,T5,Восстановить предыдущую версию,1,43.6,1,7
+synthetic,S13,mobile,T6,Запрос и одобрение квоты,0,129.8,1,1
+synthetic,S13,mobile,T7,Включить офлайн-доступ к файлу,1,36.0,0,7
+synthetic,S14,desktop,T1,Вход и первая загрузка,1,29.0,1,7
+synthetic,S14,desktop,T2,Пригласить участника с ролью просмотра,1,36.6,0,6
+synthetic,S14,desktop,T3,Найти файл,1,25.0,1,6
+synthetic,S14,desktop,T4,Защищённая ссылка и гостевой просмотр,1,42.2,1,5
+synthetic,S14,desktop,T5,Восстановить предыдущую версию,1,27.3,1,6
+synthetic,S14,desktop,T6,Запрос и одобрение квоты,0,101.2,1,3
+synthetic,S14,desktop,T7,Включить офлайн-доступ к файлу,1,29.8,1,6
+synthetic,S14,mobile,T1,Вход и первая загрузка,1,46.6,1,7
+synthetic,S14,mobile,T2,Пригласить участника с ролью просмотра,1,51.2,0,5
+synthetic,S14,mobile,T3,Найти файл,1,24.4,0,5
+synthetic,S14,mobile,T4,Защищённая ссылка и гостевой просмотр,1,58.9,1,5
+synthetic,S14,mobile,T5,Восстановить предыдущую версию,1,38.8,0,6
+synthetic,S14,mobile,T6,Запрос и одобрение квоты,1,65.2,0,6
+synthetic,S14,mobile,T7,Включить офлайн-доступ к файлу,1,34.2,0,5
+synthetic,S15,desktop,T1,Вход и первая загрузка,1,36.4,0,6
+synthetic,S15,desktop,T2,Пригласить участника с ролью просмотра,1,60.8,0,5
+synthetic,S15,desktop,T3,Найти файл,0,43.9,1,4
+synthetic,S15,desktop,T4,Защищённая ссылка и гостевой просмотр,1,57.2,0,5
+synthetic,S15,desktop,T5,Восстановить предыдущую версию,1,55.4,2,5
+synthetic,S15,desktop,T6,Запрос и одобрение квоты,1,74.4,1,6
+synthetic,S15,desktop,T7,Включить офлайн-доступ к файлу,1,48.5,0,5
+synthetic,S15,mobile,T1,Вход и первая загрузка,1,52.3,0,6
+synthetic,S15,mobile,T2,Пригласить участника с ролью просмотра,0,122.2,3,3
+synthetic,S15,mobile,T3,Найти файл,0,64.9,1,2
+synthetic,S15,mobile,T4,Защищённая ссылка и гостевой просмотр,1,78.9,0,6
+synthetic,S15,mobile,T5,Восстановить предыдущую версию,1,54.2,0,6
+synthetic,S15,mobile,T6,Запрос и одобрение квоты,1,111.7,1,6
+synthetic,S15,mobile,T7,Включить офлайн-доступ к файлу,1,52.2,0,5

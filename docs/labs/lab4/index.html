@@ -1,34 +1,34 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ЛР4 API и MCP · GremlinDrive</title><link rel="stylesheet" href="lab4.css"></head><body>
-<header><a href="https://fpmi-hci-2026.github.io/GremlinDrive/" class="brand">GremlinDrive</a><nav aria-label="Навигация"><a href="https://fpmi-hci-2026.github.io/GremlinDrive/labs/">Лабораторные</a><a href="api.html">Документация API</a><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab4">Исходники</a></nav></header>
+<header class="site-header"><a href="https://fpmi-hci-2026.github.io/GremlinDrive/" class="brand"><span class="brand-mark">G</span>GremlinDrive</a><nav aria-label="Навигация"><a href="https://fpmi-hci-2026.github.io/GremlinDrive/labs/">Лабораторные</a><a href="api.html">Документация API</a><a href="https://github.com/fpmi-hci-2026/hci-10-project-group-4/tree/main/docs/labs/lab4">Исходники</a></nav></header>
 <main><div class="hero"><p class="eyebrow">Лабораторная работа 4 · группа 10а</p><h1>API и интеграция<br>с AI-ассистентом</h1>
 <p class="lead">GremlinDrive: от требований и схемы данных к проверяемому API и работающему MCP-серверу.</p>
 <div class="actions"><a class="button" href="lab4-report.pdf">Отчёт PDF</a><a class="button secondary" href="api.html">Открыть Swagger UI</a><a class="button secondary" href="lab4-source.zip">Скачать комплект</a></div>
-<div class="metrics"><span><strong>52</strong> операции API</span><span><strong>17</strong> таблиц PostgreSQL</span><span><strong>7</strong> MCP-инструментов</span><span><strong>20</strong> тестов pytest</span></div></div>
+<div class="metrics"><span><strong>52</strong> операции API</span><span><strong>17</strong> таблиц PostgreSQL</span><span><strong>7</strong> MCP-инструментов</span><span><strong>22</strong> теста pytest</span></div></div>
 <nav class="toc" aria-label="Разделы"><a href="#requirements">Требования</a><a href="#database">Данные</a><a href="#models">Диаграммы</a><a href="#api">API</a><a href="#verification">Проверки</a><a href="#mcp">MCP</a><a href="#infrastructure">Инфраструктура</a></nav>
-<section id="verification"><h2>Проверки</h2><p>В Bruno прошли 52 запроса и 52 теста. Контракт отдельно проверен по схемам ответов. Pytest выполнил 20 тестов, покрытие REST mock и доменной логики составляет 87,25%. PostgreSQL прошёл восемь проверок ограничений. MCP проверен по stdio и через официальный Inspector.</p>
+<section id="verification"><h2>Проверки</h2><p>В Bruno прошли 52 запроса и 52 теста. Контракт отдельно проверен по схемам ответов. Pytest выполнил 22 теста, покрытие REST mock и доменной логики составляет 87,50%. PostgreSQL прошёл восемь проверок ограничений. MCP проверен по stdio и через официальный Inspector.</p>
 <p>Prism симулирует весь контракт. Stateful mock реализует 21 операцию с SQLite. Поле <code>x-implementation</code> в OpenAPI показывает границу между ними.</p>
 <p><a href="evidence/contract-tests.json">Протокол API</a> · <a href="evidence/bruno-summary.json">Bruno</a> · <a href="evidence/mcp-protocol.json">MCP и JSON-схемы</a> · <a href="evidence/postgresql.txt">PostgreSQL</a></p></section>
 <section id="requirements"><h2>Модель требований и реестр вариантов использования</h2>
-<p>Входной материал - SRS и User Stories лабораторной работы 3. Идентификаторы US-01–US-16 и FR-01–FR-30 сохранены. Для ЛР4 добавлены варианты использования UC-01–UC-19 и связь с HTTP-операциями.</p>
+<p>Входной материал - SRS и User Stories лабораторной работы 3. Идентификаторы US-01–US-16, FR-01–FR-30 и UC-01–UC-05 сохранены. Первые пять UC описывают загрузку, ссылку, приглашение, восстановление версии и запрос прав или квоты. Для ЛР4 добавлены UC-06–UC-19 и связь с HTTP-операциями.</p>
 <p>Действующее лицо задаёт цель через пользовательскую историю, вариант использования описывает действия и результат, а конечная точка предоставляет серверный контракт. Полная трассировка хранится в traceability.json.</p>
 <figure><a href="diagrams/requirements.png"><img loading="lazy" src="diagrams/requirements.png" alt="Модель требований"></a><figcaption>Открыть схему в полном размере</figcaption></figure>
 <div class="table-scroll"><table><thead><tr><th>ID</th><th>Действующее лицо</th><th>User Story</th><th>Вариант использования</th><th>Результат</th></tr></thead><tbody>
-<tr><td>UC-01</td><td>Гость</td><td>US-01</td><td>Регистрация и подтверждение e-mail</td><td>Аккаунт активирован после проверки адреса</td></tr>
-<tr><td>UC-02</td><td>Пользователь</td><td>US-02</td><td>Вход, выход и восстановление доступа</td><td>Сессия выдана или отозвана</td></tr>
-<tr><td>UC-03</td><td>Пользователь</td><td>US-12</td><td>Настройка и проверка TOTP</td><td>Вход требует второй фактор</td></tr>
-<tr><td>UC-04</td><td>Пользователь</td><td>US-07</td><td>Работа с файлами и папками</td><td>Создана папка или изменено имя файла</td></tr>
-<tr><td>UC-05</td><td>Пользователь</td><td>US-07</td><td>Загрузка файла частями</td><td>После завершения создана версия и начата проверка</td></tr>
-<tr><td>UC-06</td><td>Пользователь</td><td>US-06, US-07</td><td>Поиск, метаданные и скачивание</td><td>Возвращены только доступные объекты</td></tr>
-<tr><td>UC-07</td><td>Пользователь</td><td>US-11</td><td>Корзина и восстановление</td><td>Файл восстановлен без активации старых ссылок</td></tr>
-<tr><td>UC-08</td><td>Участник папки</td><td>US-06</td><td>Просмотр и восстановление версий</td><td>Восстановление создаёт следующую версию</td></tr>
-<tr><td>UC-09</td><td>Пользователь</td><td>US-03, US-16</td><td>Создание, просмотр и отзыв ссылок</td><td>Управляемый доступ к активному файлу</td></tr>
-<tr><td>UC-10</td><td>Гость</td><td>US-04</td><td>Открытие ссылки и скачивание</td><td>Пароль, срок и уровень доступа проверены</td></tr>
-<tr><td>UC-11</td><td>Владелец папки</td><td>US-05</td><td>Приглашение и принятие приглашения</td><td>Участник добавлен с выбранной ролью</td></tr>
-<tr><td>UC-12</td><td>Владелец папки</td><td>US-05</td><td>Изменение роли и удаление участника</td><td>Новые права применены при следующем запросе</td></tr>
-<tr><td>UC-13</td><td>Участник папки</td><td>US-13</td><td>Комментарии и уведомления</td><td>Комментарий сохранён, уведомление доступно адресату</td></tr>
-<tr><td>UC-14</td><td>Пользователь и администратор</td><td>US-10, US-15</td><td>Запрос и решение по квоте</td><td>Решение применяется однократно в транзакции</td></tr>
+<tr><td>UC-01</td><td>Пользователь</td><td>US-07</td><td>Загрузка файла частями</td><td>После завершения создана версия и начата проверка</td></tr>
+<tr><td>UC-02</td><td>Пользователь</td><td>US-03, US-16</td><td>Создание, просмотр и отзыв ссылок</td><td>Управляемый доступ к активному файлу</td></tr>
+<tr><td>UC-03</td><td>Владелец папки</td><td>US-05</td><td>Приглашение и принятие приглашения</td><td>Участник добавлен с выбранной ролью</td></tr>
+<tr><td>UC-04</td><td>Участник папки</td><td>US-06</td><td>Просмотр и восстановление версий</td><td>Восстановление создаёт следующую версию</td></tr>
+<tr><td>UC-05</td><td>Пользователь и администратор</td><td>US-10, US-15</td><td>Запрос и решение по квоте</td><td>Решение применяется однократно в транзакции</td></tr>
+<tr><td>UC-06</td><td>Гость</td><td>US-01</td><td>Регистрация и подтверждение e-mail</td><td>Аккаунт активирован после проверки адреса</td></tr>
+<tr><td>UC-07</td><td>Пользователь</td><td>US-02</td><td>Вход, выход и восстановление доступа</td><td>Сессия выдана или отозвана</td></tr>
+<tr><td>UC-08</td><td>Пользователь</td><td>US-12</td><td>Настройка и проверка TOTP</td><td>Вход требует второй фактор</td></tr>
+<tr><td>UC-09</td><td>Пользователь</td><td>US-07</td><td>Работа с файлами и папками</td><td>Создана папка или изменено имя файла</td></tr>
+<tr><td>UC-10</td><td>Пользователь</td><td>US-06, US-07</td><td>Поиск, метаданные и скачивание</td><td>Возвращены только доступные объекты</td></tr>
+<tr><td>UC-11</td><td>Пользователь</td><td>US-11</td><td>Корзина и восстановление</td><td>Файл восстановлен без активации старых ссылок</td></tr>
+<tr><td>UC-12</td><td>Гость</td><td>US-04</td><td>Открытие ссылки и скачивание</td><td>Пароль, срок и уровень доступа проверены</td></tr>
+<tr><td>UC-13</td><td>Владелец папки</td><td>US-05</td><td>Изменение роли и удаление участника</td><td>Новые права применены при следующем запросе</td></tr>
+<tr><td>UC-14</td><td>Участник папки</td><td>US-13</td><td>Комментарии и уведомления</td><td>Комментарий сохранён, уведомление доступно адресату</td></tr>
 <tr><td>UC-15</td><td>Администратор</td><td>US-09</td><td>Пользователи, роли и квоты</td><td>Изменение проверено и записано в аудит</td></tr>
 <tr><td>UC-16</td><td>Администратор</td><td>US-14</td><td>Аудит и экспорт отчётов</td><td>Получен журнал или задача формирования отчёта</td></tr>
 <tr><td>UC-17</td><td>Мобильный пользователь</td><td>US-07, US-08</td><td>Push, фоновая загрузка и синхронизация</td><td>Клиент получил изменения после восстановления сети</td></tr>
@@ -37,22 +37,22 @@
 </tbody></table></div>
 <h3>Уточнения требований для API</h3>
 <p>API-01. Каждый защищённый запрос устанавливает пользователя по сессии. Идентификатор пользователя из тела запроса не меняет действующее лицо. Право администратора не даёт права читать содержимое личных файлов.</p>
-<p>API-02. Ссылка не раскрывает метаданные до проверки пароля. После пяти неверных попыток доступ к этой ссылке блокируется на 15 минут, как предусмотрено US-03. При истечении срока или отзыве возвращается нейтральная ошибка.</p>
+<p>API-02. Ссылка не раскрывает метаданные до проверки пароля. После пяти неверных попыток доступ к этой ссылке блокируется на 15 минут, как предусмотрено US-03. Срок по умолчанию 14 дней, null задаёт бессрочную ссылку. При истечении срока или отзыве возвращается нейтральная ошибка.</p>
 <p>API-03. Перенос в корзину отзывает ссылки. Восстановление файла не публикует его повторно. Карантин запрещает публикацию.</p>
 <p>API-04. Завершение загрузки идемпотентно по ключу операции. Квота резервируется до передачи данных, а занятый объём меняется в транзакции. Эти операции описаны контрактом; передачу бинарных частей в stateful mock заменяют ответы Prism.</p>
 <p>API-05. Выбор версии при восстановлении создаёт новую версию, не переписывая старую. Параллельная запись контролируется версией объекта или If-Match.</p>
 <p>API-06. Клиент получает коды 401, 403, 404, 409, 422 и 429 с понятной причиной. Пароли, хеши и токены не попадают в обычные ответы списка и журнал аудита.</p>
 <p>API-07. Тёмная тема, биометрия и офлайн-кэш относятся к клиенту. Сервер предоставляет сессию, метаданные, контент и синхронизацию; биометрические данные на сервер не отправляются. FR-28 проверяется при реализации интерфейса, а не отдельным endpoint.</p>
 <h3>Подробные сценарии</h3>
-<h4>UC-09 Передача файла по ссылке</h4>
+<h4>UC-02 Передача файла по ссылке</h4>
 <p>Предусловие: пользователь вошёл, файл активен, у пользователя есть право редактирования. Клиент отправляет file_id, access_level, пароль и срок. Сервер проверяет права и состояние файла, создаёт случайный токен, сохраняет его хеш и хеш пароля, затем возвращает 201 с URL и датой окончания. Повторно секретный токен в списке ссылок не показывается. При недостаточных правах возвращается 403, при корзине или карантине - 409, при коротком пароле - 422. Отзыв ссылки изменяет её состояние и записывается в аудит.</p>
-<h4>UC-10 Открытие гостевой ссылки</h4>
+<h4>UC-12 Открытие гостевой ссылки</h4>
 <p>Предусловие: гость получил URL. Клиент отправляет пароль в POST access. После проверки сервер выдаёт краткоживущий токен доступа и метаданные. Скачивание требует этот токен и уровень download. При view скачивание отклоняется с 403. При неверном пароле возвращается 401, после пяти ошибок - 429. Истёкшая или отозванная ссылка возвращает 404 без имени файла.</p>
-<h4>UC-05 Загрузка файла частями</h4>
+<h4>UC-01 Загрузка файла частями</h4>
 <p>Пользователь выбирает файл и папку. Клиент создаёт upload session с размером и ключом идемпотентности, получает id и передаёт части по номеру. После обрыва запрашивается принятый объём. Завершение сверяет размер и checksum, фиксирует версию и отправляет задачу на проверку. Недостаток квоты даёт 507, неверная контрольная сумма - 409. Состояние остаётся pending до успешной проверки.</p>
-<h4>UC-14 Решение по запросу квоты</h4>
+<h4>UC-05 Решение по запросу квоты</h4>
 <p>Пользователь отправляет обоснование и требуемый объём. Администратор открывает очередь, выбирает запрос и указывает новую квоту либо причину отказа. Сервер блокирует запись запроса, проверяет pending, меняет квоту и сохраняет решение одной транзакцией. Повторное решение даёт 409. Уменьшение ниже занятого объёма запрещено.</p>
-<h4>UC-07 Восстановление из корзины</h4>
+<h4>UC-11 Восстановление из корзины</h4>
 <p>Пользователь выбирает собственный файл в корзине и вызывает POST restorations. Сервер проверяет право записи и состояние, переводит файл в active и записывает событие. Ранее отозванные ссылки остаются недействительными. Попытка восстановить активный файл даёт 409.</p></section><section id="database"><h2>Логическая схема базы данных</h2>
 <p>Модель продолжает 16 сущностей ЛР3. Добавлена upload_sessions для загрузки частями и идемпотентного завершения. Содержимое файлов хранится в S3, в таблицах остаются метаданные.</p>
 <h3>users</h3>
@@ -124,50 +124,50 @@
 <p>Для лабораторной есть два разных сервиса. Prism на порту 4010 симулирует весь контракт из 52 операций. FastAPI на порту 8044 реализует 21 операцию с состоянием SQLite. Поле x-implementation в спецификации показывает границу. Промышленная регистрация, TOTP, передача частей файла, LDAP и push в этот прототип не входят.</p>
 <div class="table-scroll"><table><thead><tr><th>Метод</th><th>Маршрут</th><th>UC</th><th>Источник</th><th>Проверка</th></tr></thead><tbody>
 <tr><td>GET</td><td><code>/health</code></td><td>UC-19</td><td>FR-30</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/me</code></td><td>UC-02</td><td>FR-02,FR-30</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/me/quota</code></td><td>UC-14</td><td>FR-18</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files</code></td><td>UC-06</td><td>FR-09</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-06</td><td>FR-08</td><td>stateful-mock</td></tr>
-<tr><td>PATCH</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
-<tr><td>DELETE</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-07</td><td>FR-10</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/files/{file_id}/restorations</code></td><td>UC-07</td><td>FR-10</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files/{file_id}/versions</code></td><td>UC-08</td><td>FR-11</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/folders</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/folders</code></td><td>UC-04</td><td>FR-05</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/share-links</code></td><td>UC-09</td><td>FR-14</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/share-links</code></td><td>UC-09</td><td>FR-12</td><td>stateful-mock</td></tr>
-<tr><td>DELETE</td><td><code>/api/v1/share-links/{share_id}</code></td><td>UC-09</td><td>FR-14</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/public/shares/{token}/access</code></td><td>UC-10</td><td>FR-13</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/public/shares/{token}/content</code></td><td>UC-10</td><td>FR-13</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/access-requests</code></td><td>UC-14</td><td>FR-18</td><td>stateful-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/admin/access-requests</code></td><td>UC-14</td><td>FR-19</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/admin/access-requests/{request_id}/decisions</code></td><td>UC-14</td><td>FR-19</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/me</code></td><td>UC-07</td><td>FR-02,FR-30</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/me/quota</code></td><td>UC-05</td><td>FR-18</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files</code></td><td>UC-10</td><td>FR-09</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-10</td><td>FR-08</td><td>stateful-mock</td></tr>
+<tr><td>PATCH</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-09</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/files/{file_id}</code></td><td>UC-11</td><td>FR-10</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/restorations</code></td><td>UC-11</td><td>FR-10</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/versions</code></td><td>UC-04</td><td>FR-11</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/folders</code></td><td>UC-09</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/folders</code></td><td>UC-09</td><td>FR-05</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/share-links</code></td><td>UC-02</td><td>FR-14</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/share-links</code></td><td>UC-02</td><td>FR-12</td><td>stateful-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/share-links/{share_id}</code></td><td>UC-02</td><td>FR-14</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/public/shares/{token}/access</code></td><td>UC-12</td><td>FR-13</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/public/shares/{token}/content</code></td><td>UC-12</td><td>FR-13</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/access-requests</code></td><td>UC-05</td><td>FR-18</td><td>stateful-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/admin/access-requests</code></td><td>UC-05</td><td>FR-19</td><td>stateful-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/admin/access-requests/{request_id}/decisions</code></td><td>UC-05</td><td>FR-19</td><td>stateful-mock</td></tr>
 <tr><td>PUT</td><td><code>/api/v1/admin/users/{user_id}/quota</code></td><td>UC-15</td><td>FR-21</td><td>stateful-mock</td></tr>
 <tr><td>GET</td><td><code>/api/v1/admin/audit-records</code></td><td>UC-16</td><td>FR-23</td><td>stateful-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/registrations</code></td><td>UC-01</td><td>FR-01</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/email-confirmations</code></td><td>UC-01</td><td>FR-01</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/sessions</code></td><td>UC-02</td><td>FR-02,FR-04</td><td>contract-mock</td></tr>
-<tr><td>DELETE</td><td><code>/api/v1/auth/sessions/current</code></td><td>UC-02</td><td>FR-02</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/password-resets</code></td><td>UC-02</td><td>FR-02</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/totp/enrollments</code></td><td>UC-03</td><td>FR-03</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/auth/totp/verifications</code></td><td>UC-03</td><td>FR-03</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/uploads</code></td><td>UC-05</td><td>FR-06,FR-27</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
-<tr><td>DELETE</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
-<tr><td>PUT</td><td><code>/api/v1/uploads/{upload_id}/parts/{part_no}</code></td><td>UC-05</td><td>FR-06</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/uploads/{upload_id}/completions</code></td><td>UC-05</td><td>FR-06,FR-07</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files/{file_id}/content</code></td><td>UC-06</td><td>FR-08,FR-26</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files/{file_id}/previews</code></td><td>UC-06</td><td>FR-08</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/files/{file_id}/version-restorations</code></td><td>UC-08</td><td>FR-11</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/folders/{folder_id}/invitations</code></td><td>UC-11</td><td>FR-15</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/invitations/{invitation_id}/acceptances</code></td><td>UC-11</td><td>FR-15</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/folders/{folder_id}/members</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
-<tr><td>PUT</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
-<tr><td>DELETE</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-12</td><td>FR-16</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-13</td><td>FR-17</td><td>contract-mock</td></tr>
-<tr><td>POST</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-13</td><td>FR-17</td><td>contract-mock</td></tr>
-<tr><td>GET</td><td><code>/api/v1/notifications</code></td><td>UC-13</td><td>FR-25</td><td>contract-mock</td></tr>
-<tr><td>PATCH</td><td><code>/api/v1/notifications/{notification_id}</code></td><td>UC-13</td><td>FR-25</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/registrations</code></td><td>UC-06</td><td>FR-01</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/email-confirmations</code></td><td>UC-06</td><td>FR-01</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/sessions</code></td><td>UC-07</td><td>FR-02,FR-04</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/auth/sessions/current</code></td><td>UC-07</td><td>FR-02</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/password-resets</code></td><td>UC-07</td><td>FR-02</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/totp/enrollments</code></td><td>UC-08</td><td>FR-03</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/auth/totp/verifications</code></td><td>UC-08</td><td>FR-03</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/uploads</code></td><td>UC-01</td><td>FR-06,FR-27</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-01</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/uploads/{upload_id}</code></td><td>UC-01</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/uploads/{upload_id}/parts/{part_no}</code></td><td>UC-01</td><td>FR-06</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/uploads/{upload_id}/completions</code></td><td>UC-01</td><td>FR-06,FR-07</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/content</code></td><td>UC-10</td><td>FR-08,FR-26</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/previews</code></td><td>UC-10</td><td>FR-08</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/version-restorations</code></td><td>UC-04</td><td>FR-11</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/folders/{folder_id}/invitations</code></td><td>UC-03</td><td>FR-15</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/invitations/{invitation_id}/acceptances</code></td><td>UC-03</td><td>FR-15</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/folders/{folder_id}/members</code></td><td>UC-13</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>PUT</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-13</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>DELETE</td><td><code>/api/v1/folders/{folder_id}/members/{user_id}</code></td><td>UC-13</td><td>FR-16</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-14</td><td>FR-17</td><td>contract-mock</td></tr>
+<tr><td>POST</td><td><code>/api/v1/files/{file_id}/comments</code></td><td>UC-14</td><td>FR-17</td><td>contract-mock</td></tr>
+<tr><td>GET</td><td><code>/api/v1/notifications</code></td><td>UC-14</td><td>FR-25</td><td>contract-mock</td></tr>
+<tr><td>PATCH</td><td><code>/api/v1/notifications/{notification_id}</code></td><td>UC-14</td><td>FR-25</td><td>contract-mock</td></tr>
 <tr><td>POST</td><td><code>/api/v1/devices</code></td><td>UC-17</td><td>FR-25,FR-27</td><td>contract-mock</td></tr>
 <tr><td>GET</td><td><code>/api/v1/sync/changes</code></td><td>UC-17</td><td>FR-26</td><td>contract-mock</td></tr>
 <tr><td>GET</td><td><code>/api/v1/admin/users</code></td><td>UC-15</td><td>FR-20</td><td>contract-mock</td></tr>
@@ -219,7 +219,7 @@ GREMLIN_USER_ID=00000000-0000-4000-8000-000000000001 .venv/bin/python mcp_server
 <tr><td>list_files</td><td>query, limit 1–100</td><td>Доступные активные файлы</td></tr>
 <tr><td>get_file</td><td>file_id UUID</td><td>Метаданные с проверкой ACL</td></tr>
 <tr><td>create_folder</td><td>name, parent_id UUID или null</td><td>Новая папка; нужна запись в родительскую</td></tr>
-<tr><td>create_share_link</td><td>file_id UUID, password от 8 символов, expires_in_days 1–30, access_level view/download</td><td>Ссылка на активный файл</td></tr>
+<tr><td>create_share_link</td><td>file_id UUID, password от 8 символов, expires_in_days 1–30 или null (по умолчанию 14), access_level view/download</td><td>Ссылка на активный файл</td></tr>
 <tr><td>revoke_share_link</td><td>share_id UUID</td><td>Отзыв при праве записи на файл</td></tr>
 <tr><td>trash_file</td><td>file_id UUID, confirm=true</td><td>Корзина и отзыв ссылок</td></tr>
 <tr><td>restore_file</td><td>file_id UUID</td><td>Возврат из корзины без публикации старых ссылок</td></tr>
@@ -255,5 +255,5 @@ GREMLIN_USER_ID=00000000-0000-4000-8000-000000000001 .venv/bin/python mcp_server
 <h3>Вклад участников</h3>
 <p>Матвей Вержбиба подготовил требования, User Stories, UML и архитектуру ЛР3; исходный коммит 392a849 сохранён в истории. Александр Сытин выполнил ЛР4: трассировку требований, DDL, контракт и коллекции, stateful mock, MCP MVP, тесты, контейнеры и документацию. Работа других участников в рамках ЛР4 не приписывается.</p>
 <h3>Проверка при защите</h3>
-<p>Сначала открыть PDF и страницу лабораторной. Показать связь US-03 → UC-09 → POST share-links, затем физическую модель и schema.sql. В Bruno запустить окружение contract, в Swagger mock показать запрет публикации для reader и успешное создание ссылки владельцем. Через Inspector показать tools/list, ресурс gremlin://policy и вызов list_files. В конце открыть протоколы тестов и workflow CI.</p></section><section id="models"><h2>Диаграммы данных</h2><figure><a href="diagrams/logical.png"><img loading="lazy" src="diagrams/logical.png" alt="Логическая модель"></a><figcaption>Логическая модель. <a href="diagrams/logical.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-identity.png"><img loading="lazy" src="diagrams/physical-identity.png" alt="Пользователи и управление"></a><figcaption>Пользователи и управление. <a href="diagrams/physical-identity.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-storage.png"><img loading="lazy" src="diagrams/physical-storage.png" alt="Файлы и загрузка"></a><figcaption>Файлы и загрузка. <a href="diagrams/physical-storage.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-sharing.png"><img loading="lazy" src="diagrams/physical-sharing.png" alt="Общий доступ"></a><figcaption>Общий доступ. <a href="diagrams/physical-sharing.puml">PlantUML</a></figcaption></figure></section>
+<p>Сначала открыть PDF и страницу лабораторной. Показать связь US-03 → UC-02 → POST share-links, затем физическую модель и schema.sql. В Bruno запустить окружение contract, в Swagger mock показать запрет публикации для reader и успешное создание ссылки владельцем. Через Inspector показать tools/list, ресурс gremlin://policy и вызов list_files. В конце открыть протоколы тестов и workflow CI.</p></section><section id="models"><h2>Диаграммы данных</h2><figure><a href="diagrams/logical.png"><img loading="lazy" src="diagrams/logical.png" alt="Логическая модель"></a><figcaption>Логическая модель. <a href="diagrams/logical.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-identity.png"><img loading="lazy" src="diagrams/physical-identity.png" alt="Пользователи и управление"></a><figcaption>Пользователи и управление. <a href="diagrams/physical-identity.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-storage.png"><img loading="lazy" src="diagrams/physical-storage.png" alt="Файлы и загрузка"></a><figcaption>Файлы и загрузка. <a href="diagrams/physical-storage.puml">PlantUML</a></figcaption></figure><figure><a href="diagrams/physical-sharing.png"><img loading="lazy" src="diagrams/physical-sharing.png" alt="Общий доступ"></a><figcaption>Общий доступ. <a href="diagrams/physical-sharing.puml">PlantUML</a></figcaption></figure></section>
 </main><footer>Александр Сытин · исходные требования ЛР3: Матвей Вержбиба · ФПМИ БГУ · 2026</footer></body></html>

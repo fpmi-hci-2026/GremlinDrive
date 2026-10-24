@@ -201,7 +201,7 @@
         "url": "{{baseUrl}}/api/v1/share-links",
         "body": {
           "mode": "raw",
-          "raw": "{\"file_id\": \"20000000-0000-4000-8000-000000000001\", \"password\": \"laboratory123\", \"expires_in_days\": 7, \"access_level\": \"download\"}",
+          "raw": "{\"file_id\": \"20000000-0000-4000-8000-000000000001\", \"password\": \"laboratory123\", \"expires_in_days\": 14, \"access_level\": \"download\"}",
           "options": {
             "raw": {
               "language": "json"
