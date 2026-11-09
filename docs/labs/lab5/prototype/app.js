@@ -1,7 +1,7 @@
 'use strict';
 const $=s=>document.querySelector(s),params=new URLSearchParams(location.search);
-const palettes={brand:['#2e9e62','#23834f','#eaf4ee','#1f7a4b'],contrast:['#145c39','#0f4a2d','#e6f0e9','#145c39'],emerald:['#0a7d74','#08665f','#e5f4f1','#0a7d74']};
-(palettes[params.get('theme')]||palettes.contrast).forEach((v,i)=>document.documentElement.style.setProperty(['--accent','--accent-hover','--soft','--action'][i],v));
+const palettes={brand:['#2e9e62','#23834f','#eaf4ee','#1f7a4b'],blue:['#2f5d9e','#244b80','#e8eff8','#244b80'],amber:['#b26b14','#8a4f0a','#fbf1e4','#8a4f0a']};
+(palettes[params.get('theme')]||palettes.brand).forEach((v,i)=>document.documentElement.style.setProperty(['--accent','--accent-hover','--soft','--action'][i],v));
 if(params.has('mobile'))document.body.classList.add('mobile-mode');
 const TEST_HASH='f20ad7b8686f07e89796c3e4f71a0493da34e812d16de8ead52501cb1e333a53';
 const fixture=()=>({schema:2,quota:15,used:12.4,role:'user',dark:false,biometry:false,autoUpload:true,folders:[{id:'course',name:'ПЧМИ',path:'Университет / ПЧМИ',shared:false},{id:'photos',name:'Фото_проекта',parent:'course',shared:false},{id:'manuals',name:'Методички',parent:'course',shared:false},{id:'team',name:'Проект GremlinDrive',shared:true,role:'owner'}],files:[

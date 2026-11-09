@@ -29,20 +29,20 @@ body.guide{max-width:1120px;margin:auto;padding:32px 24px 64px;background:var(--
 <body class="guide">
 <header class="guide-head">
 <a class="brand" href="./"><span class="mark">G</span>GremlinDrive</a>
-<nav><a href="./">Прототип</a> · <a href="./?mobile=1">Мобильная версия</a> · <a href="./?theme=brand">brand</a> · <a href="./?theme=contrast">contrast</a> · <a href="./?theme=emerald">emerald</a></nav>
+<nav><a href="./">Прототип</a> · <a href="./?mobile=1">Мобильная версия</a> · <a href="./?theme=brand">brand</a> · <a href="./?theme=blue">blue</a> · <a href="./?theme=amber">amber</a></nav>
 </header>
 
 <h1>Единая система компонентов</h1>
-<p class="meta">Продолжение ЛР2: Inter, светлая тема, сетка 8 pt, зелёные действия. Материалы ЛР1–4 служат исходной спецификацией.</p>
+<p class="meta">Продолжение ЛР2: Inter, светлая тема, сетка 8 pt, зелёный бренд и альтернативные акценты. Материалы ЛР1–4 служат исходной спецификацией.</p>
 
 <section id="palettes">
 <h2>1. Палитра и токены</h2>
-<p>Основной зелёный бренда — <span class="mono">#2E9E62</span>. Для кнопок с белой подписью используется тёмный вариант акцента: <span class="mono">#1F7A4B</span> для brand, <span class="mono">#145C39</span> для contrast и <span class="mono">#0A7D74</span> для emerald. Контраст с белым — не ниже 5:1. Фон — <span class="mono">#F6F8F7</span>, поверхность — <span class="mono">#FFFFFF</span>, основной текст — <span class="mono">#17251F</span>.</p>
+<p>Основной зелёный бренда — <span class="mono">#2E9E62</span>. Для сравнения взяты синий <span class="mono">#2F5D9E</span> и янтарный <span class="mono">#B26B14</span>. Для кнопок с белой подписью используется тёмный вариант акцента: <span class="mono">#1F7A4B</span> для brand, <span class="mono">#244B80</span> для blue и <span class="mono">#8A4F0A</span> для amber. Контраст с белым — не ниже 5:1. Фон — <span class="mono">#F6F8F7</span>, поверхность — <span class="mono">#FFFFFF</span>, основной текст — <span class="mono">#17251F</span>.</p>
 <div class="swatches">
 <div class="swatch" style="background:#2E9E62;color:#fff"><strong>brand</strong>#2E9E62<br>марка и индикаторы</div>
 <div class="swatch" style="background:#1F7A4B;color:#fff"><strong>action</strong>#1F7A4B<br>кнопки и активные действия</div>
-<div class="swatch" style="background:#145C39;color:#fff"><strong>contrast</strong>#145C39<br>тёмный акцент</div>
-<div class="swatch" style="background:#0A7D74;color:#fff"><strong>emerald</strong>#0A7D74<br>альтернативный акцент</div>
+<div class="swatch" style="background:#2F5D9E;color:#fff"><strong>blue</strong>#2F5D9E<br>холодный акцент</div>
+<div class="swatch" style="background:#B26B14;color:#fff"><strong>amber</strong>#B26B14<br>тёплый акцент</div>
 <div class="swatch" style="background:#F6F8F7;color:#17251F"><strong>background</strong>#F6F8F7<br>фон приложения</div>
 <div class="swatch" style="background:#FFFFFF;color:#17251F"><strong>surface</strong>#FFFFFF<br>карточки и панели</div>
 <div class="swatch" style="background:#E5A13B;color:#17251F"><strong>warning</strong>#E5A13B<br>предупреждение</div>
@@ -51,11 +51,11 @@ body.guide{max-width:1120px;margin:auto;padding:32px 24px 64px;background:var(--
 </div>
 <table class="table"><tr><th>Токен</th><th>Значение</th><th>Где применять</th></tr>
 <tr><td class="mono">--brand</td><td class="mono">#2E9E62</td><td>Логотип, маркеры, индикаторы прогресса</td></tr>
-<tr><td class="mono">--action</td><td class="mono">#1F7A4B / #145C39 / #0A7D74</td><td>Основные кнопки и аватары; значение зависит от палитры</td></tr>
-<tr><td class="mono">--soft</td><td class="mono">#EAF4EE</td><td>Активный пункт навигации, бейджи, подсказки</td></tr>
+<tr><td class="mono">--action</td><td class="mono">#1F7A4B / #244B80 / #8A4F0A</td><td>Основные кнопки и аватары; значение зависит от палитры</td></tr>
+<tr><td class="mono">--soft</td><td class="mono">#EAF4EE / #E8EFF8 / #FBF1E4</td><td>Активный пункт навигации, бейджи, подсказки</td></tr>
 <tr><td class="mono">--line</td><td class="mono">#DBE5DF</td><td>Границы, разделители, поля</td></tr>
 <tr><td class="mono">--muted</td><td class="mono">#5D6F66</td><td>Вспомогательный текст</td></tr></table>
-<p class="note">Варианты <span class="mono">brand</span>, <span class="mono">contrast</span> и <span class="mono">emerald</span> меняют акцент и действие. Все варианты сохраняют контраст белой подписи не ниже 5:1.</p>
+<p class="note">Варианты <span class="mono">brand</span>, <span class="mono">blue</span> и <span class="mono">amber</span> меняют акцент и действие. Все варианты сохраняют контраст белой подписи не ниже 5:1.</p>
 </section>
 
 <section id="type">
