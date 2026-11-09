@@ -10,15 +10,16 @@
 <h1>Прототип и визуальный язык</h1>
 <p class="lead">GremlinDrive · веб- и мобильный интерфейсы. Продолжение дизайна ЛР2: Inter, зелёная палитра, пять разделов web и пять вкладок mobile.</p>
 <div class="meta"><span class="chip">3 палитры</span><span class="chip">6 web-раскладок</span><span class="chip">5 mobile/tablet</span><span class="chip">15 синтетических профилей</span><span class="chip">реальных участников: 0</span></div>
-<div class="actions"><a class="button primary" href="lab5-report.pdf">Отчёт PDF</a><a class="button" href="prototype/">Открыть прототип</a><a class="button" href="prototype/?mobile=1">Мобильная версия</a><a class="button" href="prototype/styleguide.html">Руководство по стилю</a><a class="button" href="lab56-source.zip">Исходники и данные</a></div>
+<div class="actions"><a class="button primary" href="lab5-report.pdf">Отчёт PDF</a><a class="button" href="prototype/">Открыть прототип</a><a class="button" href="prototype/?mobile=1">Мобильная версия</a><a class="button" href="prototype/styleguide.html">Руководство по стилю</a><a class="button" href="lab5-source.zip">Исходники и данные</a></div>
 </section>
 
-<aside class="notice"><strong>Учебное моделирование.</strong> Оценки 15 профилей S01–S15 синтетические; реальных сессий и опроса людей не было. Данные и происхождение открыты в <a href="lab56-source.zip">архиве исходников</a>.</aside>
+<aside class="notice"><strong>Учебное моделирование.</strong> Оценки 15 профилей S01–S15 синтетические; реальных сессий и опроса людей не было. Данные и происхождение открыты в <a href="lab5-source.zip">архиве исходников</a>.</aside>
 
 <section class="section" id="visual">
 <h2>Визуальный язык</h2>
-<p class="section-intro">Сравниваются три акцента внутри зелёной гаммы при одинаковой композиции. Пары 1–7 взяты из методических указаний, пары 8–15 дополняют профиль. Положительный полюс справа, оценка 1–5.</p>
-<figure><img loading="lazy" src="assets/palettes-sheet.png" alt="Три палитры на web и mobile"><figcaption>Три палитры при одинаковой композиции: brand, contrast, emerald</figcaption></figure>
+<p class="section-intro">Сравниваются три акцента внутри зелёной гаммы при одинаковой композиции: brand #2E9E62, contrast #145C39, emerald #0A7D74. Пары 1–7 взяты из методических указаний, пары 8–15 дополняют профиль. Положительный полюс справа, оценка 1–5.</p>
+<figure><img loading="lazy" src="assets/palettes-sheet.png" alt="Три палитры на web"><figcaption>Три палитры на web при одинаковой композиции</figcaption></figure>
+<figure><img loading="lazy" src="assets/palettes-mobile-sheet.png" alt="Три палитры на mobile"><figcaption>Три палитры на mobile при одинаковой композиции</figcaption></figure>
 <figure><img loading="lazy" src="assets/semantic.png" alt="Семантический профиль палитр"><figcaption>Семантический профиль: 15 пар, web и mobile</figcaption></figure>
 <div class="table-scroll"><table><thead><tr><th>Платформа</th><th>brand</th><th>contrast</th><th>emerald</th></tr></thead><tbody><tr><td>Web</td><td>3,636</td><td>3,680</td><td>3,578</td></tr><tr><td>Mobile</td><td>3,493</td><td>3,533</td><td>3,467</td></tr></tbody></table></div>
 <p><strong>Выбрана contrast</strong>: наибольшее среднее на обеих платформах и лучшие оценки читабельности, надёжности и профессионализма. <code>brand</code> сохранён для марки, <code>emerald</code> — как альтернатива. Различия небольшие; вывод описательный.</p>
@@ -33,13 +34,15 @@
 <section class="section" id="adaptive">
 <h2>Адаптивность</h2>
 <p class="section-intro">Шесть раскладок web и пять устройств mobile/tablet. Проверено в Chromium: горизонтального переполнения нет, видимые кнопки не меньше 44×44 px.</p>
-<figure class="tall"><img loading="lazy" src="assets/web-sheet.png" alt="Шесть раскладок web"><figcaption>Web: 1440, 992–1199, 768–991, 576–767, 400–575 и 320–399 px</figcaption></figure>
-<figure><img loading="lazy" src="assets/mobile-sheet.png" alt="Пять устройств mobile и tablet"><figcaption>Mobile/tablet: 375, 390, 412, 768 и 1024 px</figcaption></figure>
+<figure><img loading="lazy" src="assets/web-sheet.png" alt="Широкие раскладки web"><figcaption>Web: 1440, 992–1199 и 768–991 px</figcaption></figure>
+<figure><img loading="lazy" src="assets/web-compact-sheet.png" alt="Компактные раскладки web"><figcaption>Web: 576–767, 400–575 и 320–399 px</figcaption></figure>
+<figure><img loading="lazy" src="assets/mobile-sheet.png" alt="Телефоны"><figcaption>Телефоны: 375, 390, 412 px</figcaption></figure>
+<figure><img loading="lazy" src="assets/tablets-sheet.png" alt="Планшеты"><figcaption>Планшеты: 768 и 1024 px</figcaption></figure>
 </section>
 
 <section class="section" id="styleguide">
 <h2>Руководство по стилю</h2>
-<p class="section-intro">Токены, типографика, сетка, компоненты, состояния и доступность. Минимальная область действия — 44×44 px; основная кнопка использует <code>#1F7A4B</code> и белую подпись.</p>
+<p class="section-intro">Токены, типографика, сетка, компоненты, состояния и доступность. Минимальная область действия — 44×44 px; основная кнопка использует тёмный акцент палитры и белую подпись.</p>
 <figure><img loading="lazy" src="assets/styleguide.png" alt="Руководство по стилю GremlinDrive"><figcaption>Руководство по стилю: web и mobile</figcaption></figure>
 <div class="actions"><a class="button" href="prototype/styleguide.html">Открыть style guide</a></div>
 </section>

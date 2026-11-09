@@ -1,6 +1,6 @@
 'use strict';
 const $=s=>document.querySelector(s),params=new URLSearchParams(location.search);
-const palettes={brand:['#2e9e62','#23834f','#eaf4ee','#1f7a4b'],contrast:['#1f7a4b','#17613b','#eaf4ee','#1f7a4b'],emerald:['#087f63','#06654f','#e8f5ef','#06654f']};
+const palettes={brand:['#2e9e62','#23834f','#eaf4ee','#1f7a4b'],contrast:['#145c39','#0f4a2d','#e6f0e9','#145c39'],emerald:['#0a7d74','#08665f','#e5f4f1','#0a7d74']};
 (palettes[params.get('theme')]||palettes.contrast).forEach((v,i)=>document.documentElement.style.setProperty(['--accent','--accent-hover','--soft','--action'][i],v));
 if(params.has('mobile'))document.body.classList.add('mobile-mode');
 const TEST_HASH='f20ad7b8686f07e89796c3e4f71a0493da34e812d16de8ead52501cb1e333a53';
