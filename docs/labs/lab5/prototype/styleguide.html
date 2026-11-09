@@ -1,5 +1,137 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GremlinDrive - система компонентов ЛР2–ЛР5</title><link rel="stylesheet" href="style.css"><style>body{max-width:1120px;margin:auto;padding:32px}section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;margin:24px 0}.swatches{display:flex;gap:16px;flex-wrap:wrap}.swatch{padding:24px;border-radius:12px;min-width:170px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:12px;text-align:left;border-bottom:1px solid var(--line)}.scroll{overflow:auto}code{font-size:12px}h1{margin-top:32px}.controls{display:flex;flex-wrap:wrap;gap:12px}</style></head><body><a class="brand" href="../"><span class="mark">G</span>GremlinDrive</a><h1>Единая система компонентов</h1><p>Продолжение ЛР2: светлая тема, Inter, сетка 8 pt, зелёные действия. Материалы ЛР1–3 служат исходной спецификацией.</p>
-<section><h2>Цвет</h2><div class="swatches"><div class="swatch" style="background:#2e9e62;color:#17251f">Гремлин-зелёный<br><code>#2E9E62</code></div><div class="swatch" style="background:#1f7a4b;color:#fff">Основное действие<br><code>#1F7A4B</code></div><div class="swatch" style="background:#f6f8f7;color:#17251f;border:1px solid #dbe5df">Фон<br><code>#F6F8F7</code></div><div class="swatch" style="background:#e5a13b;color:#17251f">Предупреждение<br><code>#E5A13B</code></div></div><p>Фирменный #2E9E62 сохранён в логотипе и прогрессе. Для обычных белых подписей кнопок используется более тёмный #1F7A4B: это уточнение контраста в пределах исходной зелёной палитры. Основной текст #17251F, вторичный #5D6F66, границы #DBE5DF, выделение #EAF4EE. Ссылки #003C82 - как предписано в системе именования ЛР2. Ошибка #B42318 сопровождается текстом.</p></section>
-<section><h2>Типографика и сетка</h2><p>Inter поставляется вместе с прототипом, без запроса к внешнему CDN. Основной текст 14–16 px, заголовки 20–28 px, вспомогательные подписи от 11–12 px, компактные подписи нижней навигации 10 px. Масштаб меняется средствами браузера, тёмная тема - в профиле. Макет desktop 1440 px использует 12 колонок с полями 24 px. Основной шаг 8 px: 8, 16, 24, 32. Мобильная опорная область - 375×670 px, как в ЛР2.</p><div class="scroll"><table><tr><th>Ширина</th><th>Навигация и раскладка</th></tr><tr><td>1200+</td><td>Боковое меню 248 px, поиск в шапке, таблица файлов</td></tr><tr><td>992–1199</td><td>Меню 216 px, более короткие отступы в шапке</td></tr><tr><td>768–991</td><td>Меню 192 px, дата скрыта в строке файла</td></tr><tr><td>400–767</td><td>Нижняя панель из пяти пунктов, строка поиска на всю ширину</td></tr><tr><td>320–399</td><td>Сортировка переносится на отдельную строку, компактные подписи</td></tr></table></div></section>
-<section><h2>Навигация и терминология</h2><p>Web: «Мои файлы», «Общие папки», «Недавние», «Избранное», «Корзина». Поиск, уведомления и профиль находятся в шапке. Mobile: «Файлы», «Общие», «+», «Уведомления», «Профиль». Недавние, избранное и корзина на телефоне доступны через профиль. «Общие папки» означают папки команды, а публичная ссылка создаётся в диалоге файла.</p><p>В карточке файла сохранены вкладки «Предпросмотр / Версии / Комментарии / Доступ». Администрирование - отдельный контур: пользователи, роли, квоты, запросы, аудит и статистика.</p></section>
-<section><h2>Состояния компонентов</h2><div class="controls"><button class="primary">Загрузить</button><button class="outline">Отмена</button><button class="primary" disabled>Недоступно</button><button class="outline danger">Удалить...</button></div><p>Поля и действия имеют высоту не менее 44 px. Фокус обозначен контуром 3 px; Tab перемещает его, Enter отправляет форму, Escape закрывает диалог. Диалог удерживает фокус средствами native dialog. Уведомления используют role=status.</p><label>Название папки<input placeholder="Например, Методички"></label><p>Регистрация: имя, e-mail, пароль и повтор. Пароль от 10 символов с буквами и цифрами. Для ссылки пароль необязателен, при заполнении от 8 символов. Сроки 1, 7, 14, 30 дней и бессрочно; по умолчанию 14 дней. Публичная ссылка: просмотр или просмотр со скачиванием. Роль редактирования назначается участнику общей папки.</p><p>Удаление показывает подтверждение и возможность восстановления. Восстановление версии создаёт новую запись. Удаление файла отзывает ссылки, возврат из корзины их не активирует. Квота меняется после решения администратора, а отказ требует объяснения.</p></section><p><a href="./">Открыть прототип</a> · <a href="./?mobile=1">Мобильная версия</a></p></body></html>
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GremlinDrive · руководство по стилю</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body.guide{max-width:1120px;margin:auto;padding:32px 24px 64px;background:var(--bg)}
+.guide-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.guide section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;margin:24px 0}
+.guide h1{font-size:34px;margin:0 0 8px}
+.guide h2{font-size:22px;margin:0 0 16px}
+.guide h3{font-size:16px;margin:24px 0 8px}
+.guide p,.guide li{max-width:78ch}
+.guide .meta{color:var(--muted);font-size:13px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+.swatch{padding:20px;border-radius:12px;border:1px solid var(--line);min-height:104px;display:flex;flex-direction:column;justify-content:flex-end;font-size:12px}
+.swatch strong{font-size:14px}
+.mono{font-family:"DejaVu Sans Mono",monospace;font-size:12px}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.table th{font-weight:700;color:var(--muted);font-size:12px}
+.example{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;margin:12px 0}
+.example .box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:220px}
+.grid-demo{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin:12px 0}
+.grid-demo span{height:28px;border-radius:4px;background:var(--soft);border:1px solid var(--line)}
+.note{background:var(--soft);border-radius:10px;padding:14px 16px;font-size:13px}
+.bad{color:var(--danger);font-weight:600}
+.good{color:var(--accent);font-weight:600}
+</style></head>
+<body class="guide">
+<header class="guide-head">
+<a class="brand" href="./"><span class="mark">G</span>GremlinDrive</a>
+<nav><a href="./">Прототип</a> · <a href="./?mobile=1">Мобильная версия</a> · <a href="./?theme=brand">brand</a> · <a href="./?theme=contrast">contrast</a> · <a href="./?theme=emerald">emerald</a></nav>
+</header>
+
+<h1>Единая система компонентов</h1>
+<p class="meta">Продолжение ЛР2: Inter, светлая тема, сетка 8 pt, зелёные действия. Материалы ЛР1–4 служат исходной спецификацией.</p>
+
+<section id="palettes">
+<h2>1. Палитра и токены</h2>
+<p>Основной зелёный бренда — <span class="mono">#2E9E62</span>. Для кнопок с белой подписью используется более тёмный <span class="mono">#1F7A4B</span>, чтобы контраст был не ниже 4,5:1. Фон — <span class="mono">#F6F8F7</span>, поверхность — <span class="mono">#FFFFFF</span>, основной текст — <span class="mono">#17251F</span>.</p>
+<div class="swatches">
+<div class="swatch" style="background:#2E9E62;color:#fff"><strong>brand</strong>#2E9E62<br>марка и индикаторы</div>
+<div class="swatch" style="background:#1F7A4B;color:#fff"><strong>action</strong>#1F7A4B<br>кнопки и активные действия</div>
+<div class="swatch" style="background:#087F63;color:#fff"><strong>emerald</strong>#087F63<br>альтернативный акцент</div>
+<div class="swatch" style="background:#F6F8F7;color:#17251F"><strong>background</strong>#F6F8F7<br>фон приложения</div>
+<div class="swatch" style="background:#FFFFFF;color:#17251F"><strong>surface</strong>#FFFFFF<br>карточки и панели</div>
+<div class="swatch" style="background:#E5A13B;color:#17251F"><strong>warning</strong>#E5A13B<br>предупреждение</div>
+<div class="swatch" style="background:#B42318;color:#fff"><strong>danger</strong>#B42318<br>удаление и ошибка</div>
+<div class="swatch" style="background:#003C82;color:#fff"><strong>link</strong>#003C82<br>ссылки</div>
+</div>
+<table class="table"><tr><th>Токен</th><th>Значение</th><th>Где применять</th></tr>
+<tr><td class="mono">--brand</td><td class="mono">#2E9E62</td><td>Логотип, маркеры, индикаторы прогресса</td></tr>
+<tr><td class="mono">--action</td><td class="mono">#1F7A4B</td><td>Основные кнопки, заливка аватара, центральная кнопка mobile</td></tr>
+<tr><td class="mono">--soft</td><td class="mono">#EAF4EE</td><td>Активный пункт навигации, бейджи, подсказки</td></tr>
+<tr><td class="mono">--line</td><td class="mono">#DBE5DF</td><td>Границы, разделители, поля</td></tr>
+<tr><td class="mono">--muted</td><td class="mono">#5D6F66</td><td>Вспомогательный текст</td></tr></table>
+<p class="note">Варианты <span class="mono">brand</span>, <span class="mono">contrast</span> и <span class="mono">emerald</span> меняют акцент, но сохраняют действие тёмно-зелёным. Это обеспечивает читаемость белой подписи.</p>
+</section>
+
+<section id="type">
+<h2>2. Типографика</h2>
+<p>Гарнитура Inter, переменный вес 100–900, лицензия приложена в <span class="mono">fonts/LICENSE.txt</span>. Базовый размер — 14 px, межстрочный интервал — 1,5.</p>
+<table class="table"><tr><th>Стиль</th><th>Размер / вес</th><th>Применение</th></tr>
+<tr><td>H1</td><td>28 px / 750</td><td>Заголовок страницы</td></tr>
+<tr><td>H2</td><td>20 px / 700</td><td>Заголовок карточки или секции</td></tr>
+<tr><td>Body</td><td>14 px / 400</td><td>Основной текст</td></tr>
+<tr><td>Small</td><td>11–12 px / 400–500</td><td>Метаданные, подписи, help text</td></tr>
+<tr><td>Button</td><td>13–14 px / 600</td><td>Подписи действий</td></tr></table>
+<div class="example"><h1 style="margin:0">Ваши файлы. Ваши правила.</h1><p style="margin:0">Материалы для учёбы и работы — в одном пространстве.</p></div>
+</section>
+
+<section id="grid">
+<h2>3. Сетка и адаптивность</h2>
+<p>Шаг отступов — 8 px: 8, 16, 24, 32. Рабочая область использует 12-колоночную сетку; карточки файлов занимают 4 колонки на широком экране, 6 — на планшете и 12 — на телефоне.</p>
+<div class="grid-demo"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<table class="table"><tr><th>Диапазон</th><th>Раскладка</th><th>Навигация</th></tr>
+<tr><td>1440 px и выше</td><td>Боковая панель 248 px, 3 карточки в ряд</td><td>Боковое меню</td></tr>
+<tr><td>992–1199 px</td><td>Боковая панель 216 px, 2 карточки в ряд</td><td>Боковое меню</td></tr>
+<tr><td>768–991 px</td><td>Иконочная панель 72 px, 2 карточки в ряд</td><td>Иконочная панель</td></tr>
+<tr><td>576–767 px</td><td>Одна колонка, 2 карточки в grid-режиме</td><td>Нижняя панель</td></tr>
+<tr><td>400–575 px</td><td>Одна колонка, 1 карточка в grid-режиме</td><td>Нижняя панель</td></tr>
+<tr><td>320–399 px</td><td>Компактная одна колонка, уменьшенные отступы</td><td>Нижняя панель</td></tr></table>
+<h3>Мобильные устройства</h3>
+<table class="table"><tr><th>Ширина</th><th>Режим</th><th>Особенность</th></tr>
+<tr><td>375, 390, 412 px</td><td>Телефон</td><td>Одна колонка, нижняя навигация, safe-area</td></tr>
+<tr><td>768 px</td><td>Планшет</td><td>Центрированная оболочка, 2 колонки, нижняя навигация</td></tr>
+<tr><td>1024 px</td><td>Планшет</td><td>Центрированная оболочка, 2 колонки, нижняя навигация</td></tr></table>
+</section>
+
+<section id="components">
+<h2>4. Компоненты</h2>
+<h3>Кнопки</h3>
+<div class="example"><button class="primary">Загрузить</button><button class="outline">Отмена</button><button class="outline danger">Удалить...</button><button class="primary" disabled>Недоступно</button><button class="text-button">Сбросить демо</button></div>
+<p>Минимальная область действия — 44×44 px. Основная кнопка использует <span class="mono">--action</span> и белую подпись. Вторичная — поверхность с границей. Опасное действие — красная подпись и подтверждение.</p>
+<h3>Поля и формы</h3>
+<div class="example"><div class="box"><label>Название папки<input placeholder="Например, Методички"></label><p class="field-help">Не более 80 символов.</p></div><div class="box"><label>Уровень доступа<select><option>Только просмотр</option><option>Просмотр и скачивание</option></select></label></div></div>
+<p>Поля имеют высоту 44 px, границу <span class="mono">--line</span>, радиус 8 px и подпись сверху. Ошибка показывается текстом, а не только цветом.</p>
+<h3>Навигация и фильтры</h3>
+<div class="example"><div class="filters" style="margin:0"><button class="selected">Все</button><button>Документы</button><button>Фото</button><button>Видео</button></div></div>
+<p>Активный раздел имеет <span class="mono">aria-current="page"</span> и фон <span class="mono">--soft</span>. На телефоне используется нижняя панель из пяти элементов: Файлы, Общие, Загрузить, Уведомления, Профиль.</p>
+<h3>Карточки и строки файлов</h3>
+<div class="example"><div class="box"><div class="file-name"><span class="file-icon pdf">PDF</span><div class="file-label"><button>Лабораторная.txt</button><small>2,4 МБ · 24.10.2026</small></div></div></div><div class="box"><div class="file-name"><span class="file-icon folder">▰</span><div class="file-label"><button>Методички</button><small>Папка</small></div></div></div></div>
+<p>Строка показывает имя, дату, размер и действие. В grid-режиме — карточка с тем же содержимым. Действия доступны по кнопке «⋮» и правому клику.</p>
+<h3>Диалоги, уведомления, прогресс</h3>
+<div class="example"><div class="box"><div class="progress"><span style="width:68%"></span></div><p class="status">68% · загрузка приостановлена</p><button class="outline">Продолжить</button></div><div class="box"><div class="note">Ссылка создана. Пароль показывается один раз.</div></div></div>
+<p>Диалог закрывается по Escape и кнопке «×», удерживает фокус. Уведомления используют <span class="mono">role="status"</span>. Прогресс показывает состояние загрузки и возобновления.</p>
+</section>
+
+<section id="states">
+<h2>5. Состояния и тёмная тема</h2>
+<table class="table"><tr><th>Состояние</th><th>Правило</th></tr>
+<tr><td>default</td><td>Обычный вид компонента</td></tr>
+<tr><td>hover</td><td>Небольшое затемнение, не единственный признак</td></tr>
+<tr><td>focus</td><td>Контур 3 px <span class="mono">--accent</span>, offset 3 px</td></tr>
+<tr><td>active</td><td>Фон <span class="mono">--soft</span>, жирная подпись</td></tr>
+<tr><td>disabled</td><td>Прозрачность 45%, курсор not-allowed</td></tr>
+<tr><td>empty</td><td>Заголовок, пояснение и безопасное действие</td></tr>
+<tr><td>error</td><td>Текст ошибки и понятное действие восстановления</td></tr>
+<tr><td>loading</td><td>Прогресс или скелетон, без блокировки интерфейса</td></tr></table>
+<p>Тёмная тема использует те же роли, но другие значения токенов. Она включается в профиле и сохраняется в <span class="mono">localStorage</span>.</p>
+</section>
+
+<section id="a11y">
+<h2>6. Доступность</h2>
+<ul>
+<li>Все интерактивные элементы имеют область не менее 44×44 px.</li>
+<li>Фокус виден, Tab проходит по порядку, Enter и Space активируют действие.</li>
+<li>Escape закрывает диалог; диалог имеет заголовок и кнопку закрытия.</li>
+<li>Активная навигация помечена <span class="mono">aria-current</span>, вкладки — <span class="mono">aria-selected</span>.</li>
+<li>Ошибки и уведомления озвучиваются через <span class="mono">role="alert"</span> и <span class="mono">role="status"</span>.</li>
+<li>Цвет не является единственным носителем смысла: статусы имеют текст и иконку.</li>
+</ul>
+<p class="note">Прототип не заменяет реальную проверку с пользователями. Данные семантического дифференциала синтетические и явно помечены в отчёте.</p>
+</section>
+
+<p><a href="./">Открыть прототип</a> · <a href="./?mobile=1">Мобильная версия</a> · <a href="../lab5-report.pdf">Отчёт ЛР5</a></p>
+</body></html>
